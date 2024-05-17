@@ -1,0 +1,21 @@
+{
+  "name": "crud_servicos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "sass": "sass --watch public/sass/main.scss:public/css/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "sass": "^1.77.1",
+    "sequelize": "^6.37.3"
+  }
+}
