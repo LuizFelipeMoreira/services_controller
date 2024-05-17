@@ -14,10 +14,26 @@ body {
   color: #161830;
   padding: 15px;
   text-align: center;
+  box-shadow: inset 0 -1px 0 #e2e2e2;
 }
-
-.notification,
-.user {
+.bg-header .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+.bg-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bg-header .nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.bg-header .nav-icons .notification,
+.bg-header .nav-icons .user {
   background: #f5f6fa;
   width: 35px;
   height: 35px;
@@ -25,6 +41,51 @@ body {
   padding-top: 5px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.main {
+  width: 90%;
+  height: 400px;
+  margin: 50px auto;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 30px 20px;
+}
+.main div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main div .btn-new-service {
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: #08c57f;
+  color: #ffffff;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.main div .btn-new-service:hover {
+  background: #07a56b;
+}
+.main .title-table {
+  font-size: 1.125rem;
+  color: #216bff;
+  position: relative;
+  cursor: pointer;
+}
+.main .title-table::after {
+  display: block;
+  content: "";
+  width: 90px;
+  height: 5px;
+  position: absolute;
+  bottom: -20px;
+  border-radius: 5px;
+  background: #216bff;
 }
 
 /*# sourceMappingURL=styles.css.map */

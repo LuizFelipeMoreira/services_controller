@@ -1,0 +1,51 @@
+@import '../theme/colors';
+
+@mixin Main() {
+  width: 90%;
+  height: 400px;
+  margin: 50px auto;
+  background: $white;
+  border-radius: 5px;
+  padding: 30px 20px;
+
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn-new-service {
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      background: $green;
+      color: $white;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: 0.4s;
+
+      &:hover {
+        background: #07a56b;
+      }
+    }
+  }
+
+  .title-table {
+    font-size: 1.125rem;
+    color: $light_blue;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      display: block;
+      content: '';
+      width: 90px;
+      height: 5px;
+      position: absolute;
+      bottom: -20px;
+      border-radius: 5px;
+      background: $light_blue;
+    }
+  }
+}
