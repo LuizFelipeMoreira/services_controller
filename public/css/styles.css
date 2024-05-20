@@ -45,20 +45,19 @@ body {
 
 .main {
   width: 90%;
-  height: 400px;
   margin: 50px auto;
   background: #ffffff;
   border-radius: 5px;
-  padding: 30px 20px;
+  padding: 30px 40px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-.main div {
+.main .wrapper {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.main div .btn-new-service {
+.main .wrapper .btn-new-service {
   border: none;
   padding: 12px 25px;
   font-size: 1rem;
@@ -67,10 +66,41 @@ body {
   color: #ffffff;
   border-radius: 7px;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.2s;
 }
-.main div .btn-new-service:hover {
+.main .wrapper .btn-new-service:hover {
   background: #07a56b;
+}
+.main .research-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.main .research-wrapper .research-field {
+  background: #f5f6fa;
+  padding: 8px;
+  border-radius: 5px;
+}
+.main .research-wrapper .research-field input {
+  border: none;
+  background: #f5f6fa;
+  outline: none;
+}
+.main .research-wrapper .submit-btn {
+  border: none;
+  background: #f5f6fa;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  transition: 0.2s;
+}
+.main .research-wrapper .submit-btn:hover {
+  background: #ebecf0;
+}
+.main .research-wrapper .submit-btn:active {
+  background-color: #e2e3e6;
 }
 .main .title-table {
   font-size: 1.125rem;

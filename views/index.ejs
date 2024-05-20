@@ -31,12 +31,72 @@
      </div>
 
      <main class="main">
-          <div>
+          <div class="wrapper">
                <h4 class="fw-bold">Lista de Serviços</h4>
                <button class="btn-new-service">Adicionar serviço</button>
           </div>
           <p class="title-table fw-semibold">Clientes</p>
           <hr>
+          <div class="research-wrapper">
+               <form action="">
+                    <div class="research-field">
+                         <i class="fa-solid fa-magnifying-glass"></i>
+                         <input type="text" name="search" id="search" placeholder="Pesquisar...">
+                    </div>
+
+               </form>
+               <button type="submit" class="submit-btn"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+          </div>
+          <table class="table caption-top">
+               <caption>List of users</caption>
+               <thead>
+                    <tr>
+
+                         <th scope="col">Nome</th>
+                         <th scope="col">Lente</th>
+                         <th scope="col">Lab</th>
+                         <th scope="col">Ida</th>
+                         <th scope="col">Volta</th>
+                         <th scope="col">Situacao</th>
+                         <th scope="col">OS</th>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                         <td>Rosana Valle</td>
+                         <td>Cr Ar</td>
+                         <td>Wave Sv</td>
+                         <td>15/05/2024</td>
+                         <td>18/05/2024</td>
+                         <td>pendente</td>
+                         <td>Pg1234</td>
+                         <td>
+                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+
+                         </td>
+
+                    </tr>
+                    <tr>
+
+                         <td>Rosana Valle</td>
+                         <td>Cr Ar</td>
+                         <td>Wave Sv</td>
+                         <td>15/05/2024</td>
+                         <td>18/05/2024</td>
+                         <td>pendente</td>
+                         <td>Pg1234</td>
+                         <td>
+                              <div>
+                                   <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+                                   <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                              </div>
+                         </td>
+
+                    </tr>
+
+               </tbody>
+          </table>
      </main>
 
 
