@@ -4,7 +4,7 @@
 @mixin Header() {
   background: $white;
   color: $dark_blue;
-  padding: 15px;
+  padding: 15px 0;
   text-align: center;
   box-shadow: inset 0 -1px 0 #e2e2e2;
 
@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
   }
 
   .logo {
