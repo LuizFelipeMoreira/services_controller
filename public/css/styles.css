@@ -71,23 +71,28 @@ body {
 .main .wrapper .btn-new-service:hover {
   background: #07a56b;
 }
-.main .research-wrapper {
-  display: flex;
+.main .research-field {
   width: 100%;
+}
+.main .research-field .form-search {
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.main .research-wrapper .research-field {
+.main .research-field .field {
+  padding: 0 5px;
   background: #f5f6fa;
-  padding: 8px;
   border-radius: 5px;
 }
-.main .research-wrapper .research-field input {
-  border: none;
+.main .research-field .input {
   background: #f5f6fa;
+  color: #757575;
+  padding: 8px;
+  border: none;
   outline: none;
+  margin-top: 3px;
 }
-.main .research-wrapper .submit-btn {
+.main .research-field .submit-btn {
   border: none;
   background: #f5f6fa;
   cursor: pointer;
@@ -96,10 +101,10 @@ body {
   padding: 8px 12px;
   transition: 0.2s;
 }
-.main .research-wrapper .submit-btn:hover {
+.main .research-field .submit-btn:hover {
   background: #ebecf0;
 }
-.main .research-wrapper .submit-btn:active {
+.main .research-field .submit-btn:active {
   background-color: #e2e3e6;
 }
 .main .title-table {

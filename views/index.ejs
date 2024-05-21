@@ -37,28 +37,35 @@
           </div>
           <p class="title-table fw-semibold">Clientes</p>
           <hr>
-          <div class="research-wrapper">
-               <form action="">
-                    <div class="research-field">
+          <div class="research-field">
+               <form action="" class="form-search">
+                    <div class="field">
                          <i class="fa-solid fa-magnifying-glass"></i>
-                         <input type="text" name="search" id="search" placeholder="Pesquisar...">
+                         <input type="text" name="search" id="search" class="input" placeholder="Pesquisar...">
                     </div>
 
+                    <div class="field ">
+                         <label for="date">Data de entrega: </label>
+                         <input type="date" name="date" id="date" class="input">
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                         <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </button>
                </form>
-               <button type="submit" class="submit-btn"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+
           </div>
-          <table class="table caption-top">
+          <table class="table">
                <caption>List of users</caption>
                <thead>
                     <tr>
-
-                         <th scope="col">Nome</th>
-                         <th scope="col">Lente</th>
-                         <th scope="col">Lab</th>
-                         <th scope="col">Ida</th>
-                         <th scope="col">Volta</th>
-                         <th scope="col">Situacao</th>
-                         <th scope="col">OS</th>
+                         <th>Nome</th>
+                         <th>Lente</th>
+                         <th>Lab</th>
+                         <th>Ida</th>
+                         <th>Volta</th>
+                         <th>Situacao</th>
+                         <th>OS</th>
                     </tr>
                </thead>
                <tbody>
@@ -68,17 +75,15 @@
                          <td>Wave Sv</td>
                          <td>15/05/2024</td>
                          <td>18/05/2024</td>
-                         <td>pendente</td>
+                         <td>entregue</td>
                          <td>Pg1234</td>
                          <td>
                               <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
                               <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-
                          </td>
 
                     </tr>
                     <tr>
-
                          <td>Rosana Valle</td>
                          <td>Cr Ar</td>
                          <td>Wave Sv</td>

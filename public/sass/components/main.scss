@@ -32,22 +32,28 @@
     }
   }
 
-  .research-wrapper {
-    display: flex;
+  .research-field {
     width: 100%;
-    align-items: center;
-    justify-content: space-between;
 
-    .research-field {
+    .form-search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .field {
+      padding: 0 5px;
       background: $gray;
-      padding: 8px;
       border-radius: 5px;
+    }
 
-      input {
-        border: none;
-        background: $gray;
-        outline: none;
-      }
+    .input {
+      background: $gray;
+      color: #757575;
+      padding: 8px;
+      border: none;
+      outline: none;
+      margin-top: 3px;
     }
 
     .submit-btn {
