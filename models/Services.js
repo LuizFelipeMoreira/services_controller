@@ -8,10 +8,10 @@ const Servicos = connection.define('servicos', {
   os: { type: DataTypes.STRING, allowNull: false },
 });
 
-Servicos.sync({ force: false })
-  .then(() => {
-    console.log('Tabela criada com sucesso !');
-  })
-  .catch((err) => console.log(err));
+// Servicos.sync({ force: false })
+//   .then(() => {
+//     console.log('Tabela criada com sucesso !');
+//   })
+//   .catch((err) => console.log(err));
 
 module.exports = Servicos;
