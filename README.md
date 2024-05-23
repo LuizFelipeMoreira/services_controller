@@ -1,6 +1,16 @@
 ## Rastreador de Servicos
 
-Estou desenvolvendo um projeto para minha empresa com o objetivo de melhorar o controle sobre os serviços que vão para o laboratório. Atualmente, o projeto utiliza as seguintes tecnologias: JavaScript, EJS, Sass, MySQL, Express e Sequelize. No futuro, planejo otimizar o sistema integrando React, o que permitirá uma interface de usuário mais dinâmica e eficiente.
+Este projeto esta sendo desenvolvido para minha empresa, no qual ele visa automatizar os processo de envio de servicos pro laboratorio o objetivo final é ter um melhor controle dos servicos que são enviados para o laboratório, neste projeto usa as seguintes tecnologias:
+
+  <ul>
+               <li>Ejs</li>
+               <li>Node.js</li>
+               <li>Express</li>
+               <li>Bootstrap</li>
+               <li>Sass</li>
+               <li>Sequelize</li>
+               <li>Mysql</li>  
+  </ul>
 
 <h1>Service Pro</h1>
 
