@@ -1,6 +1,7 @@
 @import './theme/colors';
 @import './components/header';
 @import './components/main';
+@import './components/table.scss';
 
 body {
   background: $gray;
@@ -23,4 +24,8 @@ body {
 
 .main {
   @include Main();
+}
+
+.tabelinha {
+  @include Table();
 }

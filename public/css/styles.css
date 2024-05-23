@@ -73,6 +73,7 @@ body {
 }
 .main .research-field {
   width: 100%;
+  margin-bottom: 30px;
 }
 .main .research-field .form-search {
   display: flex;
@@ -122,6 +123,26 @@ body {
   bottom: -20px;
   border-radius: 5px;
   background: #216bff;
+}
+
+.tabelinha {
+  width: 100%;
+}
+.tabelinha thead {
+  color: #9c9898;
+  border-bottom: 2px solid #161830;
+}
+.tabelinha td,
+.tabelinha th {
+  padding: 10px 5px;
+}
+.tabelinha .service {
+  font-weight: 500;
+  color: #111111;
+  border-radius: 5px;
+}
+.tabelinha .service:nth-child(odd) {
+  background: #f5f6fa;
 }
 
 /*# sourceMappingURL=styles.css.map */
