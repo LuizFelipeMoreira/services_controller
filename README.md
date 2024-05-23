@@ -1,6 +1,6 @@
 ## Rastreador de Servicos
 
-Este projeto esta sendo desenvolvido para minha empresa, no qual ele visa automatizar os processo de envio de servicos pro laboratorio o objetivo final é ter um melhor controle dos servicos que são enviados para o laboratório, neste projeto usa as seguintes tecnologias:
+Este projeto está sendo desenvolvido para a minha empresa com o objetivo de automatizar o processo de envio de serviços para o laboratório. O objetivo final é melhorar o controle e a gestão dos serviços enviados, garantindo maior eficiência e precisão.
 
   <ul>
                <li>Node.js</li>
