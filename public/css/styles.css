@@ -145,4 +145,49 @@ body {
   background: #f5f6fa;
 }
 
+.modal .form-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 10px 0 0 0;
+}
+.modal .form-modal .field-modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.modal .form-modal .field-modal label {
+  color: #111111;
+  font-weight: 500;
+}
+.modal .form-modal .field-modal input,
+.modal .form-modal .field-modal select {
+  width: 65%;
+  padding: 8px;
+  background: #f5f6fa;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
+.modal .form-modal .field-modal input[type=date]:hover,
+.modal .form-modal .field-modal select:hover {
+  cursor: pointer;
+}
+.modal .form-modal .btn-submit-modal {
+  border: none;
+  padding: 8px 25px;
+  font-size: 1rem;
+  border-radius: 7px;
+  font-weight: 500;
+  background: #08c57f;
+  color: #ffffff;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.modal .form-modal .btn-submit-modal:hover {
+  background: #07a56b;
+}
+
 /*# sourceMappingURL=styles.css.map */
