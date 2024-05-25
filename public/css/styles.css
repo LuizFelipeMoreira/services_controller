@@ -81,6 +81,9 @@ body {
   justify-content: space-between;
 }
 .main .research-field .field {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   padding: 0 5px;
   background: #f5f6fa;
   border-radius: 5px;
