@@ -1,7 +1,8 @@
 @import './theme/colors';
 @import './components/header';
 @import './components/main';
-@import './components/table.scss';
+@import './components/table';
+@import './components/modal';
 
 body {
   background: $gray;
@@ -28,4 +29,8 @@ body {
 
 .tabelinha {
   @include Table();
+}
+
+.modal {
+  @include Modal();
 }

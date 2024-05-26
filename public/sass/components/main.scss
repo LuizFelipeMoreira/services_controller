@@ -43,6 +43,9 @@
     }
 
     .field {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
       padding: 0 5px;
       background: $gray;
       border-radius: 5px;
