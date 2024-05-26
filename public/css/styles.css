@@ -6,7 +6,11 @@ body {
   width: 100%;
   height: 7px;
   background: rgb(29, 64, 122);
-  background: linear-gradient(90deg, rgb(29, 64, 122) 79%, rgb(8, 197, 127) 73%);
+  background: linear-gradient(
+    90deg,
+    rgb(29, 64, 122) 79%,
+    rgb(8, 197, 127) 73%
+  );
 }
 
 .bg-header {
@@ -116,7 +120,7 @@ body {
 }
 .main .title-table::after {
   display: block;
-  content: "";
+  content: '';
   width: 90px;
   height: 5px;
   position: absolute;
