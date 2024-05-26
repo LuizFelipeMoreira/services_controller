@@ -46,7 +46,7 @@
 
                     <div class="field ">
                          <label for="date">Data de entrega: </label>
-                         <input type="date" name="date" id="date" class="input">
+                         <input type="date" name="dataEntrega" id="date" class="input">
                     </div>
 
                     <button type="submit" class="submit-btn">
@@ -159,20 +159,20 @@
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                         <form action="" class="form-modal" method="post">
+                         <form action="/create" class="form-modal" method="post">
                               <div class="field-modal">
                                    <label for="nome">Nome</label>
-                                   <input type="text" name="nome" id="nome" class="input">
+                                   <input type="text" name="nome" id="nome" class="input" required>
                               </div>
 
                               <div class="field-modal">
-                                   <label for="nome">Lente</label>
-                                   <input type="text" name="nome" id="nome" class="input">
+                                   <label for="lente">Lente</label>
+                                   <input type="text" name="lente" id="lente" class="input" required>
                               </div>
 
                               <div class="field-modal">
                                    <label for="laboratorio">Laboratorio</label>
-                                   <select name="laboratorio" id="laboratorio">
+                                   <select name="laboratorio" id="laboratorio" required>
                                         <option value="wave-pg">Wave pg</option>
                                         <option value="wave-sv">Wave sv</option>
                                    </select>
@@ -180,23 +180,22 @@
 
                               <div class="field-modal">
                                    <label for="numeroOs">Número de OS</label>
-                                   <input type="text" name="numeroOs" id="numeroOs">
+                                   <input type="text" name="os" id="numeroOs" required>
                               </div>
 
                               <div class="field-modal">
                                    <label for="dataIda">Data de ida</label>
-                                   <input type="date" name="dataIda" id="dataIda">
+                                   <input type="date" name="dataIda" id="dataIda" required>
                               </div>
 
                               <div class="field-modal">
-                                   <label for="dataEntrga">Data de entrega</label>
-                                   <input type="date" name="dataEntrga" id="dataEntrga">
+                                   <label for="dataEntrega">Data de entrega</label>
+                                   <input type="date" name="dataEntrega" id="dataEntrega" required>
                               </div>
 
                               <div class="modal-footer">
                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                    <button type="submit" class="btn-submit-modal">Adicionar</button>
-                                   <!-- <button type="submit" class="btn btn-primary">Adicionar</button> -->
                               </div>
                          </form>
                     </div>
