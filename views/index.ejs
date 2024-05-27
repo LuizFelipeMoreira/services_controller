@@ -70,81 +70,31 @@
                     </tr>
                </thead>
                <tbody>
-                    <tr class="service">
-                         <td>Rosana Valle</td>
-                         <td>Cr Ar</td>
-                         <td>Wave Sv</td>
-                         <td>15/05/2024</td>
-                         <td>18/05/2024</td>
-                         <td>entregue</td>
-                         <td>Pg1234</td>
-                         <td>
-                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                              <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
-                         </td>
+                    <%services.forEach(service=>{%>
+                         <tr class="service">
+                              <td>
+                                   <%= service.nome %>
+                              </td>
+                              <td>
+                                   <%= service.lente %>
+                              </td>
+                              <td>
+                                   <%= service.laboratorio %>
+                              </td>
+                              <td>15/05/2024</td>
+                              <td>18/05/2024</td>
+                              <td>entregue</td>
+                              <td>
+                                   <%= service.os %>
+                              </td>
+                              <td>
+                                   <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+                                   <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                   <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
+                              </td>
 
-                    </tr>
-                    <tr class="service">
-                         <td>Rosana Valle</td>
-                         <td>Cr Ar</td>
-                         <td>Wave Sv</td>
-                         <td>15/05/2024</td>
-                         <td>18/05/2024</td>
-                         <td>entregue</td>
-                         <td>Pg1234</td>
-                         <td>
-                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                              <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
-                         </td>
-
-                    </tr>
-                    <tr class="service">
-                         <td>Rosana Valle</td>
-                         <td>Cr Ar</td>
-                         <td>Wave Sv</td>
-                         <td>15/05/2024</td>
-                         <td>18/05/2024</td>
-                         <td>entregue</td>
-                         <td>Pg1234</td>
-                         <td>
-                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                              <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
-                         </td>
-
-                    </tr>
-                    <tr class="service">
-                         <td>Rosana Valle</td>
-                         <td>Cr Ar</td>
-                         <td>Wave Sv</td>
-                         <td>15/05/2024</td>
-                         <td>18/05/2024</td>
-                         <td>entregue</td>
-                         <td>Pg1234</td>
-                         <td>
-                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                              <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
-                         </td>
-
-                    </tr>
-                    <tr class="service">
-                         <td>Rosana Valle</td>
-                         <td>Cr Ar</td>
-                         <td>Wave Sv</td>
-                         <td>15/05/2024</td>
-                         <td>18/05/2024</td>
-                         <td>entregue</td>
-                         <td>Pg1234</td>
-                         <td>
-                              <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                              <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                              <!-- s<button class="btn btn-success"><i class="fa-solid fa-check"></i></button> -->
-                         </td>
-
-                    </tr>
+                         </tr>
+                         <% }); %>
 
 
                </tbody>
@@ -194,7 +144,7 @@
                               </div>
 
                               <div class="modal-footer">
-                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                    <button type="submit" class="btn-submit-modal">Adicionar</button>
                               </div>
                          </form>
