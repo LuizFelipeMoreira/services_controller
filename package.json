@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "sass": "sass --watch public/sass/style.scss:public/css/styles.css"
+    "start": "nodemon ./src/app.js",
+    "sass": "sass --watch ./src/public/sass/style.scss:./src/public/css/styles.css"
   },
   "keywords": [],
   "author": "",
