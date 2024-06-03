@@ -68,7 +68,7 @@
                          <th></th>
                     </tr>
                </thead>
-               <tbody>
+               <tbody class="service-list">
                     <%services.forEach(service=>{%>
                          <tr class="service">
                               <td>
@@ -106,7 +106,7 @@
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                         <form action="/create" class="form-modal" method="post">
+                         <form action="/create" class="form-modal" id="form-modal" method="post">
                               <div class="field-modal">
                                    <label for="nome">Nome</label>
                                    <input type="text" name="nome" id="nome" class="input" required>
