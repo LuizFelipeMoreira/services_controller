@@ -6,26 +6,35 @@ exports.createUser = async (req, res) => {
 
   try {
     const serviceDb = await Services.create({ nome, lente, laboratorio, os });
-
+    console.log('chegou no try');
     res.json(serviceDb);
-    // res.send(`
-    // <h1>Servico Criado</h1>
-    // <hr/>
-    // <h4>Nome do servico: ${nome}</h4>
-    // <h4>Lente: ${lente}</h4>
-    // <h4>Laboratorio: ${laboratorio}</h4>
-    // <h4>Os: ${os}</h4>
-    // <h4>Data de ida: ${dataIda}</h4>
-    // <h4>Data de volta: ${dataEntrega}</h4>
-    // `);
   } catch (error) {
-    res.send(`<h1>Erro ao adicionar servico:<h1/>
-    <p>${error}</p>`);
+    console.log('foi p catch');
+    res.send(`<h1>Erro ao adicionar servico: ${error}</h1>`);
   }
 };
 
-// Edit an existing user
-exports.editUser = async (req, res) => {};
+exports.editService = async (req, res) => {
+  const id = req.params.id;
 
-// Delete a user
-exports.deleteUser = async (req, res) => {};
+  console.log(id);
+
+  res.send('servico com id: ' + id);
+};
+
+// exports.deleteService = async (req, res) => {
+//   const id = req.params.id;
+
+//   try {
+//     await Services.destroy({
+//       where: {
+//         id,
+//       },
+//     });
+
+//     res.send('servico com id: ' + id);
+//   } catch (error) {
+//     res.send(error);
+//     throw new Error(error);
+//   }
+// };

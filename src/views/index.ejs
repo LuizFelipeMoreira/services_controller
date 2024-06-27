@@ -70,7 +70,7 @@
                </thead>
                <tbody class="service-list">
                     <%services.forEach(service=>{%>
-                         <tr class="service">
+                         <tr class="service" id="<%= service.id %>">
                               <td>
                                    <%= service.nome %>
                               </td>
@@ -86,9 +86,14 @@
                               <td>
                                    <%= service.os %>
                               </td>
-                              <td>
-                                   <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                                   <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                              <td class="d-flex gap-1">
+                                   <form action="/edit/<%= service.id %>" method="post">
+                                        <button type="" class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+                                   </form>
+
+                                   <form action="/delete/<%= service.id %>" class="form-delete" method="post">
+                                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash delete-button"></i></button>
+                                   </form>
                               </td>
                          </tr>
                          <% }); %>

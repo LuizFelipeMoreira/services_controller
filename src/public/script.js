@@ -12,15 +12,18 @@ async function handleFormSubmit(event) {
   const formData = new FormData(this);
   const formDataObject = Object.fromEntries(formData.entries());
 
-  console.log(formDataObject);
-
   try {
     await submitFormData('/create', formDataObject);
+
+    console.log(formDataObject);
+
+    console.log('tentou uma promise');
+
     addNewServiceRow(formDataObject);
     hideModal('staticBackdrop');
     this.reset();
   } catch (error) {
-    throw new Error(error);
+    // throw new Error(error);
   }
 }
 
@@ -29,6 +32,7 @@ function addNewServiceRow(data) {
   const newService = document.createElement('tr');
 
   newService.classList.add('service');
+  newService.id = data.id;
   newService.innerHTML = `
     <td>${data.nome}</td>
     <td>${data.lente}</td>
@@ -37,9 +41,14 @@ function addNewServiceRow(data) {
     <td>18/05/2024</td>
     <td>entregue</td>
     <td>${data.os}</td>
-    <td>
-        <button class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+    <td class="d-flex gap-1">
+      <form action="/edit/<%= service.id %>" method="post">
+          <button type="" class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+      </form>
+
+      <form action="/delete/<%= service.id %>" class="form-delete" method="post">
+          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash delete-button"></i></button>
+      </form>
     </td>
   `;
 
