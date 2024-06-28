@@ -1,9 +1,10 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
+import { Services } from './models/Services';
+import path from 'path';
+import useRoutes from './routes/userRoutes';
+
 const app = express();
 const PORT = 8181;
-const useRoutes = require('./routes/userRoutes');
-const Service = require('./models/Services');
-const path = require('path');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -15,8 +16,8 @@ app.use(express.json());
 
 app.use(useRoutes);
 
-app.get('/', async (req, res) => {
-  const services = await Service.findAll({ raw: true });
+app.get('/', async (req: Request, res: Response) => {
+  const services = await Services.findAll({ raw: true });
   console.log(services);
   res.render('index', { services });
 });

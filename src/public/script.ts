@@ -1,30 +1,40 @@
+export interface ServiceType {
+  id: number;
+  nome: string;
+  lente: string;
+  laboratorio: string;
+  os: string;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form-modal');
 
-  if (form !== null) {
+  if (form) {
     form.addEventListener('submit', handleFormSubmit);
   }
 });
 
-async function handleFormSubmit(event) {
+async function handleFormSubmit(this: HTMLFormElement, event: Event) {
   event.preventDefault();
 
+  console.log(event.target);
+
   const formData = new FormData(this);
-  const formDataObject = Object.fromEntries(formData.entries());
+  const formDataObject: ServiceType = Object.fromEntries(formData.entries());
 
   console.log(formDataObject);
 
   try {
     await submitFormData('/create', formDataObject);
     addNewServiceRow(formDataObject);
-    hideModal('staticBackdrop');
+    hideModal('staticBackdrop', this);
     this.reset();
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
 
-function addNewServiceRow(data) {
+function addNewServiceRow(data: ServiceType) {
   const serviceList = document.querySelector('.service-list');
   const newService = document.createElement('tr');
 
@@ -46,7 +56,7 @@ function addNewServiceRow(data) {
   serviceList?.appendChild(newService);
 }
 
-async function submitFormData(url, data) {
+async function submitFormData(url: string, data: ServiceType) {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -62,8 +72,10 @@ async function submitFormData(url, data) {
   return response.json();
 }
 
-function hideModal(modalId) {
+function hideModal(modalId: string, form?: HTMLFormElement) {
   const modal = document.getElementById(modalId);
-  const modalInstance = bootstrap.Modal.getInstance(modal);
+  const modalInstance = bootstrap?.Modal.getInstance(modal);
+
+  form?.reset();
   modalInstance.hide();
 }

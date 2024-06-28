@@ -1,13 +1,15 @@
-const Services = require('../models/Services');
+import { Request, Response } from 'express';
+import { Services } from '../models/Services';
 
 // Create a new user
-exports.createUser = async (req, res) => {
+export const createUser = async (req: Request, res: Response) => {
   const { nome, lente, laboratorio, dataIda, dataEntrega, os } = req.body;
 
   try {
     const serviceDb = await Services.create({ nome, lente, laboratorio, os });
 
-    res.json(serviceDb);
+    // res.json(serviceDb);
+    res.status(200);
     // res.send(`
     // <h1>Servico Criado</h1>
     // <hr/>
@@ -25,7 +27,7 @@ exports.createUser = async (req, res) => {
 };
 
 // Edit an existing user
-exports.editUser = async (req, res) => {};
+export const editUser = async (req: Request, res: Response) => {};
 
 // Delete a user
-exports.deleteUser = async (req, res) => {};
+export const deleteUser = async (req: Request, res: Response) => {};

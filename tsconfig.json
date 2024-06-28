@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Define o padrão de JavaScript para o qual o TypeScript será compilado.
+    "module": "commonjs", // Define o sistema de módulos usado.
+    "outDir": "./dist", // Define o diretório de saída para os arquivos compilados.
+    "rootDir": "./src", // Define o diretório raiz dos arquivos de entrada.
+    "strict": true, // Ativa todas as verificações de tipo estritas.
+    "esModuleInterop": true, // Habilita a interoperabilidade entre módulos ES6 e CommonJS.
+    "skipLibCheck": true, // Ignora a verificação de tipos de arquivos de definição de biblioteca.
+    "forceConsistentCasingInFileNames": true // Garante que as importações de módulos sejam sensíveis a maiúsculas e minúsculas.
+  },
+  "include": ["src/**/*.ts"], // Inclui todos os arquivos TypeScript no diretório src.
+  "exclude": ["node_modules", "dist"] // Exclui os diretórios node_modules e dist.
+}

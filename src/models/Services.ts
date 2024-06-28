@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const connection = require('../config/database');
+import { DataTypes } from 'sequelize';
+import { connection } from '../config/database';
 
-const Servicos = connection.define('servicos', {
+export const Services = connection.define('servicos', {
   nome: { type: DataTypes.STRING, allowNull: false },
   lente: { type: DataTypes.STRING, allowNull: false },
   laboratorio: { type: DataTypes.STRING, allowNull: false },
@@ -13,5 +13,3 @@ const Servicos = connection.define('servicos', {
 //     console.log('Tabela criada com sucesso !');
 //   })
 //   .catch((err) => console.log(err));
-
-module.exports = Servicos;
