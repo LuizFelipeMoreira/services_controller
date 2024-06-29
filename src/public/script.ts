@@ -4,6 +4,8 @@ export interface ServiceType {
   lente: string;
   laboratorio: string;
   os: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
