@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form-modal');
 
   if (form !== null) {
-    form.addEventListener('submit', handleFormSubmit);
+    //  form.addEventListener('submit', handleFormSubmit);
   }
 });
 

@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const PORT = 8181;
-const useRoutes = require('./routes/userRoutes');
-const Service = require('./models/Services');
 const path = require('path');
+
+const db = require('./database/database');
+const Service = require('./services/Services');
+const useRoutes = require('./services/servicesControllers');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
