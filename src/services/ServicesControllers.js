@@ -24,21 +24,17 @@ router.post('/edite', async (req, res) => {
   res.send('servico com id: ' + id);
 });
 
-// exports.deleteService = async (req, res) => {
-//   const id = req.params.id;
+router.post('/delete/:id', async (req, res) => {
+  const id = req.params.id;
 
-//   try {
-//     await Services.destroy({
-//       where: {
-//         id,
-//       },
-//     });
+  try {
+    await Services.destroy({ where: { id } });
 
-//     res.send('servico com id: ' + id);
-//   } catch (error) {
-//     res.send(error);
-//     throw new Error(error);
-//   }
-// };
+    res.redirect('/');
+  } catch (error) {
+    res.send(error);
+    throw new Error(error);
+  }
+});
 
 module.exports = router;

@@ -89,10 +89,12 @@
                               </td>
                               <td class="d-flex gap-1">
                                    <form action="/edit/<%= service.id %>" method="post">
-                                        <button type="" class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
+                                        <input type="hidden" name="id" value="<%= service.id %>">
+                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
                                    </form>
 
                                    <form action="/delete/<%= service.id %>" class="form-delete" method="post">
+                                        <input type="hidden" name="id" value="<%= service.id %>">
                                         <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash delete-button"></i></button>
                                    </form>
                               </td>
