@@ -1,0 +1,54 @@
+@import '../../styles/theme.scss';
+
+.modal {
+  .form-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px 0 0 0;
+
+    .field-modal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      label {
+        color: $black;
+        font-weight: 500;
+      }
+
+      input,
+      select {
+        width: 65%;
+        padding: 8px;
+        background: $gray;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 0.875rem;
+      }
+
+      input[type='date']:hover,
+      select:hover {
+        cursor: pointer;
+      }
+    }
+
+    .btn-submit-modal {
+      border: none;
+      padding: 8px 25px;
+      font-size: 1rem;
+      border-radius: 7px;
+      font-weight: 500;
+      background: $green;
+      color: $white;
+      transition: 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        background: #07a56b;
+      }
+    }
+  }
+}
