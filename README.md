@@ -4,7 +4,7 @@ Este projeto está sendo desenvolvido para a minha empresa com o objetivo de aut
 
 <h1>Service Pro</h1>
 
-<img src="./src/public/img/banner.jpeg" alt="" >
+<img src="./back-end/src/public/img/banner.jpeg" alt="" >
 
 <h1>Tecnologias:</h1>
 
