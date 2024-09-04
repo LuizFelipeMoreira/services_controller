@@ -1,8 +1,10 @@
 import React from 'react';
 import './styles.scss';
-import { Modal } from '../Modal';
+import { Modalzinho } from '../Modal';
 
 export const Main = () => {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <main className="main">
       <div className="wrapper">
@@ -12,6 +14,7 @@ export const Main = () => {
           className="btn-new-service"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
+          onClick={() => setOpen(true)}
         >
           Adicionar serviço
         </button>
@@ -42,7 +45,7 @@ export const Main = () => {
         </form>
       </div>
 
-      <Modal />
+      <Modalzinho open={open} setOpen={setOpen} />
     </main>
   );
 };

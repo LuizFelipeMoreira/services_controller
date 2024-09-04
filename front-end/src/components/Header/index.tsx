@@ -12,10 +12,12 @@ export const Header = () => {
             <img src={logo} alt="" height="28" />
             <h3 className="fw-bold">ServicePro</h3>
           </div>
+
           <div className="nav-icons">
             <div className="notification">
               <i className="fa-solid fa-bell"></i>
             </div>
+
             <div className="user">
               <i className="fa-solid fa-user"></i>
             </div>
