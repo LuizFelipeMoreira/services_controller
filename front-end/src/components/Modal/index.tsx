@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.scss';
 import { ServicesType } from '../../types/ServicesType';
-import axios from 'axios';
 import { Modal } from 'react-bootstrap';
+import { POST_SERVICE } from '../../api/api';
 
 interface ModalProps {
   open: boolean;
@@ -16,13 +16,13 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
     laboratorio: '',
     os: '',
   });
+  const ref = React.useRef<HTMLFormElement>(null);
 
-  async function submitData(serviceData: ServicesType) {
+  async function submitData() {
     try {
-      const { data } = await axios.post(
-        'https://localhost:8181/create',
-        serviceData
-      );
+      await POST_SERVICE(data);
+      setOpen(false);
+      ref.current?.reset();
 
       return data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
       </Modal.Header>
 
       <Modal.Body>
-        <form className="form-modal" id="form-modal" method="post">
+        <form className="form-modal" id="form-modal" method="post" ref={ref}>
           <div className="field-modal">
             <label htmlFor="nome">Nome</label>
             <input
@@ -111,10 +111,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               Cancelar
             </button>
 
-            <button
-              className="btn-submit-modal"
-              onClick={() => submitData(data)}
-            >
+            <button className="btn-submit-modal" onClick={() => submitData()}>
               Adicionar
             </button>
           </div>

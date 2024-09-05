@@ -97,3 +97,26 @@
     }
   }
 }
+.tabelinha {
+  width: 100%;
+
+  thead {
+    color: #9c9898;
+    border-bottom: 2px solid $dark_blue;
+  }
+
+  td,
+  th {
+    padding: 10px 5px;
+  }
+
+  .service {
+    font-weight: 500;
+    color: $black;
+    border-radius: 5px;
+
+    &:nth-child(odd) {
+      background: $gray;
+    }
+  }
+}
