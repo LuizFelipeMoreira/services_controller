@@ -1,9 +1,22 @@
 import React from 'react';
 import './styles.scss';
+
 import { Modalzinho } from '../Modal';
+
+import { ServicesType } from '../../types/ServicesType';
+import { GET_SERVICES } from '../../api/api';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
+  const [services, setServices] = React.useState<ServicesType[]>([]);
+
+  React.useEffect(() => {
+    GET_SERVICES().then((data) => {
+      setServices(data);
+    });
+
+    console.log(services);
+  }, []);
 
   return (
     <main className="main">
@@ -19,8 +32,10 @@ export const Main = () => {
           Adicionar serviço
         </button>
       </div>
+
       <p className="title-table fw-semibold">Clientes</p>
       <hr />
+
       <div className="research-field">
         <form action="" className="form-search">
           <div className="field">

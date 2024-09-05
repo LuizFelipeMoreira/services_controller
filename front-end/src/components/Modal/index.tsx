@@ -6,7 +6,7 @@ import { Modal } from 'react-bootstrap';
 
 interface ModalProps {
   open: boolean;
-  setOpen: unknown;
+  setOpen: (arg: boolean) => void;
 }
 
 export const Modalzinho = ({ open, setOpen }: ModalProps) => {
@@ -110,6 +110,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
             >
               Cancelar
             </button>
+
             <button
               className="btn-submit-modal"
               onClick={() => submitData(data)}
