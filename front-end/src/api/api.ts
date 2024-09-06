@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { ServicesType } from '../types/ServicesType';
 
-export const api = axios.create({
+export const axiosInstance = axios.create({
   baseURL: 'http://localhost:8181',
 });
 
 export const GET_SERVICES = async (): Promise<ServicesType[]> => {
   try {
-    const { data } = await axios.get('http://localhost:8181/services');
+    const { data } = await axiosInstance.get('/services');
 
     return data;
   } catch (error) {
@@ -17,7 +17,7 @@ export const GET_SERVICES = async (): Promise<ServicesType[]> => {
 
 export const POST_SERVICE = async (data: ServicesType) => {
   try {
-    const response = await axios.post('http://localhost:8181/create', data);
+    const response = await axiosInstance.post('/create', data);
 
     return response.data as ServicesType;
   } catch (error) {

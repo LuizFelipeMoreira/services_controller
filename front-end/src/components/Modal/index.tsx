@@ -18,7 +18,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
   });
   const ref = React.useRef<HTMLFormElement>(null);
 
-  async function submitData() {
+  async function handleFormSubmit(data: ServicesType) {
     try {
       await POST_SERVICE(data);
       setOpen(false);
@@ -26,7 +26,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
 
       return data;
     } catch (error) {
-      console.log(error);
+      console.error('Erro ao cadastrar o servico:', error);
     }
   }
 
@@ -111,7 +111,10 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               Cancelar
             </button>
 
-            <button className="btn-submit-modal" onClick={() => submitData()}>
+            <button
+              className="btn-submit-modal"
+              onClick={() => handleFormSubmit(data)}
+            >
               Adicionar
             </button>
           </div>
