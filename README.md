@@ -9,6 +9,8 @@ Este projeto está sendo desenvolvido para a minha empresa com o objetivo de aut
 <h1>Tecnologias:</h1>
 
   <ul>
+               <li>Typescript</li>
+               <li>Reaact</li>
                <li>Node.js</li>
                <li>Express</li>
                <li>Mysql</li>  
