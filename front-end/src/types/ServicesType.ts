@@ -1,5 +1,5 @@
 export interface ServicesType {
-  name: string;
+  nome: string;
   lente: string;
   laboratorio: string;
   os: string;
