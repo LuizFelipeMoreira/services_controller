@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const db = require('./database/database');
 const Service = require('./services/Services');
-const useRoutes = require('./services/servicesControllers');
+const useRoutes = require('./services/ServicesControllers');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,13 +21,14 @@ app.use(useRoutes);
 
 app.get('/', async (req, res) => {
   const services = await Service.findAll({ raw: true });
-  console.log(services);
+  //console.log(services);
+
   res.render('index', { services });
 });
 
 app.get('/services', async (req, res) => {
   const services = await Service.findAll({ raw: true });
-  console.log(services);
+  // console.log(services);
   res.status(200).json(services);
 });
 

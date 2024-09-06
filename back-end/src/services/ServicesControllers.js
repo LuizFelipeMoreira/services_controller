@@ -8,8 +8,10 @@ router.post('/create', async (req, res) => {
 
   try {
     const serviceDb = await Services.create({ nome, lente, laboratorio, os });
-    console.log('chegou no try');
-    res.redirect('/');
+    console.log(serviceDb);
+
+    //res.redirect('/');
+    res.status(200).json(serviceDb);
   } catch (error) {
     console.log('foi p catch');
     res.send(`<h1>Erro ao adicionar servico: ${error}</h1>`);
