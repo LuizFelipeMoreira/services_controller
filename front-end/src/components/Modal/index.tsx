@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { ServicesType } from '../../types/ServicesType';
 import { Modal } from 'react-bootstrap';
-import { POST_SERVICE } from '../../api/api';
+import { CREATE_SERVICE } from '../../api/api';
 
 interface ModalProps {
   open: boolean;
@@ -11,7 +11,7 @@ interface ModalProps {
 
 export const Modalzinho = ({ open, setOpen }: ModalProps) => {
   const [data, setData] = React.useState<ServicesType>({
-    name: '',
+    nome: '',
     lente: '',
     laboratorio: '',
     os: '',
@@ -20,7 +20,8 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
 
   async function handleFormSubmit(data: ServicesType) {
     try {
-      await POST_SERVICE(data);
+      await CREATE_SERVICE(data);
+
       setOpen(false);
       ref.current?.reset();
 
@@ -51,9 +52,9 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               type="text"
               name="nome"
               id="nome"
-              value={data?.name}
+              value={data?.nome}
               className="input"
-              onChange={(e) => setData({ ...data, name: e.target.value })}
+              onChange={(e) => setData({ ...data, nome: e.target.value })}
               required
             />
           </div>
