@@ -1,4 +1,4 @@
-import { Servicos } from '../Models/Services';
+import { Servicos } from '../models/Services';
 import { ServiceType } from '../types/ServicesType';
 
 
