@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Versão do ECMAScript para a qual o TypeScript será transpilado
+    "module": "CommonJS", // Módulos compatíveis com Node.js
+    "outDir": "./dist", // Pasta de saída para os arquivos transpilados
+    "rootDir": "./src", // Pasta raiz para os arquivos TypeScript
+    "strict": true, // Ativa a verificação de tipos estrita
+    "esModuleInterop": true, // Permite interoperabilidade entre módulos CommonJS e ES Modules
+    "skipLibCheck": true, // Pula a checagem de tipos em arquivos de definição (melhora performance)
+    "forceConsistentCasingInFileNames": true, // Assegura consistência de maiúsculas/minúsculas nos imports
+    "moduleResolution": "node", // Resolução de módulos no estilo Node.js
+    "resolveJsonModule": true, // Permite importar arquivos JSON
+    "noEmit": true // Não emite arquivos de saída (usado com ts-node-dev, já que ele faz a transpilação em memória)
+  },
+  "include": ["src"], // Incluir a pasta src no processo de transpilação
+  "exclude": ["node_modules", "dist"] // Excluir essas pastas
+}

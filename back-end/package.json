@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/app.js",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
     "sass": "sass --watch ./src/public/sass/style.scss:./src/public/css/styles.css"
   },
   "keywords": [],
@@ -18,5 +19,12 @@
     "mysql2": "^3.9.7",
     "sass": "^1.77.1",
     "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "@types/sequelize": "^4.28.20",
+    "ts-node-dev": "^2.0.0"
   }
 }
