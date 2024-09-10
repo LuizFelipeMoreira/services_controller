@@ -1,12 +1,12 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
+import path from 'path';
+import cors from 'cors';
+import { connection } from './config/database';
+import { Servicos as Service } from './Models/Services';
+import useRoutes from './routes/serviceRoutes';
+
 const app = express();
 const PORT = 8181;
-const path = require('path');
-const cors = require('cors');
-
-const db = require('./database/database');
-const Service = require('./services/Services');
-const useRoutes = require('./services/ServicesControllers');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,16 +19,18 @@ app.use(express.json());
 
 app.use(useRoutes);
 
-app.get('/', async (req, res) => {
+app.get('/', async (req: Request, res: Response) => {
   const services = await Service.findAll({ raw: true });
   //console.log(services);
 
   res.render('index', { services });
 });
 
-app.get('/services', async (req, res) => {
+app.get('/services', async (req: Request, res: Response) => {
   const services = await Service.findAll({ raw: true });
+
   // console.log(services);
+
   res.status(200).json(services);
 });
 

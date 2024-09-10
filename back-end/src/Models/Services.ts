@@ -1,7 +1,7 @@
-const { DataTypes, Sequelize, Model } = require('sequelize');
-const connection = require('../database/database');
+import { DataTypes, Sequelize, Model } from 'sequelize';
+import { connection } from '../config/database';
 
-const Servicos = connection.define('servicos', {
+export const Servicos = connection.define('servicos', {
   // id: {
   //   type: DataTypes.INTEGER,
   //   autoIncrement: true,
@@ -17,6 +17,4 @@ Servicos.sync({ force: false })
   .then(() => {
     console.log('Tabela criada com sucesso !');
   })
-  .catch((err) => console.log(err));
-
-module.exports = Servicos;
+  .catch((err: any) => console.log(err));
