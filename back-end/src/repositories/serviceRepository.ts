@@ -11,11 +11,13 @@ class ServiceRepository implements IServiceRepository {
   async update(id: number, data: ServiceType): Promise<void> {
     const service = await Servicos.update(data, { where: { id } });
 
-    return service;
+    return;
   }
 
   async deleteService(id: number): Promise<void> {
     const serviceDeleted = await Servicos.destroy({ where: { id } });
+
+    return;
   }
 
   async getAll(): Promise<ServiceType[]> {
