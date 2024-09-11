@@ -1,23 +1,28 @@
-import { Servicos } from '../models/Services';
+import { Servicos } from '../Models/Services';
 import { ServiceType } from '../types/ServicesType';
+import { IServiceRepository } from './IServiceRepository';
 
+class ServiceRepository implements IServiceRepository {
+  async create(data: ServiceType): Promise<ServiceType> {
+    const newService = await Servicos.create(data);
+    return newService.toJSON();
+  }
 
-export const create = async (data: ServiceType): Promise<ServiceType> => {
-     const newService = await Servicos.create(data);
-     return newService.get(); // Retorna os atributos do serviço criado
-   };
-   
-   // Função para atualizar um serviço
-   export const update = async (id: number, data: Partial<ServiceType>): Promise<[number]> => {
-     return await Servicos.update(data, { where: { id } });
-   };
-   
-   // Função para deletar um serviço
-   export const delete = async (id: number): Promise<number> => {
-     return await Servicos.destroy({ where: { id } });
-   };
-   
-   // Função para pegar todos os serviços
-   export const getAll = async (): Promise<ServiceType[]> => {
-     return await Servicos.findAll();
-   };
+  async update(id: number, data: ServiceType): Promise<void> {
+    const service = await Servicos.update(data, { where: { id } });
+
+    return service;
+  }
+
+  async deleteService(id: number): Promise<void> {
+    const serviceDeleted = await Servicos.destroy({ where: { id } });
+  }
+
+  async getAll(): Promise<ServiceType[]> {
+    const allServices = await Servicos.findAll();
+
+    return allServices.map((service) => service.toJSON());
+  }
+}
+
+export default new ServiceRepository();
