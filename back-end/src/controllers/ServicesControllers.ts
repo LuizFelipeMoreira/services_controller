@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Servicos } from '../models/Services';
+import { Servicos } from '../model/Services';
 
 export const GetAllServices = async (req: Request, res: Response) => {
   const services = await Servicos.findAll({ raw: true });

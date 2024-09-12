@@ -1,9 +1,9 @@
-import { Servicos } from '../Models/Services';
+import { Servicos } from '../model/Services';
 import { ServiceType } from '../types/ServicesType';
-import { IServiceRepository } from './IServiceRepository';
+import { IServiceRepository } from './IServicesRepository';
 
 class ServiceRepository implements IServiceRepository {
-  async create(data: ServiceType): Promise<ServiceType> {
+  async create(data: any): Promise<ServiceType> {
     const newService = await Servicos.create(data);
     return newService.toJSON();
   }

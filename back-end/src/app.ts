@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 import cors from 'cors';
 import { connection } from './config/database';
-import { Servicos as Service } from './models/Services';
+import { Servicos as Service } from './model/Services';
 import useRoutes from './routes/serviceRoutes';
 
 const app = express();
