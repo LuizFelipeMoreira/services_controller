@@ -1,9 +1,9 @@
-import { Servicos } from '../Models/Services';
+import { Servicos } from '../models/Services';
 import { ServiceType } from '../types/ServicesType';
 import { IServiceRepository } from './IServiceRepository';
 
 class ServiceRepository implements IServiceRepository {
-  async create(data: ServiceType): Promise<ServiceType> {
+  async create(data: any): Promise<ServiceType> {
     const newService = await Servicos.create(data);
     return newService.toJSON();
   }
@@ -11,7 +11,7 @@ class ServiceRepository implements IServiceRepository {
   async update(id: number, data: ServiceType): Promise<void> {
     const service = await Servicos.update(data, { where: { id } });
 
-    return service;
+    return;
   }
 
   async deleteService(id: number): Promise<void> {
