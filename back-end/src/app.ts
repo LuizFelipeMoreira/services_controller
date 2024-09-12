@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 import cors from 'cors';
 import { connection } from './config/database';
-import { Servicos as Service } from './model/Services';
+import { Servicos } from './model/Services';
 import useRoutes from './routes/serviceRoutes';
 
 const app = express();
@@ -20,14 +20,14 @@ app.use(express.json());
 app.use(useRoutes);
 
 app.get('/', async (req: Request, res: Response) => {
-  const services = await Service.findAll({ raw: true });
+  const services = await Servicos.findAll({ raw: true });
   //console.log(services);
 
   res.render('index', { services });
 });
 
 app.get('/services', async (req: Request, res: Response) => {
-  const services = await Service.findAll({ raw: true });
+  const services = await Servicos.findAll({ raw: true });
 
   // console.log(services);
 
