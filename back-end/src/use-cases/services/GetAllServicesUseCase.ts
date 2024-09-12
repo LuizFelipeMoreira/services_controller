@@ -1,7 +1,7 @@
 import { IServiceRepository } from '../../repositories/IServicesRepository';
 import { ServiceType } from '../../types/ServicesType';
 
-class DeleteServiceUserCase {
+class GetAllServiceUserCase {
   constructor(private serviceRepository: IServiceRepository) {}
 
   async execute(): Promise<ServiceType[]> {
@@ -11,4 +11,4 @@ class DeleteServiceUserCase {
   }
 }
 
-export { DeleteServiceUserCase };
+export { GetAllServiceUserCase };
