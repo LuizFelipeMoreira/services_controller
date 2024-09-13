@@ -16,7 +16,7 @@ export const CreateNewService = async (req: Request, res: Response) => {
     const serviceDb = await Servicos.create({ nome, lente, laboratorio, os });
     console.log(serviceDb);
 
-    //res.redirect('/');
+    console.log('enrtou na rota pivete');
     res.status(200).json(serviceDb);
   } catch (error) {
     console.log('foi p catch');

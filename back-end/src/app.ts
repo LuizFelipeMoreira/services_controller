@@ -26,14 +26,6 @@ app.get('/', async (req: Request, res: Response) => {
   res.render('index', { services });
 });
 
-app.get('/services', async (req: Request, res: Response) => {
-  const services = await Servicos.findAll({ raw: true });
-
-  // console.log(services);
-
-  res.status(200).json(services);
-});
-
 app.listen(PORT, () => {
   console.log('Servidor iniciado com sucesso na porta ' + PORT);
 });
