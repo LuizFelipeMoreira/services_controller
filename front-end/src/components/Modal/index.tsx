@@ -18,7 +18,9 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
   });
   const ref = React.useRef<HTMLFormElement>(null);
 
-  async function handleFormSubmit(data: ServicesType) {
+  async function handleFormSubmit(e: Event) {
+    e.preventDefault();
+
     try {
       await CREATE_SERVICE(data);
 
@@ -74,7 +76,14 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
 
           <div className="field-modal">
             <label htmlFor="laboratorio">Laboratorio</label>
-            <select name="laboratorio" id="laboratorio" required>
+            <select
+              name="laboratorio"
+              id="laboratorio"
+              required
+              onChange={(e) =>
+                setData({ ...data, laboratorio: e.target.value })
+              }
+            >
               <option value="wave-pg">Wave pg</option>
               <option value="wave-sv">Wave sv</option>
             </select>
@@ -112,10 +121,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               Cancelar
             </button>
 
-            <button
-              className="btn-submit-modal"
-              onClick={() => handleFormSubmit(data)}
-            >
+            <button className="btn-submit-modal" onClick={handleFormSubmit}>
               Adicionar
             </button>
           </div>
