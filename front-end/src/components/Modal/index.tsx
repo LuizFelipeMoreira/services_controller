@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import './styles.scss';
-import { ServicesType } from '../../types/ServicesType';
+import { ServicesType } from '../../@types/ServicesType';
 import { Modal } from 'react-bootstrap';
 import { CREATE_SERVICE } from '../../api/api';
 
@@ -16,18 +16,19 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
     laboratorio: '',
     os: '',
   });
-  const ref = React.useRef<HTMLFormElement>(null);
+  const FormRef = React.useRef<HTMLFormElement>(null);
 
-  async function handleFormSubmit(e: Event) {
+  async function handleFormSubmit(e: FormEvent) {
     e.preventDefault();
 
     try {
-      await CREATE_SERVICE(data);
+      const service = await CREATE_SERVICE(data);
 
       setOpen(false);
-      ref.current?.reset();
+      FormRef.current?.reset();
+      setData({ nome: '', lente: '', laboratorio: '', os: '' });
 
-      return data;
+      return service;
     } catch (error) {
       console.error('Erro ao cadastrar o servico:', error);
     }
@@ -47,7 +48,13 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
       </Modal.Header>
 
       <Modal.Body>
-        <form className="form-modal" id="form-modal" method="post" ref={ref}>
+        <form
+          className="form-modal"
+          id="form-modal"
+          method="post"
+          onSubmit={handleFormSubmit}
+          ref={FormRef}
+        >
           <div className="field-modal">
             <label htmlFor="nome">Nome</label>
             <input
@@ -70,6 +77,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               value={data?.lente}
               onChange={(e) => setData({ ...data, lente: e.target.value })}
               className="input"
+              required
             />
           </div>
 
@@ -78,10 +86,10 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
             <select
               name="laboratorio"
               id="laboratorio"
-              required
               onChange={(e) =>
                 setData({ ...data, laboratorio: e.target.value })
               }
+              required
             >
               <option value="wave-pg">Wave pg</option>
               <option value="wave-sv">Wave sv</option>
@@ -120,9 +128,7 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               Cancelar
             </button>
 
-            <button className="btn-submit-modal" onClick={handleFormSubmit}>
-              Adicionar
-            </button>
+            <button className="btn-submit-modal">Adicionar</button>
           </div>
         </form>
       </Modal.Body>

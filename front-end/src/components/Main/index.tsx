@@ -3,7 +3,7 @@ import './styles.scss';
 
 import { Modalzinho } from '../Modal';
 
-import { ServicesType } from '../../types/ServicesType';
+import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
 
 export const Main = () => {
@@ -26,7 +26,6 @@ export const Main = () => {
           type="button"
           className="btn-new-service"
           data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
           onClick={() => setOpen(true)}
         >
           Adicionar serviço
@@ -78,7 +77,7 @@ export const Main = () => {
         <tbody className="service-list">
           {services &&
             services.map((service) => (
-              <tr className="service" id="">
+              <tr className="service" id={service.id} key={service.id}>
                 <td>{service.nome}</td>
                 <td>{service.lente}</td>
                 <td>{service.laboratorio}</td>
