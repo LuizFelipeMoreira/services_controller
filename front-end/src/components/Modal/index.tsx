@@ -7,9 +7,11 @@ import { CREATE_SERVICE } from '../../api/api';
 interface ModalProps {
   open: boolean;
   setOpen: (arg: boolean) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setServices: (arg: any) => void;
 }
 
-export const Modalzinho = ({ open, setOpen }: ModalProps) => {
+export const Modalzinho = ({ open, setOpen, setServices }: ModalProps) => {
   const [data, setData] = React.useState<ServicesType>({
     nome: '',
     lente: '',
@@ -28,10 +30,20 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
       FormRef.current?.reset();
       setData({ nome: '', lente: '', laboratorio: '', os: '' });
 
+      addNewService(service);
+
       return service;
     } catch (error) {
       console.error('Erro ao cadastrar o servico:', error);
     }
+  }
+
+  function addNewService(service: ServicesType) {
+    if (!service) return;
+
+    const newService = { ...service };
+
+    setServices((oldServices: ServicesType[]) => [...oldServices, newService]);
   }
 
   return (

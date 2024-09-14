@@ -109,7 +109,7 @@ export const Main = () => {
             ))}
         </tbody>
       </table>
-      <Modalzinho open={open} setOpen={setOpen} />
+      <Modalzinho open={open} setOpen={setOpen} setServices={setServices} />
     </main>
   );
 };
