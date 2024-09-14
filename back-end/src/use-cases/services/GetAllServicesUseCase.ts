@@ -1,5 +1,5 @@
 import { IServiceRepository } from '../../repositories/IServicesRepository';
-import { ServiceType } from '../../types/ServicesType';
+import { ServiceType } from '../../@types/ServicesType';
 
 class GetAllServiceUserCase {
   constructor(private serviceRepository: IServiceRepository) {}

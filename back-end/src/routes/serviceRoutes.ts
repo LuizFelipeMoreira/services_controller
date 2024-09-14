@@ -5,12 +5,13 @@ import {
   EditService,
   GetAllServices,
 } from '../controllers/ServicesControllers';
+import ServiceController from '../controllers/controller';
 
 const router = express.Router();
 
-router.get('/services', GetAllServices);
+router.get('/services', ServiceController.getAll);
 
-router.post('/create', CreateNewService);
+router.post('/create', ServiceController.create);
 
 router.post('/edite', EditService);
 

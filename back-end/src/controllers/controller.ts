@@ -38,4 +38,4 @@ class ServiceController {
   }
 }
 
-export { ServiceController };
+export default new ServiceController();

@@ -70,7 +70,6 @@ export const Modalzinho = ({ open, setOpen }: ModalProps) => {
               value={data?.lente}
               onChange={(e) => setData({ ...data, lente: e.target.value })}
               className="input"
-              required
             />
           </div>
 

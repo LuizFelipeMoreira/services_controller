@@ -1,5 +1,5 @@
 import { Servicos } from '../model/Services';
-import { ServiceType } from '../types/ServicesType';
+import { ServiceType } from '../@types/ServicesType';
 import { IServiceRepository } from './IServicesRepository';
 
 class ServiceRepository implements IServiceRepository {
