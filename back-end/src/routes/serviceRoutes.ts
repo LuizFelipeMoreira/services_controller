@@ -1,10 +1,4 @@
 import express from 'express';
-import {
-  CreateNewService,
-  DeleteService,
-  EditService,
-  GetAllServices,
-} from '../controllers/ServicesControllers';
 import ServiceController from '../controllers/controller';
 
 const router = express.Router();
@@ -13,8 +7,8 @@ router.get('/services', ServiceController.getAll);
 
 router.post('/create', ServiceController.create);
 
-router.post('/edite', EditService);
+router.post('/edit/:id', ServiceController.update);
 
-router.post('/delete/:id', DeleteService);
+router.post('/delete/:id', ServiceController.delete);
 
 export default router;

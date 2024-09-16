@@ -20,7 +20,7 @@ class ServiceController {
       req.body
     );
 
-    return res.status(200).json(updatedService);
+    return res.status(200).json(req.body);
   }
 
   async delete(req: Request, res: Response) {
