@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, ChangeEvent } from 'react';
 import './styles.scss';
 import { ServicesType } from '../../@types/ServicesType';
 import { Modal } from 'react-bootstrap';
@@ -11,40 +11,41 @@ interface ModalProps {
   setServices: (arg: any) => void;
 }
 
-export const Modalzinho = ({ open, setOpen, setServices }: ModalProps) => {
-  const [data, setData] = React.useState<ServicesType>({
-    nome: '',
-    lente: '',
-    laboratorio: '',
-    os: '',
-  });
+export const ModalService = ({ open, setOpen, setServices }: ModalProps) => {
+  const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
+  const [data, setData] = React.useState<ServicesType>(initialServiceData);
   const FormRef = React.useRef<HTMLFormElement>(null);
 
-  async function handleFormSubmit(e: FormEvent) {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
       const service = await CREATE_SERVICE(data);
 
       setOpen(false);
-      FormRef.current?.reset();
-      setData({ nome: '', lente: '', laboratorio: '', os: '' });
-
       addNewService(service);
-
-      return service;
+      resetForm();
     } catch (error) {
       console.error('Erro ao cadastrar o servico:', error);
     }
-  }
+  };
 
-  function addNewService(service: ServicesType) {
-    if (!service) return;
+  const resetForm = () => {
+    FormRef.current?.reset();
+    setData({ nome: '', lente: '', laboratorio: '', os: '' });
+  };
 
-    const newService = { ...service };
-
+  const addNewService = (newService: ServicesType) => {
+    if (!newService) return;
     setServices((oldServices: ServicesType[]) => [...oldServices, newService]);
-  }
+  };
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
 
   return (
     <Modal
@@ -67,68 +68,51 @@ export const Modalzinho = ({ open, setOpen, setServices }: ModalProps) => {
           onSubmit={handleFormSubmit}
           ref={FormRef}
         >
-          <div className="field-modal">
-            <label htmlFor="nome">Nome</label>
-            <input
-              type="text"
-              name="nome"
-              id="nome"
-              value={data?.nome}
-              className="input"
-              onChange={(e) => setData({ ...data, nome: e.target.value })}
-              required
-            />
-          </div>
+          <FormField
+            label="Nome"
+            type="text"
+            name="nome"
+            value={data.nome}
+            onChange={handleInputChange}
+            required
+          />
 
-          <div className="field-modal">
-            <label htmlFor="lente">Lente</label>
-            <input
-              type="text"
-              name="lente"
-              id="lente"
-              value={data?.lente}
-              onChange={(e) => setData({ ...data, lente: e.target.value })}
-              className="input"
-              required
-            />
-          </div>
+          <FormField
+            label="Lente"
+            type="text"
+            name="lente"
+            value={data.lente}
+            onChange={handleInputChange}
+            required
+          />
 
-          <div className="field-modal">
-            <label htmlFor="laboratorio">Laboratorio</label>
-            <select
-              name="laboratorio"
-              id="laboratorio"
-              onChange={(e) =>
-                setData({ ...data, laboratorio: e.target.value })
-              }
-              required
-            >
-              <option value="wave-pg">Wave pg</option>
-              <option value="wave-sv">Wave sv</option>
-            </select>
-          </div>
+          <FormSelect
+            label="Laboratório"
+            name="laboratorio"
+            options={[
+              { value: 'wave-pg', label: 'Wave pg' },
+              { value: 'wave-sv', label: 'Wave sv' },
+            ]}
+            onChange={handleInputChange}
+            required
+          />
 
-          <div className="field-modal">
-            <label htmlFor="numeroOs">Número de OS</label>
-            <input
-              type="text"
-              name="os"
-              id="numeroOs"
-              value={data.os}
-              required
-              onChange={(e) => setData({ ...data, os: e.target.value })}
-            />
-          </div>
+          <FormField
+            label="Número de OS"
+            type="text"
+            name="os"
+            value={data.os}
+            onChange={handleInputChange}
+            required
+          />
 
-          <div className="field-modal">
-            <label htmlFor="dataIda">Data de ida</label>
-            <input type="date" name="dataIda" id="dataIda" required />
-          </div>
-
-          <div className="field-modal">
-            <label htmlFor="dataEntrega">Data de entrega</label>
-            <input type="date" name="dataEntrega" id="dataEntrega" required />
-          </div>
+          <FormField label="Data de ida" type="date" name="dataIda" required />
+          <FormField
+            label="Data de entrega"
+            type="date"
+            name="dataEntrega"
+            required
+          />
 
           <div className="modal-footer">
             <button
@@ -147,3 +131,67 @@ export const Modalzinho = ({ open, setOpen, setServices }: ModalProps) => {
     </Modal>
   );
 };
+
+interface FormFieldProps {
+  label: string;
+  type: string;
+  name: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+}
+
+const FormField = ({
+  label,
+  name,
+  value,
+  onChange,
+  type = 'text',
+}: FormFieldProps) => {
+  return (
+    <div className="field-modal">
+      <label htmlFor="numeroOs">{label}</label>
+      <input
+        type={type}
+        name={name}
+        id={name}
+        value={value}
+        required
+        onChange={onChange}
+      />
+    </div>
+  );
+};
+
+interface FormSelectProps {
+  label: string;
+  name: string;
+  options: { value: string; label: string }[];
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  required?: boolean;
+}
+
+const FormSelect = ({
+  label,
+  name,
+  options,
+  onChange,
+  required,
+}: FormSelectProps) => (
+  <div className="field-modal">
+    <label htmlFor={name}>{label}</label>
+    <select
+      name={name}
+      id={name}
+      onChange={onChange}
+      required={required}
+      className="input"
+    >
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);

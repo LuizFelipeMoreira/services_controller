@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-import { Modalzinho } from '../Modal';
+import { ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
@@ -109,7 +109,7 @@ export const Main = () => {
             ))}
         </tbody>
       </table>
-      <Modalzinho open={open} setOpen={setOpen} setServices={setServices} />
+      <ModalService open={open} setOpen={setOpen} setServices={setServices} />
     </main>
   );
 };
