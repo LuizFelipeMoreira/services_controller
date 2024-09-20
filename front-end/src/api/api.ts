@@ -37,3 +37,9 @@ export const CREATE_SERVICE = async (
     return Promise.reject(error);
   }
 };
+
+export const DELETE_SERVICE = async (id: number): Promise<void> => {
+  const serviceDeleted = await axios.post(`delete/${id}`);
+
+  return;
+};

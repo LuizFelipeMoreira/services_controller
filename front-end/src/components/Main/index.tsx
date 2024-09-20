@@ -5,10 +5,21 @@ import { ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
+import { DELETE_SERVICE } from '../../api/api';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
   const [services, setServices] = React.useState<ServicesType[]>([]);
+
+  const handleDelete = async (id: number) => {
+    console.log('servico com o id  ' + id + '  deletedo');
+
+    //await DELETE_SERVICE(id);
+  };
+
+  const handleEditeService = async (id: number, data: string) => {
+    console.log('funcao de editar' + id + data);
+  };
 
   React.useEffect(() => {
     GET_SERVICES().then((data) => {
@@ -77,7 +88,7 @@ export const Main = () => {
         <tbody className="service-list">
           {services &&
             services.map((service) => (
-              <tr className="service" id={service.id} key={service.id}>
+              <tr className="service" key={service.id}>
                 <td>{service.nome}</td>
                 <td>{service.lente}</td>
                 <td>{service.laboratorio}</td>
@@ -87,23 +98,21 @@ export const Main = () => {
                 <td>{service.os}</td>
 
                 <td className="d-flex gap-1">
-                  <form action="/edit/<%= service.id %>" method="post">
-                    <input type="hidden" name="id" value="" />
-                    <button type="submit" className="btn btn-primary">
-                      <i className="fa-solid fa-pen"></i>
-                    </button>
-                  </form>
-
-                  <form
-                    action="/delete/<%= service.id %>"
-                    className="form-delete"
-                    method="post"
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={() => handleEditeService('data', 5)}
                   >
-                    <input type="hidden" name="id" value="" />
-                    <button type="submit" className="btn btn-danger">
-                      <i className="fa-solid fa-trash delete-button"></i>
-                    </button>
-                  </form>
+                    <i className="fa-solid fa-pen"></i>
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(service.id)}
+                  >
+                    <i className="fa-solid fa-trash delete-button"></i>
+                  </button>
                 </td>
               </tr>
             ))}
