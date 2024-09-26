@@ -25,6 +25,12 @@ class ServiceRepository implements IServiceRepository {
 
     return allServices.map((service) => service.toJSON());
   }
+
+  async getServiceByID(id: number): Promise<ServiceType | null> {
+    const service = await Servicos.findByPk(id);
+
+    return service ? service.toJSON() : null;
+  }
 }
 
 export default new ServiceRepository();

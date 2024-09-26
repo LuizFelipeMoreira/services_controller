@@ -4,6 +4,7 @@ import { UpdateServiceUserCase } from '../use-cases/services/UpdateServiceUseCas
 import { DeleteServiceUserCase } from '../use-cases/services/DeleteServiceUseCase';
 import { GetAllServiceUserCase } from '../use-cases/services/GetAllServicesUseCase';
 import ServicesRepository from '../repositories/ServicesRepository';
+import { GetServiceByIdUseCase } from '../use-cases/services/GetServiceByIdUseCase';
 
 class ServiceController {
   async create(req: Request, res: Response) {
@@ -35,6 +36,13 @@ class ServiceController {
     const services = await getAllServicesUseCase.execute();
 
     return res.status(200).json(services);
+  }
+
+  async getService(req: Request, res: Response) {
+    const getServiceByID = new GetServiceByIdUseCase(ServicesRepository);
+    const service = await getServiceByID.execute(+req.params.id);
+
+    return res.status(200).json(service);
   }
 }
 
