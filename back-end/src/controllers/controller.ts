@@ -3,47 +3,64 @@ import { CreateServiceUserCase } from '../use-cases/services/CreateServiceUseCas
 import { UpdateServiceUserCase } from '../use-cases/services/UpdateServiceUseCase';
 import { DeleteServiceUserCase } from '../use-cases/services/DeleteServiceUseCase';
 import { GetAllServiceUserCase } from '../use-cases/services/GetAllServicesUseCase';
-import ServicesRepository from '../repositories/ServicesRepository';
 import { GetServiceByIdUseCase } from '../use-cases/services/GetServiceByIdUseCase';
 
+import ServicesRepository from '../repositories/ServicesRepository';
+
 class ServiceController {
-  async create(req: Request, res: Response) {
-    const createServiceUseCase = new CreateServiceUserCase(ServicesRepository);
-    const service = await createServiceUseCase.execute(req.body);
+    async create(req: Request, res: Response) {
+        const createServiceUseCase = new CreateServiceUserCase(
+            ServicesRepository
+        );
+        const service = await createServiceUseCase.execute(req.body);
+        return res.status(201).json(service);
+    }
 
-    return res.status(201).json(service);
-  }
+    async update(req: Request, res: Response) {
+        const updateServiceUseCase = new UpdateServiceUserCase(
+            ServicesRepository
+        );
 
-  async update(req: Request, res: Response) {
-    const updateServiceUseCase = new UpdateServiceUserCase(ServicesRepository);
-    const updatedService = await updateServiceUseCase.execute(
-      +req.params.id,
-      req.body
-    );
+        if (isNaN(+req.params.id)) throw new Error('Id not number');
 
-    return res.status(200).json(req.body);
-  }
+        try {
+            const updatedService = await updateServiceUseCase.execute(
+                +req.params.id,
+                req.body
+            );
 
-  async delete(req: Request, res: Response) {
-    const deleteServiceUseCase = new DeleteServiceUserCase(ServicesRepository);
-    await deleteServiceUseCase.execute(+req.params.id);
+            return res.status(200).json(req.body);
+        } catch (error) {
+            return res
+                .status(400)
+                .json({ message: 'Error ao realizar o update' });
+        }
+    }
 
-    return res.status(204).send();
-  }
+    async delete(req: Request, res: Response) {
+        const deleteServiceUseCase = new DeleteServiceUserCase(
+            ServicesRepository
+        );
+        await deleteServiceUseCase.execute(+req.params.id);
 
-  async getAll(req: Request, res: Response) {
-    const getAllServicesUseCase = new GetAllServiceUserCase(ServicesRepository);
-    const services = await getAllServicesUseCase.execute();
+        return res.status(204).send();
+    }
 
-    return res.status(200).json(services);
-  }
+    async getAll(req: Request, res: Response) {
+        const getAllServicesUseCase = new GetAllServiceUserCase(
+            ServicesRepository
+        );
+        const services = await getAllServicesUseCase.execute();
 
-  async getService(req: Request, res: Response) {
-    const getServiceByID = new GetServiceByIdUseCase(ServicesRepository);
-    const service = await getServiceByID.execute(+req.params.id);
+        return res.status(200).json(services);
+    }
 
-    return res.status(200).json(service);
-  }
+    async getService(req: Request, res: Response) {
+        const getServiceByID = new GetServiceByIdUseCase(ServicesRepository);
+        const service = await getServiceByID.execute(+req.params.id);
+
+        return res.status(200).json(service);
+    }
 }
 
 export default new ServiceController();

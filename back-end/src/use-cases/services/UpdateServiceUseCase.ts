@@ -1,14 +1,20 @@
 import { IServiceRepository } from '../../repositories/IServicesRepository';
 import { ServiceType } from '../../@types/ServicesType';
+import { GetServiceByIdUseCase } from './GetServiceByIdUseCase';
 
 class UpdateServiceUserCase {
-  constructor(private serviceRepository: IServiceRepository) {}
+    constructor(private serviceRepository: IServiceRepository) {}
 
-  async execute(id: number, data: ServiceType): Promise<void> {
-    const updatedService = await this.serviceRepository.update(id, data);
+    async execute(id: number, data: ServiceType): Promise<void> {
+        const getServiceByID = new GetServiceByIdUseCase(
+            this.serviceRepository
+        );
+        const existingService = await getServiceByID.execute(id);
 
-    return;
-  }
+        if (!existingService) throw new Error('Service not Found');
+
+        const updatedService = await this.serviceRepository.update(id, data);
+    }
 }
 
 export { UpdateServiceUserCase };

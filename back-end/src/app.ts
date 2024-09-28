@@ -19,13 +19,6 @@ app.use(express.json());
 
 app.use(useRoutes);
 
-app.get('/', async (req: Request, res: Response) => {
-  const services = await Servicos.findAll({ raw: true });
-  //console.log(services);
-
-  res.render('index', { services });
-});
-
 app.listen(PORT, () => {
-  console.log('Servidor iniciado com sucesso na porta ' + PORT);
+    console.log('Servidor iniciado com sucesso na porta ' + PORT);
 });
