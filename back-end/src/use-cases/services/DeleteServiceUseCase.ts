@@ -1,10 +1,15 @@
 import { IServiceRepository } from '../../repositories/IServicesRepository';
-import { ServiceType } from '../../@types/ServicesType';
+import { GetServiceByIdUseCase } from './GetServiceByIdUseCase';
 
 class DeleteServiceUserCase {
     constructor(private serviceRepository: IServiceRepository) {}
 
     async execute(id: number): Promise<void> {
+        const GetServiceById = new GetServiceByIdUseCase(this.serviceRepository);
+        const existingService = await GetServiceById.execute(id);
+
+        if (!existingService) throw new Error('Service ont Found');
+
         const deletedService = await this.serviceRepository.deleteService(id);
 
         return;
