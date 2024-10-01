@@ -10,12 +10,11 @@ Este projeto está sendo desenvolvido para a minha empresa com o objetivo de aut
 
   <ul>
                <li>Typescript</li>
-               <li>Reaact</li>
+               <li>React</li>
                <li>Node.js</li>
                <li>Express</li>
                <li>Mysql</li>  
                <li>Sequelize</li>
-               <li>Ejs</li>
                <li>Bootstrap</li>
                <li>Sass</li>
   </ul>
