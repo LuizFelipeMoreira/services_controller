@@ -5,20 +5,21 @@ import { ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
-import { DELETE_SERVICE } from '../../api/api';
+//import { DELETE_SERVICE } from '../../api/api';
+
+import { Modal, Button } from 'react-bootstrap';
+
+type ModalType = 'edit' | 'delete';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
   const [services, setServices] = React.useState<ServicesType[]>([]);
+  const [typeModal, setTypeModal] = React.useState<ModalType>('edit');
+  const [ModalConfirmShow, setModalConfirmShow] = React.useState(false);
 
-  const handleDelete = async (id: number) => {
-    console.log('servico com o id  ' + id + '  deletedo');
-
-    //await DELETE_SERVICE(id);
-  };
-
-  const handleEditeService = async (id: number, data: string) => {
-    console.log('funcao de editar' + id + data);
+  const handleModal = (type: ModalType) => {
+    setTypeModal(type);
+    setModalConfirmShow(!ModalConfirmShow);
   };
 
   React.useEffect(() => {
@@ -101,7 +102,7 @@ export const Main = () => {
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={() => handleEditeService('data', 5)}
+                    onClick={() => handleModal('edit')}
                   >
                     <i className="fa-solid fa-pen"></i>
                   </button>
@@ -109,7 +110,7 @@ export const Main = () => {
                   <button
                     type="submit"
                     className="btn btn-danger"
-                    onClick={() => handleDelete(service.id)}
+                    onClick={() => handleModal('delete')}
                   >
                     <i className="fa-solid fa-trash delete-button"></i>
                   </button>
@@ -118,7 +119,58 @@ export const Main = () => {
             ))}
         </tbody>
       </table>
+
+      <ModalConfirm
+        type={typeModal}
+        modalConfirmShow={ModalConfirmShow}
+        setModalConfirmShow={setModalConfirmShow}
+      />
+
       <ModalService open={open} setOpen={setOpen} setServices={setServices} />
     </main>
+  );
+};
+
+interface ModalConfirmProps {
+  type: ModalType;
+  setModalConfirmShow: (arg: boolean) => void;
+  modalConfirmShow: boolean;
+}
+
+const ModalConfirm = ({
+  type,
+  setModalConfirmShow,
+  modalConfirmShow,
+}: ModalConfirmProps) => {
+  const submitModal = () => {
+    if (type === 'edit') {
+      console.log('edit');
+    } else if (type === 'delete') {
+      console.log('delete');
+    }
+  };
+
+  return (
+    <Modal show={modalConfirmShow}>
+      <Modal.Header
+        closeButton
+        onHide={() => setModalConfirmShow(!modalConfirmShow)}
+      >
+        <Modal.Title>
+          {type === 'edit'
+            ? 'Deseja editar esse servico ?'
+            : 'Deseja deletar esse servico ?'}
+        </Modal.Title>
+      </Modal.Header>
+
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
+          Cancelar
+        </Button>
+        <Button variant="primary" onClick={submitModal}>
+          Salvar mudanças
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
