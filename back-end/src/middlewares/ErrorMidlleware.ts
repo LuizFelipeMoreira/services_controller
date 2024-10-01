@@ -1,1 +1,3 @@
 class ErrorHandler {}
+
+export { ErrorHandler };
