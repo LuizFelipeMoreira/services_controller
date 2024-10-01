@@ -37,7 +37,7 @@ export const CREATE_SERVICE = async (
 };
 
 export const DELETE_SERVICE = async (id: number): Promise<void> => {
-  const serviceDeleted = await axios.post(`delete/${id}`);
+  const serviceDeleted = await axiosInstance.post(`delete/${id}`);
 
   return;
 };
