@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { ServicesType } from '../@types/ServicesType';
+import { axiosInstance } from '../lib/api';
 
-export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8181',
-});
-
-const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
+export const handleRequest = async <T>(
+  request: Promise<{ data: T }>
+): Promise<T> => {
   try {
     const { data } = await request;
 
