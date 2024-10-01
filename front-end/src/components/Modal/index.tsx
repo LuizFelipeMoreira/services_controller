@@ -141,7 +141,7 @@ interface FormFieldProps {
   required?: boolean;
 }
 
-const FormField = ({
+export const FormField = ({
   label,
   name,
   value,
@@ -171,7 +171,7 @@ interface FormSelectProps {
   required?: boolean;
 }
 
-const FormSelect = ({
+export const FormSelect = ({
   label,
   name,
   options,

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-import { ModalService } from '../Modal';
+import { FormField, ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
@@ -142,6 +142,9 @@ const ModalConfirm = ({
   setModalConfirmShow,
   modalConfirmShow,
 }: ModalConfirmProps) => {
+  const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
+  const [data, setData] = React.useState<ServicesType>(initialServiceData);
+
   const submitModal = () => {
     if (type === 'edit') {
       console.log('edit');
@@ -149,6 +152,8 @@ const ModalConfirm = ({
       console.log('delete');
     }
   };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
 
   return (
     <Modal show={modalConfirmShow}>
@@ -162,6 +167,21 @@ const ModalConfirm = ({
             : 'Deseja deletar esse servico ?'}
         </Modal.Title>
       </Modal.Header>
+
+      <Modal.Body>
+        {type === 'edit' && (
+          <form>
+            <FormField
+              type="text"
+              label="Nome"
+              name="nome"
+              value={data.nome}
+              onChange={handleChange}
+              required
+            />
+          </form>
+        )}
+      </Modal.Body>
 
       <Modal.Footer>
         <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
