@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.scss';
-
 import { FormField, FormSelect, ModalService } from '../Modal';
-
 import { ServicesType } from '../../@types/ServicesType';
-
 import { Modal, Button } from 'react-bootstrap';
-
 import { GET_SERVICES } from '../../services/handleRequests';
-//import { DELETE_SERVICE } from '../../api/api';
 
 type ModalType = 'edit' | 'delete';
 
 export const Main = () => {
-  const [open, setOpen] = React.useState(false);
-  const [services, setServices] = React.useState<ServicesType[]>([]);
-  const [typeModal, setTypeModal] = React.useState<ModalType>('edit');
-  const [ModalConfirmShow, setModalConfirmShow] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [modalConfirmShow, setModalConfirmShow] = useState(false);
+  const [services, setServices] = useState<ServicesType[]>([]);
+  const [selectedService, setSelectedService] = useState<ServicesType | null>(
+    null
+  );
+  const [modalType, setModalType] = useState<ModalType>('edit');
 
-  const handleModal = (action: ModalType) => {
-    setTypeModal(action);
-    setModalConfirmShow(!ModalConfirmShow);
+  // Função para abrir o modal de edição ou exclusão com o serviço selecionado
+  const handleModal = (action: ModalType, service: ServicesType) => {
+    setModalType(action);
+    setSelectedService(service);
+    setModalConfirmShow(true);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     GET_SERVICES().then((data) => {
       setServices(data);
     });
-
-    console.log(services);
   }, []);
 
   return (
@@ -49,7 +47,7 @@ export const Main = () => {
       <hr />
 
       <div className="research-field">
-        <form action="" className="form-search">
+        <form className="form-search">
           <div className="field">
             <i className="fa-solid fa-magnifying-glass"></i>
             <input
@@ -60,12 +58,10 @@ export const Main = () => {
               placeholder="Pesquisar..."
             />
           </div>
-
-          <div className="field ">
+          <div className="field">
             <label>Data de entrega: </label>
             <input type="date" name="dataEntrega" id="date" className="input" />
           </div>
-
           <button type="submit" className="submit-btn">
             <i className="fa-solid fa-arrow-down-wide-short"></i>
           </button>
@@ -86,74 +82,74 @@ export const Main = () => {
             <th></th>
           </tr>
         </thead>
-
         <tbody className="service-list">
-          {services &&
-            services.map((service) => (
-              <tr className="service" key={service.id}>
-                <td>{service.nome}</td>
-                <td>{service.lente}</td>
-                <td>{service.laboratorio}</td>
-                <td>15/05/2024</td>
-                <td>18/05/2024</td>
-                <td>entregue</td>
-                <td>{service.os}</td>
-
-                <td className="d-flex gap-1">
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    id={service.id?.toString()}
-                    onClick={() => handleModal('edit')}
-                  >
-                    <i className="fa-solid fa-pen"></i>
-                  </button>
-
-                  <button
-                    type="submit"
-                    id={service.id?.toString()}
-                    className="btn btn-danger"
-                    onClick={() => handleModal('delete')}
-                  >
-                    <i className="fa-solid fa-trash delete-button"></i>
-                  </button>
-                </td>
-              </tr>
-            ))}
+          {services.map((service) => (
+            <tr className="service" key={service.id}>
+              <td>{service.nome}</td>
+              <td>{service.lente}</td>
+              <td>{service.laboratorio}</td>
+              <td>15/05/2024</td>
+              <td>18/05/2024</td>
+              <td>entregue</td>
+              <td>{service.os}</td>
+              <td className="d-flex gap-1">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => handleModal('edit', service)}
+                >
+                  <i className="fa-solid fa-pen"></i>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleModal('delete', service)}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      <ModalConfirm
-        type={typeModal}
-        modalConfirmShow={ModalConfirmShow}
-        setModalConfirmShow={setModalConfirmShow}
-      />
+      {selectedService && (
+        <ModalConfirm
+          service={selectedService}
+          type={modalType}
+          modalConfirmShow={modalConfirmShow}
+          setModalConfirmShow={setModalConfirmShow}
+        />
+      )}
 
       <ModalService open={open} setOpen={setOpen} setServices={setServices} />
     </main>
   );
 };
 
+// ModalConfirm Component
 interface ModalConfirmProps {
   type: ModalType;
-  setModalConfirmShow: (arg: boolean) => void;
   modalConfirmShow: boolean;
+  service: ServicesType;
+  setModalConfirmShow: (arg: boolean) => void;
 }
 
 const ModalConfirm = ({
   type,
   setModalConfirmShow,
   modalConfirmShow,
+  service,
 }: ModalConfirmProps) => {
-  const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
-  const [data, setData] = React.useState<ServicesType>(initialServiceData);
+  const [data, setData] = useState<ServicesType>(service);
 
   const submitModal = () => {
     if (type === 'edit') {
-      console.log('edit');
+      console.log('edit', data);
     } else if (type === 'delete') {
-      console.log('delete');
+      console.log('delete', data);
     }
+    setModalConfirmShow(false);
   };
 
   const handleChange = (
@@ -164,14 +160,11 @@ const ModalConfirm = ({
 
   return (
     <Modal show={modalConfirmShow}>
-      <Modal.Header
-        closeButton
-        onHide={() => setModalConfirmShow(!modalConfirmShow)}
-      >
+      <Modal.Header closeButton onHide={() => setModalConfirmShow(false)}>
         <Modal.Title>
           {type === 'edit'
-            ? 'Deseja editar esse servico ?'
-            : 'Deseja deletar esse servico ?'}
+            ? 'Deseja editar esse serviço?'
+            : 'Deseja deletar esse serviço?'}
         </Modal.Title>
       </Modal.Header>
 
@@ -188,7 +181,6 @@ const ModalConfirm = ({
               onChange={handleChange}
               required
             />
-
             <FormField
               label="Lente"
               type="text"
@@ -197,7 +189,6 @@ const ModalConfirm = ({
               onChange={handleChange}
               required
             />
-
             <FormSelect
               label="Laboratório"
               name="laboratorio"
@@ -205,10 +196,10 @@ const ModalConfirm = ({
                 { value: 'wave-pg', label: 'Wave pg' },
                 { value: 'wave-sv', label: 'Wave sv' },
               ]}
+              value={data.laboratorio}
               onChange={handleChange}
               required
             />
-
             <FormField
               label="Número de OS"
               type="text"
@@ -217,14 +208,12 @@ const ModalConfirm = ({
               onChange={handleChange}
               required
             />
-
             <FormField
               label="Data de ida"
               type="date"
               name="dataIda"
               required
             />
-
             <FormField
               label="Data de entrega"
               type="date"
