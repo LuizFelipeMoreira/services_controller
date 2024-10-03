@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-import { FormField, ModalService } from '../Modal';
+import { FormField, FormSelect, ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 import { GET_SERVICES } from '../../api/api';
@@ -17,8 +17,8 @@ export const Main = () => {
   const [typeModal, setTypeModal] = React.useState<ModalType>('edit');
   const [ModalConfirmShow, setModalConfirmShow] = React.useState(false);
 
-  const handleModal = (type: ModalType) => {
-    setTypeModal(type);
+  const handleModal = (action: ModalType) => {
+    setTypeModal(action);
     setModalConfirmShow(!ModalConfirmShow);
   };
 
@@ -102,6 +102,7 @@ export const Main = () => {
                   <button
                     type="submit"
                     className="btn btn-primary"
+                    id={service.id?.toString()}
                     onClick={() => handleModal('edit')}
                   >
                     <i className="fa-solid fa-pen"></i>
@@ -109,6 +110,7 @@ export const Main = () => {
 
                   <button
                     type="submit"
+                    id={service.id?.toString()}
                     className="btn btn-danger"
                     onClick={() => handleModal('delete')}
                   >
@@ -153,7 +155,11 @@ const ModalConfirm = ({
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
 
   return (
     <Modal show={modalConfirmShow}>
@@ -168,20 +174,65 @@ const ModalConfirm = ({
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
-        {type === 'edit' && (
-          <form>
+      {type === 'edit' && (
+        <Modal.Body>
+          <form
+            style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
+          >
             <FormField
-              type="text"
               label="Nome"
+              type="text"
               name="nome"
               value={data.nome}
               onChange={handleChange}
               required
             />
+
+            <FormField
+              label="Lente"
+              type="text"
+              name="lente"
+              value={data.lente}
+              onChange={handleChange}
+              required
+            />
+
+            <FormSelect
+              label="Laboratório"
+              name="laboratorio"
+              options={[
+                { value: 'wave-pg', label: 'Wave pg' },
+                { value: 'wave-sv', label: 'Wave sv' },
+              ]}
+              onChange={handleChange}
+              required
+            />
+
+            <FormField
+              label="Número de OS"
+              type="text"
+              name="os"
+              value={data.os}
+              onChange={handleChange}
+              required
+            />
+
+            <FormField
+              label="Data de ida"
+              type="date"
+              name="dataIda"
+              required
+            />
+
+            <FormField
+              label="Data de entrega"
+              type="date"
+              name="dataEntrega"
+              required
+            />
           </form>
-        )}
-      </Modal.Body>
+        </Modal.Body>
+      )}
 
       <Modal.Footer>
         <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
