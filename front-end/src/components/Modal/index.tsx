@@ -2,7 +2,7 @@ import React, { FormEvent, ChangeEvent } from 'react';
 import './styles.scss';
 import { ServicesType } from '../../@types/ServicesType';
 import { Modal } from 'react-bootstrap';
-import { CREATE_SERVICE } from '../../api/api';
+import { CREATE_SERVICE } from '../../services/handleRequests';
 
 interface ModalProps {
   open: boolean;

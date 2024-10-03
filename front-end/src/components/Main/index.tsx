@@ -4,10 +4,11 @@ import './styles.scss';
 import { FormField, FormSelect, ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
-import { GET_SERVICES } from '../../api/api';
-//import { DELETE_SERVICE } from '../../api/api';
 
 import { Modal, Button } from 'react-bootstrap';
+
+import { GET_SERVICES } from '../../services/handleRequests';
+//import { DELETE_SERVICE } from '../../api/api';
 
 type ModalType = 'edit' | 'delete';
 
