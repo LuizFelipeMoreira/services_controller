@@ -10,6 +10,7 @@ class DeleteServiceUserCase {
 
         if (!existingService) throw new Error('Service ont Found');
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const deletedService = await this.serviceRepository.deleteService(id);
 
         return;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from 'express';
 import { CreateServiceUserCase } from '../use-cases/services/CreateServiceUseCase';
 import { UpdateServiceUserCase } from '../use-cases/services/UpdateServiceUseCase';
