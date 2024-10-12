@@ -6,11 +6,17 @@ import {
   GET_SERVICES,
 } from '../services/handleRequests';
 
-export const ServiceContext = React.createContext<UseServiceType | null>(null);
-
 interface ServiceProvider {
   children: React.ReactNode;
 }
+
+interface UseServiceType {
+  serviceList: ServicesType[];
+  deleteServiceList: (id: number) => void;
+  addNewService: (newervice: ServicesType) => Promise<void>;
+}
+
+export const ServiceContext = React.createContext<UseServiceType | null>(null);
 
 export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [serviceList, setServicesList] = React.useState<ServicesType[]>([]);
@@ -47,9 +53,3 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     </ServiceContext.Provider>
   );
 };
-
-interface UseServiceType {
-  serviceList: ServicesType[];
-  deleteServiceList: (id: number) => void;
-  addNewService: (newervice: ServicesType) => Promise<void>;
-}
