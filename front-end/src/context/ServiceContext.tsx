@@ -1,6 +1,10 @@
 import React from 'react';
 import { ServicesType } from '../@types/ServicesType';
-import { CREATE_SERVICE, GET_SERVICES } from '../services/handleRequests';
+import {
+  CREATE_SERVICE,
+  DELETE_SERVICE,
+  GET_SERVICES,
+} from '../services/handleRequests';
 
 export const ServiceContext = React.createContext<UseServiceType | null>(null);
 
@@ -29,7 +33,11 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     await CREATE_SERVICE(newService);
   };
 
-  const deleteServiceList = () => {};
+  const deleteServiceList = async (id: number) => {
+    await DELETE_SERVICE(id);
+    const serviceRemoved = serviceList.filter((service) => service.id !== id);
+    setServicesList(serviceRemoved);
+  };
 
   return (
     <ServiceContext.Provider

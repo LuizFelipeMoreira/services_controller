@@ -7,8 +7,6 @@ import { ServicesType } from '../../@types/ServicesType';
 
 import { Modal, Button } from 'react-bootstrap';
 
-import { DELETE_SERVICE } from '../../services/handleRequests';
-
 import { useService } from '../../hooks/useService';
 
 type ModalType = 'edit' | 'delete';
@@ -142,6 +140,7 @@ const ModalConfirm = ({
   service,
 }: ModalConfirmProps) => {
   const [data, setData] = React.useState<ServicesType>(service);
+  const { deleteServiceList } = useService();
 
   const submitModal = async () => {
     switch (type) {
@@ -152,7 +151,7 @@ const ModalConfirm = ({
       case 'delete':
         console.log('deletou o servico: ', data);
 
-        if (service.id) DELETE_SERVICE(service.id);
+        if (service.id) deleteServiceList(service.id);
 
         break;
       default:
