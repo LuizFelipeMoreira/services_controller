@@ -1,29 +1,30 @@
 import React, { FormEvent, ChangeEvent } from 'react';
+
 import './styles.scss';
+
 import { ServicesType } from '../../@types/ServicesType';
+
 import { Modal } from 'react-bootstrap';
-import { CREATE_SERVICE } from '../../services/handleRequests';
+
+import { useService } from '../../hooks/useService';
 
 interface ModalProps {
   open: boolean;
   setOpen: (arg: boolean) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setServices: (arg: any) => void;
 }
 
-export const ModalService = ({ open, setOpen, setServices }: ModalProps) => {
+export const ModalService = ({ open, setOpen }: ModalProps) => {
   const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
   const [data, setData] = React.useState<ServicesType>(initialServiceData);
   const FormRef = React.useRef<HTMLFormElement>(null);
+  const { addNewService } = useService();
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
-      const service = await CREATE_SERVICE(data);
-
+      addNewService(data);
       setOpen(false);
-      addNewService(service);
       resetForm();
     } catch (error) {
       console.error('Erro ao cadastrar o servico:', error);
@@ -33,11 +34,6 @@ export const ModalService = ({ open, setOpen, setServices }: ModalProps) => {
   const resetForm = () => {
     FormRef.current?.reset();
     setData({ nome: '', lente: '', laboratorio: '', os: '' });
-  };
-
-  const addNewService = (newService: ServicesType) => {
-    if (!newService) return;
-    setServices((oldServices: ServicesType[]) => [...oldServices, newService]);
   };
 
   const handleInputChange = (

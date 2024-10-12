@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './styles.scss';
+
 import { FormField, FormSelect, ModalService } from '../Modal';
+
 import { ServicesType } from '../../@types/ServicesType';
+
 import { Modal, Button } from 'react-bootstrap';
-import { GET_SERVICES } from '../../services/handleRequests';
+
+import { DELETE_SERVICE } from '../../services/handleRequests';
+
+import { useService } from '../../hooks/useService';
 
 type ModalType = 'edit' | 'delete';
 
 export const Main = () => {
-  const [open, setOpen] = useState(false);
-  const [modalConfirmShow, setModalConfirmShow] = useState(false);
-  const [services, setServices] = useState<ServicesType[]>([]);
-  const [selectedService, setSelectedService] = useState<ServicesType | null>(
-    null
-  );
-  const [modalType, setModalType] = useState<ModalType>('edit');
+  const [open, setOpen] = React.useState(false);
+  const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
-  // Função para abrir o modal de edição ou exclusão com o serviço selecionado
+  const [modalType, setModalType] = React.useState<ModalType>('edit');
+  const [selectedService, setSelectedService] =
+    React.useState<ServicesType | null>(null);
+
+  const { serviceList, deleteServiceList } = useService();
+
   const handleModal = (action: ModalType, service: ServicesType) => {
     setModalType(action);
     setSelectedService(service);
     setModalConfirmShow(true);
   };
-
-  useEffect(() => {
-    GET_SERVICES().then((data) => {
-      setServices(data);
-    });
-  }, []);
 
   return (
     <main className="main">
@@ -83,7 +83,7 @@ export const Main = () => {
           </tr>
         </thead>
         <tbody className="service-list">
-          {services.map((service) => (
+          {serviceList.map((service) => (
             <tr className="service" key={service.id}>
               <td>{service.nome}</td>
               <td>{service.lente}</td>
@@ -122,7 +122,7 @@ export const Main = () => {
         />
       )}
 
-      <ModalService open={open} setOpen={setOpen} setServices={setServices} />
+      <ModalService open={open} setOpen={setOpen} />
     </main>
   );
 };
@@ -141,14 +141,23 @@ const ModalConfirm = ({
   modalConfirmShow,
   service,
 }: ModalConfirmProps) => {
-  const [data, setData] = useState<ServicesType>(service);
+  const [data, setData] = React.useState<ServicesType>(service);
 
-  const submitModal = () => {
-    if (type === 'edit') {
-      console.log('edit', data);
-    } else if (type === 'delete') {
-      console.log('delete', data);
+  const submitModal = async () => {
+    switch (type) {
+      case 'edit':
+        console.log('editou o servico: ', data);
+
+        break;
+      case 'delete':
+        console.log('deletou o servico: ', data);
+
+        if (service.id) DELETE_SERVICE(service.id);
+
+        break;
+      default:
     }
+
     setModalConfirmShow(false);
   };
 
