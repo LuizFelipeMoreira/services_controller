@@ -1,9 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import { connection } from './config/database';
 import { Servicos } from './model/Services';
-import useRoutes from './routes/serviceRoutes';
+import useRoutes from './controllers/service-controllers/services.routes';
 
 const app = express();
 const PORT = 8181;
