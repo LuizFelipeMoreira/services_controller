@@ -140,7 +140,7 @@ const ModalConfirm = ({
   service,
 }: ModalConfirmProps) => {
   const [data, setData] = React.useState<ServicesType>(service);
-  const { deleteServiceList } = useService();
+  const { deleteServiceList, updateService } = useService();
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -150,7 +150,7 @@ const ModalConfirm = ({
   const submitModal = async () => {
     switch (type) {
       case 'edit':
-        console.log('editou o servico: ', data);
+        if (service.id) updateService(service.id, service);
         resetForm();
 
         break;

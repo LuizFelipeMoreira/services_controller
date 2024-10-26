@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ServicesType } from '../@types/ServicesType';
 import { axiosInstance } from '../lib/api';
 
@@ -38,6 +39,15 @@ export const CREATE_SERVICE = async (
 
 export const DELETE_SERVICE = async (id: number): Promise<void> => {
   const serviceDeleted = await axiosInstance.post(`delete/${id}`);
+
+  return;
+};
+
+export const UPDATE_SERVICE = async (
+  id: number,
+  body: ServicesType
+): Promise<void> => {
+  const serviceUpdated = await axiosInstance.post(`edit/${id}`, body);
 
   return;
 };
