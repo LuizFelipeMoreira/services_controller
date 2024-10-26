@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from 'express';
-import { CreateServiceUserCase } from '../use-cases/services/CreateServiceUseCase';
-import { UpdateServiceUserCase } from '../use-cases/services/UpdateServiceUseCase';
-import { DeleteServiceUserCase } from '../use-cases/services/DeleteServiceUseCase';
-import { GetAllServiceUserCase } from '../use-cases/services/GetAllServicesUseCase';
-import { GetServiceByIdUseCase } from '../use-cases/services/GetServiceByIdUseCase';
+import { CreateServiceUserCase } from '../../use-cases/services/CreateServiceUseCase';
+import { UpdateServiceUserCase } from '../../use-cases/services/UpdateServiceUseCase';
+import { DeleteServiceUserCase } from '../../use-cases/services/DeleteServiceUseCase';
+import { GetAllServiceUserCase } from '../../use-cases/services/GetAllServicesUseCase';
+import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
 
-import ServicesRepository from '../repositories/ServicesRepository';
+import ServicesRepository from '../../repositories/ServicesRepository';
 
 class ServiceController {
     async create(req: Request, res: Response) {
