@@ -31,6 +31,11 @@ export const ModalService = ({ open, setOpen }: ModalProps) => {
     }
   };
 
+  const handleClose = () => {
+    setOpen(false);
+    resetForm();
+  };
+
   const resetForm = () => {
     FormRef.current?.reset();
     setData({ nome: '', lente: '', laboratorio: '', os: '' });
@@ -115,7 +120,7 @@ export const ModalService = ({ open, setOpen }: ModalProps) => {
               type="button"
               className="btn btn-secondary"
               data-bs-dismiss="modal"
-              onClick={() => setOpen(false)}
+              onClick={() => handleClose()}
             >
               Cancelar
             </button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './styles.scss';
 
 import { FormField, FormSelect, ModalService } from '../Modal';
@@ -19,7 +19,7 @@ export const Main = () => {
   const [selectedService, setSelectedService] =
     React.useState<ServicesType | null>(null);
 
-  const { serviceList, deleteServiceList } = useService();
+  const { serviceList } = useService();
 
   const handleModal = (action: ModalType, service: ServicesType) => {
     setModalType(action);
@@ -141,22 +141,36 @@ const ModalConfirm = ({
 }: ModalConfirmProps) => {
   const [data, setData] = React.useState<ServicesType>(service);
   const { deleteServiceList } = useService();
+  const FormRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    setData(service);
+  }, [service]);
 
   const submitModal = async () => {
     switch (type) {
       case 'edit':
         console.log('editou o servico: ', data);
+        resetForm();
 
         break;
       case 'delete':
-        console.log('deletou o servico: ', data);
-
         if (service.id) deleteServiceList(service.id);
 
         break;
       default:
     }
 
+    setModalConfirmShow(false);
+  };
+
+  const resetForm = () => {
+    setData({ nome: '', lente: '', laboratorio: '', os: '' });
+    FormRef.current?.reset();
+  };
+
+  const handleClose = () => {
+    resetForm();
     setModalConfirmShow(false);
   };
 
@@ -180,6 +194,7 @@ const ModalConfirm = ({
         <Modal.Body>
           <form
             style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
+            ref={FormRef}
           >
             <FormField
               label="Nome"
@@ -233,7 +248,7 @@ const ModalConfirm = ({
       )}
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
+        <Button variant="secondary" onClick={() => handleClose()}>
           Cancelar
         </Button>
         <Button variant="primary" onClick={submitModal}>
