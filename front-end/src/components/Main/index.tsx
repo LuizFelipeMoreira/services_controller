@@ -125,7 +125,6 @@ export const Main = () => {
   );
 };
 
-// ModalConfirm Component
 interface ModalConfirmProps {
   type: ModalType;
   modalConfirmShow: boolean;
@@ -150,7 +149,7 @@ const ModalConfirm = ({
   const submitModal = async () => {
     switch (type) {
       case 'edit':
-        if (service.id) updateService(service.id, service);
+        if (service.id) updateService(service);
         resetForm();
 
         break;
