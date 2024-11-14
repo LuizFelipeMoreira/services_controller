@@ -11,6 +11,7 @@ class UpdateServiceUserCase {
 
         if (!existingService) throw new Error('Service not Found');
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const updatedService = await this.serviceRepository.update(id, data);
     }
 }
