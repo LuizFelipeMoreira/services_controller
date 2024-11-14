@@ -4,6 +4,7 @@ import {
   CREATE_SERVICE,
   DELETE_SERVICE,
   GET_SERVICES,
+  UPDATE_SERVICE,
 } from '../services/handleRequests';
 
 interface ServiceProvider {
@@ -46,11 +47,19 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   };
 
   const updateService = async (body: ServicesType) => {
-    const updatedServices = [...serviceList].map((service) =>
-      service.id === body.id ? { ...body } : service
-    );
-    setServicesList(updatedServices);
-    console.log(updatedServices);
+    console.log(body);
+
+    if (body.id) {
+      const updatedServices = [...serviceList].map((service) =>
+        service.id === body.id ? { ...body } : service
+      );
+
+      setServicesList(updatedServices);
+
+      console.log(updatedServices);
+
+      UPDATE_SERVICE(body.id, body);
+    }
   };
 
   return (

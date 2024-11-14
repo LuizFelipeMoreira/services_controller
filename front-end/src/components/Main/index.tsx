@@ -147,14 +147,16 @@ const ModalConfirm = ({
   }, [service]);
 
   const submitModal = async () => {
+    console.log(data);
+
     switch (type) {
       case 'edit':
-        if (service.id) updateService(service);
+        if (data.id) updateService(data);
         resetForm();
 
         break;
       case 'delete':
-        if (service.id) deleteServiceList(service.id);
+        if (data.id) deleteServiceList(data.id);
 
         break;
       default:
