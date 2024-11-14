@@ -47,19 +47,13 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   };
 
   const updateService = async (body: ServicesType) => {
-    console.log(body);
+    if (!body.id) return;
 
-    if (body.id) {
-      const updatedServices = [...serviceList].map((service) =>
-        service.id === body.id ? { ...body } : service
-      );
-
-      setServicesList(updatedServices);
-
-      console.log(updatedServices);
-
-      UPDATE_SERVICE(body.id, body);
-    }
+    const updatedServices = [...serviceList].map((service) =>
+      service.id === body.id ? { ...body } : service
+    );
+    setServicesList(updatedServices);
+    UPDATE_SERVICE(body.id, body);
   };
 
   return (
