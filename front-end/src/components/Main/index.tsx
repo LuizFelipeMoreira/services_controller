@@ -120,13 +120,13 @@ export const Main = () => {
             </tr>
           ))}
         </tbody>
-
-        <Pagination className="mt-2">
-          <Pagination.Prev onClick={() => setActivePage(activePage - 1)} />
-          {items}
-          <Pagination.Next onClick={() => setActivePage(activePage + 1)} />
-        </Pagination>
       </table>
+
+      <Pagination className="mt-2 d-flex justify-content-end">
+        <Pagination.Prev onClick={() => setActivePage(activePage - 1)} />
+        {items}
+        <Pagination.Next onClick={() => setActivePage(activePage + 1)} />
+      </Pagination>
 
       {selectedService && (
         <ModalConfirm
