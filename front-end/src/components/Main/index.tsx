@@ -5,7 +5,7 @@ import { FormField, FormSelect, ModalService } from '../Modal';
 
 import { ServicesType } from '../../@types/ServicesType';
 
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Pagination } from 'react-bootstrap';
 
 import { useService } from '../../hooks/useService';
 
@@ -19,6 +19,9 @@ export const Main = () => {
   const [selectedService, setSelectedService] =
     React.useState<ServicesType | null>(null);
 
+  const [activePage, setActivePage] = React.useState(1);
+  const items = [];
+
   const { serviceList } = useService();
 
   const handleModal = (action: ModalType, service: ServicesType) => {
@@ -26,6 +29,14 @@ export const Main = () => {
     setSelectedService(service);
     setModalConfirmShow(true);
   };
+
+  for (let number = 1; number <= 5; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === activePage}>
+        {number}
+      </Pagination.Item>
+    );
+  }
 
   return (
     <main className="main">
@@ -109,6 +120,12 @@ export const Main = () => {
             </tr>
           ))}
         </tbody>
+
+        <Pagination className="mt-2">
+          <Pagination.Prev onClick={() => setActivePage(activePage - 1)} />
+          {items}
+          <Pagination.Next onClick={() => setActivePage(activePage + 1)} />
+        </Pagination>
       </table>
 
       {selectedService && (
