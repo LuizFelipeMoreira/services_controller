@@ -24,6 +24,10 @@ export const Main = () => {
 
   const { serviceList } = useService();
 
+  const handleActivePage = (page: number) => {
+    if (page > 1 && page <= 5) setActivePage(page);
+  };
+
   const handleModal = (action: ModalType, service: ServicesType) => {
     setModalType(action);
     setSelectedService(service);
@@ -123,9 +127,9 @@ export const Main = () => {
       </table>
 
       <Pagination className="mt-2 d-flex justify-content-end">
-        <Pagination.Prev onClick={() => setActivePage(activePage - 1)} />
+        <Pagination.Prev onClick={() => handleActivePage(activePage - 1)} />
         {items}
-        <Pagination.Next onClick={() => setActivePage(activePage + 1)} />
+        <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
       </Pagination>
 
       {selectedService && (
