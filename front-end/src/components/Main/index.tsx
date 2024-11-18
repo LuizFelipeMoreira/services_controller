@@ -25,7 +25,7 @@ export const Main = () => {
   const { serviceList } = useService();
 
   const handleActivePage = (page: number) => {
-    if (page > 1 && page <= 5) setActivePage(page);
+    if (page >= 1 && page <= 5) setActivePage(page);
   };
 
   const handleModal = (action: ModalType, service: ServicesType) => {
