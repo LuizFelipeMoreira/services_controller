@@ -13,7 +13,7 @@ interface ModalProps {
   setOpen: (arg: boolean) => void;
 }
 
-export const ModalService = ({ open, setOpen }: ModalProps) => {
+export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
   const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
   const [data, setData] = React.useState<ServicesType>(initialServiceData);
   const FormRef = React.useRef<HTMLFormElement>(null);

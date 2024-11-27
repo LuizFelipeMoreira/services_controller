@@ -18,7 +18,7 @@ interface UseServiceType {
   updateService: (body: ServicesType) => Promise<void>;
 }
 
-export const ServiceContext = React.createContext<UseServiceType | null>(null);
+export const ServiceContext = React.createContext({} as UseServiceType);
 
 export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [serviceList, setServicesList] = React.useState<ServicesType[]>([]);
