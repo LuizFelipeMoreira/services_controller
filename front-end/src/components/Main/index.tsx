@@ -7,13 +7,16 @@ import { NewServiceModal } from '../NewServiceModal';
 import { Table } from '../Table';
 import { ServiceActionModal } from '../ServiceActionModal';
 
+type ModalType = 'edit' | 'delete';
+
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
   const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
-  const [selectedService, setSelectedService] =
-    React.useState<ServicesType | null>(null);
+  const [selectedService, setSelectedService] = React.useState(
+    {} as ServicesType
+  );
 
   const handleModal = (action: ModalType, service: ServicesType) => {
     setModalType(action);
@@ -60,16 +63,17 @@ export const Main = () => {
         </form>
       </div>
 
-      <Table />
+      <Table
+        setModalConfirmShow={setModalConfirmShow}
+        modalConfirShow={modalConfirmShow}
+      />
 
-      {selectedService && (
-        <ServiceActionModal
-          service={selectedService}
-          type={modalType}
-          modalConfirmShow={modalConfirmShow}
-          setModalConfirmShow={setModalConfirmShow}
-        />
-      )}
+      <ServiceActionModal
+        service={selectedService}
+        type={modalType}
+        modalConfirmShow={modalConfirmShow}
+        setModalConfirmShow={setModalConfirmShow}
+      />
 
       <NewServiceModal open={open} setOpen={setOpen} />
     </main>

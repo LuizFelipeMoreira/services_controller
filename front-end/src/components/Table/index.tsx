@@ -2,7 +2,12 @@ import React from 'react';
 import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
 
-export const Table = () => {
+interface TableProps {
+  modalConfirShow: boolean;
+  setModalConfirmShow: (arg: boolean) => void;
+}
+
+export const Table = ({ modalConfirShow, setModalConfirmShow }: TableProps) => {
   const { serviceList } = useService();
   const [activePage, setActivePage] = React.useState(1);
   const items = [];
@@ -19,9 +24,13 @@ export const Table = () => {
     if (page >= 1 && page <= 5) setActivePage(page);
   };
 
-  const onEdit = () => {};
+  const onEdit = () => {
+    setModalConfirmShow(true);
+  };
 
-  const onDelete = () => {};
+  const onDelete = () => {
+    setModalConfirmShow(true);
+  };
 
   return (
     <>
@@ -53,14 +62,14 @@ export const Table = () => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => onEdit()}
+                  onClick={() => setModalConfirmShow(true)}
                 >
                   <i className="fa-solid fa-pen"></i>
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete()}
+                  onClick={() => setModalConfirmShow(true)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
