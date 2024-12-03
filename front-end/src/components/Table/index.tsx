@@ -1,13 +1,13 @@
 import React from 'react';
 import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
+import { ServicesType } from '../../@types/ServicesType';
 
 interface TableProps {
-  modalConfirShow: boolean;
   setModalConfirmShow: (arg: boolean) => void;
 }
 
-export const Table = ({ modalConfirShow, setModalConfirmShow }: TableProps) => {
+export const Table = ({ setModalConfirmShow }: TableProps) => {
   const { serviceList } = useService();
   const [activePage, setActivePage] = React.useState(1);
   const items = [];
@@ -24,11 +24,11 @@ export const Table = ({ modalConfirShow, setModalConfirmShow }: TableProps) => {
     if (page >= 1 && page <= 5) setActivePage(page);
   };
 
-  const onEdit = () => {
+  const onEdit = (service: ServicesType) => {
     setModalConfirmShow(true);
   };
 
-  const onDelete = () => {
+  const onDelete = (id: number) => {
     setModalConfirmShow(true);
   };
 

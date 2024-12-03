@@ -63,10 +63,7 @@ export const Main = () => {
         </form>
       </div>
 
-      <Table
-        setModalConfirmShow={setModalConfirmShow}
-        modalConfirShow={modalConfirmShow}
-      />
+      <Table setModalConfirmShow={setModalConfirmShow} />
 
       <ServiceActionModal
         service={selectedService}
