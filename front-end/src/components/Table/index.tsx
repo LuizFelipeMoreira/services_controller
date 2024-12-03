@@ -62,14 +62,14 @@ export const Table = ({ modalConfirShow, setModalConfirmShow }: TableProps) => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => setModalConfirmShow(true)}
+                  onClick={() => onEdit()}
                 >
                   <i className="fa-solid fa-pen"></i>
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => setModalConfirmShow(true)}
+                  onClick={() => onDelete()}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
