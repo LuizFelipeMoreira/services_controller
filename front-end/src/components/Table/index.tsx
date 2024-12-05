@@ -9,7 +9,7 @@ import { ServiceActionModal } from '../ServiceActionModal';
 // }
 
 export const Table = () => {
-  const { serviceList } = useService();
+  const { serviceList, deleteServiceList } = useService();
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
@@ -34,12 +34,13 @@ export const Table = () => {
 
   const onEdit = (service: ServicesType) => {
     setSelectedService(service);
-    console.log(selectedService);
-
+    setModalType('edit');
     setModalConfirmShow(!modalConfirmShow);
   };
 
   const onDelete = (id: number) => {
+    setModalType('delete');
+    deleteServiceList(id);
     setModalConfirmShow(!modalConfirmShow);
   };
 

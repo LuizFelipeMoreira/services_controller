@@ -1,13 +1,8 @@
 import React from 'react';
 import './styles.scss';
 
-import { ServicesType } from '../../@types/ServicesType';
-
-import { NewServiceModal } from '../NewServiceModal';
 import { Table } from '../Table';
-import { ServiceActionModal } from '../ServiceActionModal';
-
-type ModalType = 'edit' | 'delete';
+import { NewServiceModal } from '../NewServiceModal';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
