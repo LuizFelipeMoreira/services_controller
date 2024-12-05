@@ -1,28 +1,17 @@
 import React from 'react';
 import './styles.scss';
 
-import { ServicesType } from '../../@types/ServicesType';
-
-import { NewServiceModal } from '../NewServiceModal';
 import { Table } from '../Table';
-import { ServiceActionModal } from '../ServiceActionModal';
-
-type ModalType = 'edit' | 'delete';
+import { NewServiceModal } from '../NewServiceModal';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
-  const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
-  const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
-  const [selectedService, setSelectedService] = React.useState(
-    {} as ServicesType
-  );
-
-  const handleModal = (action: ModalType, service: ServicesType) => {
-    setModalType(action);
-    setSelectedService(service);
-    setModalConfirmShow(true);
-  };
+  // const handleModal = (action: ModalType, service: ServicesType) => {
+  //   setModalType(action);
+  //   setSelectedService(service);
+  //   setModalConfirmShow(true);
+  // };
 
   return (
     <main className="main">
@@ -63,14 +52,7 @@ export const Main = () => {
         </form>
       </div>
 
-      <Table setModalConfirmShow={setModalConfirmShow} />
-
-      <ServiceActionModal
-        service={selectedService}
-        type={modalType}
-        modalConfirmShow={modalConfirmShow}
-        setModalConfirmShow={setModalConfirmShow}
-      />
+      <Table />
 
       <NewServiceModal open={open} setOpen={setOpen} />
     </main>
