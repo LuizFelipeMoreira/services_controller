@@ -11,18 +11,12 @@ type ModalType = 'edit' | 'delete';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
-  const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
-  const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
-  const [selectedService, setSelectedService] = React.useState(
-    {} as ServicesType
-  );
-
-  const handleModal = (action: ModalType, service: ServicesType) => {
-    setModalType(action);
-    setSelectedService(service);
-    setModalConfirmShow(true);
-  };
+  // const handleModal = (action: ModalType, service: ServicesType) => {
+  //   setModalType(action);
+  //   setSelectedService(service);
+  //   setModalConfirmShow(true);
+  // };
 
   return (
     <main className="main">
@@ -63,14 +57,7 @@ export const Main = () => {
         </form>
       </div>
 
-      <Table setModalConfirmShow={setModalConfirmShow} />
-
-      <ServiceActionModal
-        service={selectedService}
-        type={modalType}
-        modalConfirmShow={modalConfirmShow}
-        setModalConfirmShow={setModalConfirmShow}
-      />
+      <Table />
 
       <NewServiceModal open={open} setOpen={setOpen} />
     </main>

@@ -2,14 +2,22 @@ import React from 'react';
 import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
 import { ServicesType } from '../../@types/ServicesType';
+import { ServiceActionModal } from '../ServiceActionModal';
 
-interface TableProps {
-  setModalConfirmShow: (arg: boolean) => void;
-}
+// interface TableProps {
+//   setModalConfirmShow: (arg: boolean) => void;
+// }
 
-export const Table = ({ setModalConfirmShow }: TableProps) => {
+export const Table = () => {
   const { serviceList } = useService();
   const [activePage, setActivePage] = React.useState(1);
+  const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
+
+  const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
+  const [selectedService, setSelectedService] = React.useState(
+    {} as ServicesType
+  );
+
   const items = [];
 
   for (let number = 1; number <= 5; number++) {
@@ -25,11 +33,14 @@ export const Table = ({ setModalConfirmShow }: TableProps) => {
   };
 
   const onEdit = (service: ServicesType) => {
-    setModalConfirmShow(true);
+    setSelectedService(service);
+    console.log(selectedService);
+
+    setModalConfirmShow(!modalConfirmShow);
   };
 
   const onDelete = (id: number) => {
-    setModalConfirmShow(true);
+    setModalConfirmShow(!modalConfirmShow);
   };
 
   return (
@@ -62,14 +73,14 @@ export const Table = ({ setModalConfirmShow }: TableProps) => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => onEdit()}
+                  onClick={() => onEdit(service)}
                 >
                   <i className="fa-solid fa-pen"></i>
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete()}
+                  onClick={() => onDelete(service.id)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -84,6 +95,13 @@ export const Table = ({ setModalConfirmShow }: TableProps) => {
         {items}
         <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
       </Pagination>
+
+      <ServiceActionModal
+        service={selectedService}
+        type={modalType}
+        modalConfirmShow={modalConfirmShow}
+        setModalConfirmShow={setModalConfirmShow}
+      />
     </>
   );
 };
