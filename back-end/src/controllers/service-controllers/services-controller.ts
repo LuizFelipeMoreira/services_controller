@@ -9,13 +9,13 @@ import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUs
 import ServicesRepository from '../../repositories/ServicesRepository';
 
 class ServiceController {
-    async create(req: Request, res: Response) {
+    public async create(req: Request, res: Response) {
         const createServiceUseCase = new CreateServiceUserCase(ServicesRepository);
         const service = await createServiceUseCase.execute(req.body);
         return res.status(201).json(service);
     }
 
-    async update(req: Request, res: Response) {
+    public async update(req: Request, res: Response) {
         const updateServiceUseCase = new UpdateServiceUserCase(ServicesRepository);
 
         if (isNaN(+req.params.id)) throw new Error('Id not number');
@@ -32,21 +32,21 @@ class ServiceController {
         }
     }
 
-    async delete(req: Request, res: Response) {
+    public async delete(req: Request, res: Response) {
         const deleteServiceUseCase = new DeleteServiceUserCase(ServicesRepository);
         await deleteServiceUseCase.execute(+req.params.id);
 
         return res.status(204).send();
     }
 
-    async getAll(req: Request, res: Response) {
+    public async getAll(req: Request, res: Response) {
         const getAllServicesUseCase = new GetAllServiceUserCase(ServicesRepository);
         const services = await getAllServicesUseCase.execute();
 
         return res.status(200).json(services);
     }
 
-    async getService(req: Request, res: Response) {
+    public async getService(req: Request, res: Response) {
         const getServiceByID = new GetServiceByIdUseCase(ServicesRepository);
         const service = await getServiceByID.execute(+req.params.id);
 
