@@ -33,14 +33,14 @@ export const Table = () => {
   };
 
   const onEdit = (service: ServicesType) => {
-    setSelectedService(service);
     setModalType('edit');
+    setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
-  const onDelete = (id: number) => {
+  const onDelete = (service: ServicesType) => {
     setModalType('delete');
-    deleteServiceList(id);
+    setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
@@ -81,7 +81,7 @@ export const Table = () => {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete(service.id)}
+                  onClick={() => onDelete(service)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
