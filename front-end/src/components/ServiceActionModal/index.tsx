@@ -19,25 +19,25 @@ export const ServiceActionModal = ({
   modalConfirmShow,
   service,
 }: ModalConfirmProps) => {
-  const [data, setData] = React.useState<ServicesType>(service);
+  const [serviceData, setServiceData] = React.useState<ServicesType>(service);
   const { deleteServiceList, updateService } = useService();
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    setData(service);
+    setServiceData(service);
   }, [service]);
 
   const submitModal = async () => {
-    console.log(data);
+    console.log(serviceData);
 
     switch (type) {
       case 'edit':
-        if (data.id) updateService(data);
+        if (serviceData.id) updateService(serviceData);
         resetForm();
 
         break;
       case 'delete':
-        if (data.id) deleteServiceList(data.id);
+        if (serviceData.id) deleteServiceList(serviceData.id);
 
         break;
       default:
@@ -47,7 +47,7 @@ export const ServiceActionModal = ({
   };
 
   const resetForm = () => {
-    setData({ nome: '', lente: '', laboratorio: '', os: '' });
+    setServiceData({ nome: '', lente: '', laboratorio: '', os: '' });
     FormRef.current?.reset();
   };
 
@@ -59,7 +59,7 @@ export const ServiceActionModal = ({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setServiceData({ ...serviceData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -82,7 +82,7 @@ export const ServiceActionModal = ({
               label="Nome"
               type="text"
               name="nome"
-              value={data.nome}
+              value={serviceData.nome}
               onChange={handleChange}
               required
             />
@@ -90,7 +90,7 @@ export const ServiceActionModal = ({
               label="Lente"
               type="text"
               name="lente"
-              value={data.lente}
+              value={serviceData.lente}
               onChange={handleChange}
               required
             />
@@ -101,7 +101,7 @@ export const ServiceActionModal = ({
                 { value: 'wave-pg', label: 'Wave pg' },
                 { value: 'wave-sv', label: 'Wave sv' },
               ]}
-              value={data.laboratorio}
+              value={serviceData.laboratorio}
               onChange={handleChange}
               required
             />
@@ -109,7 +109,7 @@ export const ServiceActionModal = ({
               label="Número de OS"
               type="text"
               name="os"
-              value={data.os}
+              value={serviceData.os}
               onChange={handleChange}
               required
             />
@@ -133,7 +133,8 @@ export const ServiceActionModal = ({
         <Button variant="secondary" onClick={() => handleClose()}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={submitModal}>
+
+        <Button variant="primary" onClick={() => submitModal()}>
           Salvar mudanças
         </Button>
       </Modal.Footer>
