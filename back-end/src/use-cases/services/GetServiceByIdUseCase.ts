@@ -1,5 +1,5 @@
 import { ServiceType } from '../../@types/ServicesType';
-import { IServiceRepository } from '../../repositories/IServicesRepository';
+import { IServiceRepository } from '../../repositories/services-repositories/IServicesRepository';
 
 class GetServiceByIdUseCase {
     constructor(private serviceRepository: IServiceRepository) {}

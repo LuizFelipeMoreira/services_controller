@@ -1,4 +1,4 @@
-import { IServiceRepository } from '../../repositories/IServicesRepository';
+import { IServiceRepository } from '../../repositories/services-repositories/IServicesRepository';
 import { ServiceType } from '../../@types/ServicesType';
 
 class GetAllServiceUserCase {

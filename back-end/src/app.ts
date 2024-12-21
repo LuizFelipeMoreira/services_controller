@@ -3,7 +3,8 @@ import path from 'path';
 import cors from 'cors';
 import { connection } from './config/database';
 import { Servicos } from './model/Services';
-import useRoutes from './controllers/service-controllers/services.routes';
+import { User } from './model/Users';
+import useRoutes from './controllers/service/services.routes';
 
 const app = express();
 const PORT = 8181;

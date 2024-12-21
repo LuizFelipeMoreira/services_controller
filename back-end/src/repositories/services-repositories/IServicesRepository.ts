@@ -1,4 +1,4 @@
-import { ServiceType } from '../@types/ServicesType';
+import { ServiceType } from '../../@types/ServicesType';
 
 export interface IServiceRepository {
     create(data: ServiceType): Promise<ServiceType>;
