@@ -9,7 +9,7 @@ import { ServiceActionModal } from '../ServiceActionModal';
 // }
 
 export const Table = () => {
-  const { serviceList, deleteServiceList } = useService();
+  const { serviceList, deleteServiceList, updateService } = useService();
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
@@ -33,8 +33,9 @@ export const Table = () => {
   };
 
   const onEdit = (service: ServicesType) => {
-    setSelectedService(service);
     setModalType('edit');
+    setSelectedService(service);
+    updateService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
@@ -66,8 +67,8 @@ export const Table = () => {
               <td>{service.nome}</td>
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
-              <td>15/05/2024</td>
-              <td>18/05/2024</td>
+              <td>15/05</td>
+              <td>18/05</td>
               <td>entregue</td>
               <td>{service.os}</td>
               <td className="d-flex gap-1">
@@ -98,6 +99,8 @@ export const Table = () => {
       </Pagination>
 
       <ServiceActionModal
+        onDelete={onDelete}
+        onEdit={onEdit}
         service={selectedService}
         type={modalType}
         modalConfirmShow={modalConfirmShow}

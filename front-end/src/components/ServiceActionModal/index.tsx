@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { FormField, FormSelect } from '../NewServiceModal';
 import { ServicesType } from '../../@types/ServicesType';
-import { useService } from '../../hooks/useService';
 
 type ModalType = 'edit' | 'delete';
 
@@ -10,6 +9,8 @@ interface ModalConfirmProps {
   type: ModalType;
   modalConfirmShow: boolean;
   service: ServicesType;
+  onEdit: (service: ServicesType) => void;
+  onDelete: (id: number) => void;
   setModalConfirmShow: (arg: boolean) => void;
 }
 
@@ -18,33 +19,34 @@ export const ServiceActionModal = ({
   setModalConfirmShow,
   modalConfirmShow,
   service,
+  onDelete,
+  onEdit,
 }: ModalConfirmProps) => {
   const [data, setData] = React.useState<ServicesType>(service);
-  const { deleteServiceList, updateService } = useService();
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     setData(service);
   }, [service]);
 
-  const submitModal = async () => {
-    console.log(data);
+  // const submitModal = async () => {
+  //   console.log(data);
 
-    switch (type) {
-      case 'edit':
-        if (data.id) updateService(data);
-        resetForm();
+  //   switch (type) {
+  //     case 'edit':
+  //       if (data.id) updateService(data);
+  //       resetForm();
 
-        break;
-      case 'delete':
-        if (data.id) deleteServiceList(data.id);
+  //       break;
+  //     case 'delete':
+  //       if (data.id) deleteServiceList(data.id);
 
-        break;
-      default:
-    }
+  //       break;
+  //     default:
+  //   }
 
-    setModalConfirmShow(false);
-  };
+  //   setModalConfirmShow(false);
+  // };
 
   const resetForm = () => {
     setData({ nome: '', lente: '', laboratorio: '', os: '' });
@@ -133,7 +135,10 @@ export const ServiceActionModal = ({
         <Button variant="secondary" onClick={() => handleClose()}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={submitModal}>
+        <Button
+          variant="primary"
+          onClick={() => (type == 'edit' ? onEdit(service) : onDelete(data.id))}
+        >
           Salvar mudanças
         </Button>
       </Modal.Footer>
