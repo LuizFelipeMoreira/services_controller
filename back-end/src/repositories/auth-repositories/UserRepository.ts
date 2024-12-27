@@ -9,7 +9,7 @@ class UserRepository implements IUserRepository {
             password,
         });
 
-        return user;
+        return user.get();
     }
 
     async getUserByEmail(email: string) {
@@ -17,12 +17,14 @@ class UserRepository implements IUserRepository {
             where: {
                 email,
             },
+            raw: true,
         });
     }
 
     async getUserById(id: number) {
         return await User.findOne({
             where: { id },
+            raw: true,
         });
     }
 }

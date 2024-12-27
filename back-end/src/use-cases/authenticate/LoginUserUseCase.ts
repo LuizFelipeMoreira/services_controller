@@ -17,7 +17,7 @@ class LoginUserUseCase {
 
             return { id, name, email, password: userExists.password };
         } catch (error) {
-            throw new Error(`Login failed: ${error.message}`);
+            throw new Error(`Login failed: ${error}`);
         }
     }
 }
