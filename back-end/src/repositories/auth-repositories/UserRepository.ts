@@ -1,4 +1,4 @@
-import User from '../../model/Users';
+import User from '../../database/model/Users';
 import { IUserRepository } from './IUserRepository';
 
 class UserRepository implements IUserRepository {

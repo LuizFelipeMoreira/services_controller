@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import User from '../../model/Users';
+import User from '../../database/model/Users';
 import { IUserRepository } from '../../repositories/auth-repositories/IUserRepository';
 
 class CreateUserUseCase {

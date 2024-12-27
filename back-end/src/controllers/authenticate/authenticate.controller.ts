@@ -31,8 +31,8 @@ class AuthController {
             res.status(200).json({
                 message: 'User Logged',
                 user: {
-                    id: user.id,
-                    name: user.name,
+                    id: user?.id,
+                    name: user?.name,
                 },
             });
         } catch (error) {
