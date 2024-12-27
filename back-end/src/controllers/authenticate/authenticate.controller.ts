@@ -6,11 +6,11 @@ import UserRepository from '../../repositories/auth-repositories/UserRepository'
 
 class AuthController {
     async signUp(req: Request, res: Response) {
-        const { email, password } = req.body;
+        const { name, email, password } = req.body;
 
         try {
             const createUserUseCase = new CreateUserUseCase(UserRepository);
-            const newUser = await createUserUseCase.execute(email, password);
+            const newUser = await createUserUseCase.execute(name, email, password);
 
             res.status(200).json({
                 message: 'User Created',

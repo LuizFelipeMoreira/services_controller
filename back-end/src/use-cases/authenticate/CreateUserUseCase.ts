@@ -5,7 +5,7 @@ import { IUserRepository } from '../../repositories/auth-repositories/IUserRepos
 class CreateUserUseCase {
     constructor(private readonly authRepository: IUserRepository) {}
 
-    async execute(email: string, password: string): Promise<User | null> {
+    async execute(name: string, email: string, password: string): Promise<User | null> {
         try {
             const existingUser = await this.authRepository.getUserByEmail(email);
 
@@ -14,7 +14,11 @@ class CreateUserUseCase {
             }
 
             const hashPassword = await bcrypt.hash(password, 10);
-            const newUser = await this.authRepository.createUser(email, hashPassword);
+            const newUser = await this.authRepository.createUser(
+                name,
+                email,
+                hashPassword
+            );
 
             return newUser;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
