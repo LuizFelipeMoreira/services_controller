@@ -1,9 +1,6 @@
+import cors from 'cors';
 import express from 'express';
 import path from 'path';
-import cors from 'cors';
-import { connection } from './config/database';
-import { Servicos } from './model/Services';
-import { User } from './model/Users';
 import useRoutes from './controllers/service/services.routes';
 
 const app = express();

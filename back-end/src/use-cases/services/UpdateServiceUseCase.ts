@@ -1,11 +1,11 @@
+import { IService } from '../../@types/IService';
 import { IServiceRepository } from '../../repositories/services-repositories/IServicesRepository';
-import { ServiceType } from '../../@types/ServicesType';
 import { GetServiceByIdUseCase } from './GetServiceByIdUseCase';
 
 class UpdateServiceUserCase {
     constructor(private serviceRepository: IServiceRepository) {}
 
-    async execute(id: number, data: ServiceType): Promise<void> {
+    async execute(id: number, data: IService): Promise<void> {
         const getServiceByID = new GetServiceByIdUseCase(this.serviceRepository);
         const existingService = await getServiceByID.execute(id);
 

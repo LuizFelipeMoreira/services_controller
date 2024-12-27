@@ -1,4 +1,4 @@
-import { ServiceType } from '../../@types/ServicesType';
+import { ServiceType } from '../../@types/IService';
 import { Servicos } from '../../model/Services';
 import { IServiceRepository } from '../services-repositories/IServicesRepository';
 

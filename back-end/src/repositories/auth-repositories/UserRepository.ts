@@ -1,18 +1,29 @@
-import { User } from '../../@types/UserType';
+import User from '../../model/Users';
+import { IUser } from '../../@types/IUser';
 import { IUserRepository } from './IUserRepository';
 
 class UserRepository implements IUserRepository {
-    public async createUser(): Promise<void> {
-        const user = await User.create({ name: 'Felipinno' });
+    async createUser({ email, password }: IUser) {
+        const user = await User.create({
+            email,
+            password,
+        });
+
+        return user;
     }
 
-    public async getUserByEmail(email: string): Promise<User | null> {
-        const user = await User.findOne({ where: { email } });
-        console.log('felipinno');
+    async getUserByEmail(email: string) {
+        return await User.findOne({
+            where: {
+                email,
+            },
+        });
     }
 
-    public async getUserById(id: number): Promise<User | null> {
-        console.log('felipinno');
+    async getUserById(id: number) {
+        return await User.findOne({
+            where: { id },
+        });
     }
 }
 

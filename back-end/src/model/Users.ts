@@ -1,28 +1,34 @@
-import { DataTypes } from 'sequelize';
-import { connection } from '../config/database';
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../config/database';
 
-export const User = connection.define('users', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-});
+class User extends Model {
+    public id!: number;
+    public email!: string;
+    public password!: string;
+}
 
-User.sync()
-    .then(() => console.log('Tabela criada com sucesso'))
-    .catch((err) => console.log(err));
+User.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        sequelize,
+        modelName: 'User',
+        tableName: 'users',
+    }
+);
 
-console.log('All models were synchronized successfully.');
+export default User;

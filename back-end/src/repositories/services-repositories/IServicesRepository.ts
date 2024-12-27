@@ -1,9 +1,9 @@
-import { ServiceType } from '../../@types/ServicesType';
+import { IService } from '../../@types/IService';
 
 export interface IServiceRepository {
-    create(data: ServiceType): Promise<ServiceType>;
-    update(id: number, data: ServiceType): Promise<void>;
-    getAll(): Promise<ServiceType[]>;
+    create(data: IService): Promise<IService>;
+    update(id: number, data: IService): Promise<void>;
+    getAll(): Promise<IService[]>;
     deleteService(id: number): Promise<void>;
-    getServiceByID(id: number): Promise<ServiceType | null>;
+    getServiceByID(id: number): Promise<IService | null>;
 }
