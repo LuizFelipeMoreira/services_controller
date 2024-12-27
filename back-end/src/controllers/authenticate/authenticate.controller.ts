@@ -30,7 +30,10 @@ class AuthController {
 
             res.status(200).json({
                 message: 'User Logged',
-                ...{ user },
+                user: {
+                    id: user.id,
+                    name: user.name,
+                },
             });
         } catch (error) {
             console.log(error);
