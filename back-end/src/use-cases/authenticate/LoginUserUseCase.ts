@@ -3,7 +3,7 @@ import { IUserRepository } from '../../repositories/auth-repositories/IUserRepos
 class LoginUserUseCase {
     constructor(private authRepository: IUserRepository) {}
 
-    async execute() {}
+    async execute(email: string, password: string) {}
 }
 
 export { LoginUserUseCase };

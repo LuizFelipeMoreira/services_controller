@@ -3,8 +3,9 @@ import { IUser } from '../../@types/IUser';
 import { IUserRepository } from './IUserRepository';
 
 class UserRepository implements IUserRepository {
-    async createUser({ email, password }: IUser) {
+    async createUser({ name, email, password }: IUser) {
         const user = await User.create({
+            name,
             email,
             password,
         });

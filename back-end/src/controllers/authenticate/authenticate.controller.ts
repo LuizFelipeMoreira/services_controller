@@ -5,26 +5,33 @@ import { LoginUserUseCase } from '../../use-cases/authenticate/LoginUserUseCase'
 import UserRepository from '../../repositories/auth-repositories/UserRepository';
 
 class AuthController {
-    async create(req: Request, res: Response) {
+    async signUp(req: Request, res: Response) {
         const { email, password } = req.body;
 
         try {
-            const createUserUseCase = new CreateUserUseCase();
+            const createUserUseCase = new CreateUserUseCase(UserRepository);
             const newUser = await createUserUseCase.execute(email, password);
 
             res.status(200).json({
                 message: 'User Created',
                 ...newUser,
             });
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    async login(req: Request, res: Response) {
+    async signIn(req: Request, res: Response) {
         const { email, password } = req.body;
 
         try {
             const loginUserUseCase = new LoginUserUseCase(UserRepository);
-            const user = loginUserUseCase.execute(email, password);
+            const user = await loginUserUseCase.execute(email, password);
+
+            res.status(200).json({
+                message: 'User Logged',
+                ...{ user },
+            });
         } catch (error) {
             console.log(error);
         }
