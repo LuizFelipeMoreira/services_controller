@@ -22,7 +22,7 @@ export const ServiceActionModal = ({
   onDelete,
   onEdit,
 }: ModalConfirmProps) => {
-  const [data, setData] = React.useState<ServicesType>(service);
+  const [serviceData, setServiceData] = React.useState<ServicesType>(service);
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {

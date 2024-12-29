@@ -6,7 +6,7 @@ import { UpdateServiceModal } from '../UpdateServiceModal';
 import { DeleteServiceModal } from '../DeleteServiceModal';
 
 export const Table = () => {
-  const { serviceList, deleteServiceList, updateService } = useService();
+  const { serviceList } = useService();
 
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
@@ -36,7 +36,7 @@ export const Table = () => {
     setModalConfirmShow(!modalConfirmShow);
   };
 
-  const onDelete = (service: ServicesType) => {
+  const onDelete = (id: number) => {
     setModalType('delete');
     setModalConfirmShow(!modalConfirmShow);
   };
