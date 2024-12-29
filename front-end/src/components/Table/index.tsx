@@ -2,14 +2,12 @@ import React from 'react';
 import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
 import { ServicesType } from '../../@types/ServicesType';
-import { ServiceActionModal } from '../ServiceActionModal';
-
-// interface TableProps {
-//   setModalConfirmShow: (arg: boolean) => void;
-// }
+import { UpdateServiceModal } from '../UpdateServiceModal';
+import { DeleteServiceModal } from '../DeleteServiceModal';
 
 export const Table = () => {
-  const { serviceList, deleteServiceList } = useService();
+  const { serviceList, deleteServiceList, updateService } = useService();
+
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
@@ -40,7 +38,6 @@ export const Table = () => {
 
   const onDelete = (service: ServicesType) => {
     setModalType('delete');
-    setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
@@ -66,8 +63,8 @@ export const Table = () => {
               <td>{service.nome}</td>
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
-              <td>15/05/2024</td>
-              <td>18/05/2024</td>
+              <td>15/05</td>
+              <td>18/05</td>
               <td>entregue</td>
               <td>{service.os}</td>
               <td className="d-flex gap-1">
@@ -81,7 +78,7 @@ export const Table = () => {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete(service)}
+                  onClick={() => onDelete(88)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -97,12 +94,28 @@ export const Table = () => {
         <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
       </Pagination>
 
-      <ServiceActionModal
+      {modalType === 'edit' && (
+        <UpdateServiceModal
+          setModalConfirmShow={setModalConfirmShow}
+          modalConfirmShow={modalConfirmShow}
+        />
+      )}
+
+      {modalType === 'delete' && (
+        <DeleteServiceModal
+          modalConfirmShow={modalConfirmShow}
+          setModalConfirmShow={setModalConfirmShow}
+        />
+      )}
+
+      {/* <ServiceActionModal
+        onDelete={onDelete}
+        onEdit={onEdit}
         service={selectedService}
         type={modalType}
         modalConfirmShow={modalConfirmShow}
         setModalConfirmShow={setModalConfirmShow}
-      />
+      /> */}
     </>
   );
 };

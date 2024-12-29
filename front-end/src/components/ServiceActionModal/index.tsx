@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { FormField, FormSelect } from '../NewServiceModal';
 import { ServicesType } from '../../@types/ServicesType';
-import { useService } from '../../hooks/useService';
 
 type ModalType = 'edit' | 'delete';
 
@@ -10,6 +9,8 @@ interface ModalConfirmProps {
   type: ModalType;
   modalConfirmShow: boolean;
   service: ServicesType;
+  onEdit: (service: ServicesType) => void;
+  onDelete: (id: number) => void;
   setModalConfirmShow: (arg: boolean) => void;
 }
 
@@ -18,33 +19,15 @@ export const ServiceActionModal = ({
   setModalConfirmShow,
   modalConfirmShow,
   service,
+  onDelete,
+  onEdit,
 }: ModalConfirmProps) => {
-  const [serviceData, setServiceData] = React.useState<ServicesType>(service);
-  const { deleteServiceList, updateService } = useService();
+  const [data, setData] = React.useState<ServicesType>(service);
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     setServiceData(service);
   }, [service]);
-
-  const submitModal = async () => {
-    console.log(serviceData);
-
-    switch (type) {
-      case 'edit':
-        if (serviceData.id) updateService(serviceData);
-        resetForm();
-
-        break;
-      case 'delete':
-        if (serviceData.id) deleteServiceList(serviceData.id);
-
-        break;
-      default:
-    }
-
-    setModalConfirmShow(false);
-  };
 
   const resetForm = () => {
     setServiceData({ nome: '', lente: '', laboratorio: '', os: '' });
@@ -133,8 +116,10 @@ export const ServiceActionModal = ({
         <Button variant="secondary" onClick={() => handleClose()}>
           Cancelar
         </Button>
-
-        <Button variant="primary" onClick={() => submitModal()}>
+        <Button
+          variant="primary"
+          onClick={() => (type == 'edit' ? onEdit(service) : onDelete(data.id))}
+        >
           Salvar mudanças
         </Button>
       </Modal.Footer>
