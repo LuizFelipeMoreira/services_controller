@@ -2,14 +2,12 @@ import React from 'react';
 import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
 import { ServicesType } from '../../@types/ServicesType';
-import { ServiceActionModal } from '../ServiceActionModal';
-
-// interface TableProps {
-//   setModalConfirmShow: (arg: boolean) => void;
-// }
+import { UpdateServiceModal } from '../UpdateServiceModal';
+import { DeleteServiceModal } from '../DeleteServiceModal';
 
 export const Table = () => {
   const { serviceList, deleteServiceList, updateService } = useService();
+
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
@@ -35,13 +33,11 @@ export const Table = () => {
   const onEdit = (service: ServicesType) => {
     setModalType('edit');
     setSelectedService(service);
-    updateService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
   const onDelete = (id: number) => {
     setModalType('delete');
-    deleteServiceList(id);
     setModalConfirmShow(!modalConfirmShow);
   };
 
@@ -82,7 +78,7 @@ export const Table = () => {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete(service.id)}
+                  onClick={() => onDelete(88)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -98,14 +94,28 @@ export const Table = () => {
         <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
       </Pagination>
 
-      <ServiceActionModal
+      {modalType === 'edit' && (
+        <UpdateServiceModal
+          setModalConfirmShow={setModalConfirmShow}
+          modalConfirmShow={modalConfirmShow}
+        />
+      )}
+
+      {modalType === 'delete' && (
+        <DeleteServiceModal
+          modalConfirmShow={modalConfirmShow}
+          setModalConfirmShow={setModalConfirmShow}
+        />
+      )}
+
+      {/* <ServiceActionModal
         onDelete={onDelete}
         onEdit={onEdit}
         service={selectedService}
         type={modalType}
         modalConfirmShow={modalConfirmShow}
         setModalConfirmShow={setModalConfirmShow}
-      />
+      /> */}
     </>
   );
 };
