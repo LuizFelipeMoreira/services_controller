@@ -29,25 +29,6 @@ export const ServiceActionModal = ({
     setData(service);
   }, [service]);
 
-  // const submitModal = async () => {
-  //   console.log(data);
-
-  //   switch (type) {
-  //     case 'edit':
-  //       if (data.id) updateService(data);
-  //       resetForm();
-
-  //       break;
-  //     case 'delete':
-  //       if (data.id) deleteServiceList(data.id);
-
-  //       break;
-  //     default:
-  //   }
-
-  //   setModalConfirmShow(false);
-  // };
-
   const resetForm = () => {
     setData({ nome: '', lente: '', laboratorio: '', os: '' });
     FormRef.current?.reset();
