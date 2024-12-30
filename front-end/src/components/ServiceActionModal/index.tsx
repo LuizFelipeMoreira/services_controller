@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import { IService } from '../../@types/IService';
 import { FormField, FormSelect } from '../NewServiceModal';
-import { ServicesType } from '../../@types/ServicesType';
 
 type ModalType = 'edit' | 'delete';
 
 interface ModalConfirmProps {
   type: ModalType;
   modalConfirmShow: boolean;
-  service: ServicesType;
-  onEdit: (service: ServicesType) => void;
+  service: IService;
+  onEdit: (service: IService) => void;
   onDelete: (id: number) => void;
   setModalConfirmShow: (arg: boolean) => void;
 }
@@ -22,7 +22,7 @@ export const ServiceActionModal = ({
   onDelete,
   onEdit,
 }: ModalConfirmProps) => {
-  const [serviceData, setServiceData] = React.useState<ServicesType>(service);
+  const [serviceData, setServiceData] = React.useState<IService>(service);
   const FormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {

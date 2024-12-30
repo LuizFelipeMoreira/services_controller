@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { FormField, FormSelect } from '../NewServiceModal';
-import { ServicesType } from '../../@types/ServicesType';
+import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
+import { FormField, FormSelect } from '../NewServiceModal';
 
 interface UpdateModalProps {
   modalConfirmShow: boolean;
@@ -13,7 +13,7 @@ export const UpdateServiceModal = ({
   modalConfirmShow,
   setModalConfirmShow,
 }: UpdateModalProps) => {
-  const [data, setData] = React.useState({} as ServicesType);
+  const [data, setData] = React.useState({} as IService);
   const { updateService } = useService();
   const FormRef = React.useRef<HTMLFormElement>(null);
 

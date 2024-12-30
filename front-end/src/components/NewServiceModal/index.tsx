@@ -2,7 +2,7 @@ import React, { FormEvent, ChangeEvent } from 'react';
 
 import './styles.scss';
 
-import { ServicesType } from '../../@types/ServicesType';
+import { IService } from '../../@types/IService';
 
 import { Modal } from 'react-bootstrap';
 
@@ -15,7 +15,7 @@ interface ModalProps {
 
 export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
   const initialServiceData = { nome: '', lente: '', laboratorio: '', os: '' };
-  const [data, setData] = React.useState<ServicesType>(initialServiceData);
+  const [data, setData] = React.useState<IService>(initialServiceData);
   const FormRef = React.useRef<HTMLFormElement>(null);
   const { addNewService } = useService();
 

@@ -7,7 +7,7 @@ import { NewServiceModal } from '../NewServiceModal';
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
 
-  // const handleModal = (action: ModalType, service: ServicesType) => {
+  // const handleModal = (action: ModalType, service: IService) => {
   //   setModalType(action);
   //   setSelectedService(service);
   //   setModalConfirmShow(true);

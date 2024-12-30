@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ServicesType } from '../@types/ServicesType';
+import { IService } from '../@types/IService';
 import { axiosInstance } from '../lib/api';
 
 export const handleRequest = async <T>(
@@ -14,7 +14,7 @@ export const handleRequest = async <T>(
   }
 };
 
-export const GET_SERVICES = async (): Promise<ServicesType[]> => {
+export const GET_SERVICES = async (): Promise<IService[]> => {
   try {
     const { data } = await axiosInstance.get('/services');
 
@@ -24,9 +24,7 @@ export const GET_SERVICES = async (): Promise<ServicesType[]> => {
   }
 };
 
-export const CREATE_SERVICE = async (
-  formData: ServicesType
-): Promise<ServicesType> => {
+export const CREATE_SERVICE = async (formData: IService): Promise<IService> => {
   try {
     const { data } = await axiosInstance.post('/create', formData);
 
@@ -45,7 +43,7 @@ export const DELETE_SERVICE = async (id: number): Promise<void> => {
 
 export const UPDATE_SERVICE = async (
   id: number,
-  body: ServicesType
+  body: IService
 ): Promise<void> => {
   const serviceUpdated = await axiosInstance.post(`edit/${id}`, body);
 

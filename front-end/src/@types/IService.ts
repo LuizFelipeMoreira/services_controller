@@ -1,4 +1,4 @@
-export interface ServicesType {
+export interface IService {
   id?: number;
   nome: string;
   lente: string;

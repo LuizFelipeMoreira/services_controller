@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServicesType } from '../@types/ServicesType';
+import { IService } from '../@types/IService';
 import {
   CREATE_SERVICE,
   DELETE_SERVICE,
@@ -12,16 +12,16 @@ interface ServiceProvider {
 }
 
 interface UseServiceType {
-  serviceList: ServicesType[];
+  serviceList: IService[];
   deleteServiceList: (id: number) => void;
-  addNewService: (newervice: ServicesType) => Promise<void>;
-  updateService: (body: ServicesType) => Promise<void>;
+  addNewService: (newervice: IService) => Promise<void>;
+  updateService: (body: IService) => Promise<void>;
 }
 
 export const ServiceContext = React.createContext({} as UseServiceType);
 
 export const ServiceProvider = ({ children }: ServiceProvider) => {
-  const [serviceList, setServicesList] = React.useState<ServicesType[]>([]);
+  const [serviceList, setServicesList] = React.useState<IService[]>([]);
 
   React.useEffect(() => {
     GET_SERVICES().then((data) => {
@@ -29,13 +29,10 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     });
   }, []);
 
-  const addNewService = async (newService: ServicesType) => {
+  const addNewService = async (newService: IService) => {
     if (!newService) return;
 
-    setServicesList((oldServices: ServicesType[]) => [
-      ...oldServices,
-      newService,
-    ]);
+    setServicesList((oldServices: IService[]) => [...oldServices, newService]);
 
     await CREATE_SERVICE(newService);
   };
@@ -46,7 +43,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     setServicesList(serviceRemoved);
   };
 
-  const updateService = async (body: ServicesType) => {
+  const updateService = async (body: IService) => {
     if (!body.id) return;
 
     const updatedServices = [...serviceList].map((service) =>

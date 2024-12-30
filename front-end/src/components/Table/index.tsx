@@ -1,9 +1,9 @@
 import React from 'react';
-import { useService } from '../../hooks/useService';
 import { Pagination } from 'react-bootstrap';
-import { ServicesType } from '../../@types/ServicesType';
-import { UpdateServiceModal } from '../UpdateServiceModal';
+import { IService } from '../../@types/IService';
+import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../DeleteServiceModal';
+import { UpdateServiceModal } from '../UpdateServiceModal';
 
 export const Table = () => {
   const { serviceList } = useService();
@@ -12,9 +12,7 @@ export const Table = () => {
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
   const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
-  const [selectedService, setSelectedService] = React.useState(
-    {} as ServicesType
-  );
+  const [selectedService, setSelectedService] = React.useState({} as IService);
 
   const items = [];
 
@@ -30,7 +28,7 @@ export const Table = () => {
     if (page >= 1 && page <= 5) setActivePage(page);
   };
 
-  const onEdit = (service: ServicesType) => {
+  const onEdit = (service: IService) => {
     setModalType('edit');
     setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
