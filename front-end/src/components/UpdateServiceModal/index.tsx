@@ -5,15 +5,18 @@ import { useService } from '../../hooks/useService';
 import { FormField, FormSelect } from '../NewServiceModal';
 
 interface UpdateModalProps {
+  data: IService;
   modalConfirmShow: boolean;
+  setData: (data: IService) => void;
   setModalConfirmShow: (_: boolean) => void;
 }
 
 export const UpdateServiceModal = ({
+  data,
+  setData,
   modalConfirmShow,
   setModalConfirmShow,
 }: UpdateModalProps) => {
-  const [data, setData] = React.useState({} as IService);
   const { updateService } = useService();
   const FormRef = React.useRef<HTMLFormElement>(null);
 

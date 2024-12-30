@@ -34,8 +34,9 @@ export const Table = () => {
     setModalConfirmShow(!modalConfirmShow);
   };
 
-  const onDelete = (id: number) => {
+  const onDelete = (service: IService) => {
     setModalType('delete');
+    setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
   };
 
@@ -76,7 +77,7 @@ export const Table = () => {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => onDelete(88)}
+                  onClick={() => onDelete(service)}
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -94,6 +95,8 @@ export const Table = () => {
 
       {modalType === 'edit' && (
         <UpdateServiceModal
+          data={selectedService}
+          setData={setSelectedService}
           setModalConfirmShow={setModalConfirmShow}
           modalConfirmShow={modalConfirmShow}
         />
@@ -105,15 +108,6 @@ export const Table = () => {
           setModalConfirmShow={setModalConfirmShow}
         />
       )}
-
-      {/* <ServiceActionModal
-        onDelete={onDelete}
-        onEdit={onEdit}
-        service={selectedService}
-        type={modalType}
-        modalConfirmShow={modalConfirmShow}
-        setModalConfirmShow={setModalConfirmShow}
-      /> */}
     </>
   );
 };
