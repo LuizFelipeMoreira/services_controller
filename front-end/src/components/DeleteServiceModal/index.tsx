@@ -3,11 +3,13 @@ import { Modal, Button } from 'react-bootstrap';
 import { useService } from '../../hooks/useService';
 
 interface DeleteServiceModalProps {
+  id: number;
   modalConfirmShow: boolean;
   setModalConfirmShow: (_: boolean) => void;
 }
 
 export const DeleteServiceModal = ({
+  id,
   modalConfirmShow,
   setModalConfirmShow,
 }: DeleteServiceModalProps) => {
@@ -23,7 +25,7 @@ export const DeleteServiceModal = ({
         <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={() => deleteServiceList(5)}>
+        <Button variant="primary" onClick={() => deleteServiceList(id)}>
           Deletar Serviço
         </Button>
       </Modal.Footer>

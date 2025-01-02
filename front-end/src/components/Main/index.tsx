@@ -7,12 +7,6 @@ import { NewServiceModal } from '../NewServiceModal';
 export const Main = () => {
   const [open, setOpen] = React.useState(false);
 
-  // const handleModal = (action: ModalType, service: IService) => {
-  //   setModalType(action);
-  //   setSelectedService(service);
-  //   setModalConfirmShow(true);
-  // };
-
   return (
     <main className="main">
       <div className="wrapper">

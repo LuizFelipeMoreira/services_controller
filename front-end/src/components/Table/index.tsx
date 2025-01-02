@@ -104,6 +104,7 @@ export const Table = () => {
 
       {modalType === 'delete' && (
         <DeleteServiceModal
+          id={selectedService.id}
           modalConfirmShow={modalConfirmShow}
           setModalConfirmShow={setModalConfirmShow}
         />

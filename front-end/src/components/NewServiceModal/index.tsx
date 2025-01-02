@@ -1,12 +1,8 @@
-import React, { FormEvent, ChangeEvent } from 'react';
-
-import './styles.scss';
-
-import { IService } from '../../@types/IService';
-
+import React, { ChangeEvent, FormEvent } from 'react';
 import { Modal } from 'react-bootstrap';
-
+import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
+import './styles.scss';
 
 interface ModalProps {
   open: boolean;
