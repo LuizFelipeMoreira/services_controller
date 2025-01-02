@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
-import { FormField, FormSelect } from '../NewServiceModal';
+import { FormField, FormSelect } from '../ModalNewService';
 
 interface UpdateModalProps {
   data: IService;

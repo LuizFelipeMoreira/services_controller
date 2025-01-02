@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.scss';
 
 import { Table } from '../Table';
-import { NewServiceModal } from '../NewServiceModal';
+import { NewServiceModal } from '../ModalNewService';
 
 export const Main = () => {
   const [open, setOpen] = React.useState(false);

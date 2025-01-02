@@ -2,8 +2,8 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
-import { DeleteServiceModal } from '../DeleteServiceModal';
-import { UpdateServiceModal } from '../UpdateServiceModal';
+import { DeleteServiceModal } from '../ModalDelete';
+import { UpdateServiceModal } from '../ModalUpdate';
 
 export const Table = () => {
   const { serviceList } = useService();
