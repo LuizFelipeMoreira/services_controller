@@ -15,6 +15,11 @@ export const DeleteServiceModal = ({
 }: DeleteServiceModalProps) => {
   const { deleteServiceList } = useService();
 
+  const hanldeDelete = () => {
+    deleteServiceList(id);
+    setModalConfirmShow(false);
+  };
+
   return (
     <Modal show={modalConfirmShow}>
       <Modal.Header closeButton onHide={() => setModalConfirmShow(false)}>
@@ -25,7 +30,7 @@ export const DeleteServiceModal = ({
         <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={() => deleteServiceList(id)}>
+        <Button variant="primary" onClick={() => hanldeDelete()}>
           Deletar Serviço
         </Button>
       </Modal.Footer>

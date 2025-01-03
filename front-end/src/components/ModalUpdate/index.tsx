@@ -20,10 +20,10 @@ export const UpdateServiceModal = ({
   const { updateService } = useService();
   const FormRef = React.useRef<HTMLFormElement>(null);
 
-  // const handleClose = () => {
-  //   //resetForm();
-  //   setModalConfirmShow(false);
-  // };
+  const handleUpdate = () => {
+    updateService(data);
+    setModalConfirmShow(false);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -91,7 +91,7 @@ export const UpdateServiceModal = ({
         <Button variant="secondary" onClick={() => setModalConfirmShow(false)}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={() => updateService(data)}>
+        <Button variant="primary" onClick={() => handleUpdate()}>
           Salvar mudanças
         </Button>
       </Modal.Footer>
