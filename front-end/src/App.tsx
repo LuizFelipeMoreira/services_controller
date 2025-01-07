@@ -1,13 +1,13 @@
 import React from 'react';
 import { Header } from './components/Header';
-import { Main } from './components/Main';
+import { Home } from './components/Home';
 import { ServiceProvider } from './context/ServiceContext';
 
 function App() {
   return (
     <ServiceProvider>
       <Header />
-      <Main />
+      <Home />
     </ServiceProvider>
   );
 }

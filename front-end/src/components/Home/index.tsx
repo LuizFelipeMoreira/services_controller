@@ -1,10 +1,9 @@
 import React from 'react';
+import { NewServiceModal } from '../ModalNewService';
+import { Table } from '../Table';
 import './styles.scss';
 
-import { Table } from '../Table';
-import { NewServiceModal } from '../ModalNewService';
-
-export const Main = () => {
+export const Home = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
