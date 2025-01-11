@@ -6,4 +6,10 @@ export interface IServiceRepository {
     getAll(): Promise<IService[]>;
     deleteService(id: number): Promise<void>;
     getServiceByID(id: number): Promise<IService | null>;
+    getServicesPagenated(limit: number, offset: number): Promise<PagenatedResponse>;
+}
+
+export interface PagenatedResponse {
+    count: number;
+    rows: IService[];
 }
