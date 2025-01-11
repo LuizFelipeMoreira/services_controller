@@ -7,7 +7,7 @@ class GetPaginatedServiceUseCase {
     constructor(private readonly ServiceRepository: IServiceRepository) {}
 
     async execute(page: number, size: number): Promise<PagenatedResponse> {
-        return await this.ServiceRepository.getServicesPagenated(page, size);
+        return await this.ServiceRepository.getServicesPagenated(size, page);
     }
 }
 

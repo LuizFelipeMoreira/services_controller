@@ -47,12 +47,14 @@ class ServiceController {
     }
 
     public async getListPaginated(req: Request, res: Response) {
-        const { limit } = req.params;
+        const limit = parseInt(req.params.limit) || 10;
+        const offset = parseInt(req.params.offset) || 0;
 
         const getPaginatedServiceUseCase = new GetPaginatedServiceUseCase(
             ServicesRepository
         );
-        const getServices = await getPaginatedServiceUseCase.execute(5, 3);
+
+        const getServices = await getPaginatedServiceUseCase.execute(limit, offset);
     }
 }
 
