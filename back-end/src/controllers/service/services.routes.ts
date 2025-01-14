@@ -13,4 +13,6 @@ router.post('/delete/:id', ServiceController.delete);
 
 router.get('/service/:id', ServiceController.getService);
 
+router.get('/services/:page', ServiceController.getListPaginated);
+
 export default router;
