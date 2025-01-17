@@ -3,7 +3,7 @@ import ServiceController from './services.controller';
 
 const router = express.Router();
 
-router.get('/services', ServiceController.getAll);
+router.get('/services', ServiceController.getListPaginated);
 
 router.post('/create', ServiceController.create);
 
@@ -13,6 +13,6 @@ router.post('/delete/:id', ServiceController.delete);
 
 router.get('/service/:id', ServiceController.getService);
 
-router.get('/services/:page', ServiceController.getListPaginated);
+//router.get('/services/paginated', ServiceController.getListPaginated);
 
 export default router;

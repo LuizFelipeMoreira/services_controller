@@ -24,7 +24,9 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [serviceList, setServicesList] = React.useState<IService[]>([]);
 
   React.useEffect(() => {
-    GET_SERVICES().then((data) => {
+    GET_SERVICES(1, 10).then((data) => {
+      console.log(data);
+
       setServicesList(data);
     });
   }, []);
