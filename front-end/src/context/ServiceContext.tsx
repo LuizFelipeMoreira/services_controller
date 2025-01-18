@@ -27,7 +27,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     GET_SERVICES(1, 10).then((data) => {
       console.log(data);
 
-      setServicesList(data);
+      setServicesList(data.rows);
     });
   }, []);
 

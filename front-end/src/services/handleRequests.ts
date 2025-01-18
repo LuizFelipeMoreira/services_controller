@@ -17,13 +17,13 @@ export const handleRequest = async <T>(
 export const GET_SERVICES = async (
   offset: number,
   limit: number
-): Promise<IService[]> => {
+): Promise<{ count: number; rows: IService[] }> => {
   try {
     const { data } = await axiosInstance.get(
       `/services?limit=${limit}&offset=${offset}`
     );
 
-    return data.rows;
+    return data;
   } catch (error) {
     return Promise.reject(error);
   }
