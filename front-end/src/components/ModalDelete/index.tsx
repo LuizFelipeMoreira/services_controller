@@ -13,10 +13,10 @@ export const DeleteServiceModal = ({
   modalConfirmShow,
   setModalConfirmShow,
 }: DeleteServiceModalProps) => {
-  const { deleteServiceList } = useService();
+  const { deleteService } = useService();
 
   const hanldeDelete = () => {
-    deleteServiceList(id);
+    deleteService(id);
     setModalConfirmShow(false);
   };
 
