@@ -1,5 +1,5 @@
 import React from 'react';
-import { IService } from '../@types/IService';
+import { IService, IServiceResquest } from '../@types/IService';
 import {
   CREATE_SERVICE,
   DELETE_SERVICE,
@@ -14,7 +14,7 @@ interface ServiceProvider {
 interface UseServiceType {
   serviceList: IService[];
   deleteServiceList: (id: number) => void;
-  addNewService: (newervice: IService) => Promise<void>;
+  addNewService: (newervice: IServiceResquest) => Promise<void>;
   updateService: (body: IService) => Promise<void>;
 }
 
@@ -31,12 +31,12 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     });
   }, []);
 
-  const addNewService = async (newService: IService) => {
-    if (!newService) return;
+  const addNewService = async (serviceFormData: IServiceResquest) => {
+    if (!serviceFormData) return;
+
+    const newService = await CREATE_SERVICE(serviceFormData);
 
     setServicesList((oldServices: IService[]) => [...oldServices, newService]);
-
-    await CREATE_SERVICE(newService);
   };
 
   const deleteServiceList = async (id: number) => {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IService } from '../@types/IService';
+import { IService, IServiceResquest } from '../@types/IService';
 import { axiosInstance } from '../lib/api';
 
 export const handleRequest = async <T>(
@@ -29,7 +29,9 @@ export const GET_SERVICES = async (
   }
 };
 
-export const CREATE_SERVICE = async (formData: IService): Promise<IService> => {
+export const CREATE_SERVICE = async (
+  formData: IServiceResquest
+): Promise<IService> => {
   try {
     const { data } = await axiosInstance.post('/create', formData);
 
