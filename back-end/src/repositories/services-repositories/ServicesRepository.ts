@@ -39,6 +39,7 @@ class ServiceRepository implements IServiceRepository {
         const { count, rows } = await Servicos.findAndCountAll({
             offset,
             limit,
+            order: [['id', 'DESC']],
         });
 
         return { count, rows: rows.map((item) => item.toJSON() as IService) };
