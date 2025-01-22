@@ -6,7 +6,7 @@ import { DeleteServiceModal } from '../ModalDelete';
 import { UpdateServiceModal } from '../ModalUpdate';
 
 export const Table = () => {
-  const { serviceList } = useService();
+  const { serviceList, getServicesPaginated } = useService();
 
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
@@ -25,7 +25,12 @@ export const Table = () => {
   }
 
   const handleActivePage = (page: number) => {
-    if (page >= 1 && page <= 5) setActivePage(page);
+    const isValidPage = page >= 1 && page <= 5;
+
+    if (isValidPage) {
+      setActivePage(page);
+      getServicesPaginated(page, 10);
+    }
   };
 
   const onEdit = (service: IService) => {
