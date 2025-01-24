@@ -1,37 +1,18 @@
 import React from 'react';
-import { Pagination } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
 import { UpdateServiceModal } from '../ModalUpdate';
+import { PaginationComponent } from '../Pagitation';
 
 export const Table = () => {
-  const { serviceList, getServicesPaginated } = useService();
+  const { serviceList } = useService();
 
   const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
 
   const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
   const [selectedService, setSelectedService] = React.useState({} as IService);
-
-  const items = [];
-
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === activePage}>
-        {number}
-      </Pagination.Item>
-    );
-  }
-
-  const handleActivePage = (page: number) => {
-    const isValidPage = page >= 1 && page <= 5;
-
-    if (isValidPage) {
-      setActivePage(page);
-      getServicesPaginated(page, 10);
-    }
-  };
 
   const onEdit = (service: IService) => {
     setModalType('edit');
@@ -92,11 +73,10 @@ export const Table = () => {
         </tbody>
       </table>
 
-      <Pagination className="mt-2 d-flex justify-content-end">
-        <Pagination.Prev onClick={() => handleActivePage(activePage - 1)} />
-        {items}
-        <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
-      </Pagination>
+      <PaginationComponent
+        setActivePage={setActivePage}
+        activePage={activePage}
+      />
 
       {modalType === 'edit' && (
         <UpdateServiceModal
