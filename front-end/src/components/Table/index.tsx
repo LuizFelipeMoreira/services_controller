@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pagination } from 'react-bootstrap';
+import { Button, Pagination } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
@@ -72,20 +72,13 @@ export const Table = () => {
               <td>entregue</td>
               <td>{service.os}</td>
               <td className="d-flex gap-1">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => onEdit(service)}
-                >
+                <Button variant="primary" onClick={() => onEdit(service)}>
                   <i className="fa-solid fa-pen"></i>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => onDelete(service)}
-                >
+                </Button>
+
+                <Button variant="danger" onClick={() => onDelete(service)}>
                   <i className="fa-solid fa-trash"></i>
-                </button>
+                </Button>
               </td>
             </tr>
           ))}
