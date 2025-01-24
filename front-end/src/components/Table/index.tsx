@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
