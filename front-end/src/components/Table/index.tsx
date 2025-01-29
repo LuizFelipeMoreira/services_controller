@@ -51,7 +51,7 @@ export const Table = () => {
               <td>{service.laboratorio}</td>
               <td>15/05</td>
               <td>18/05</td>
-              <td>entregue</td>
+              <td>pendente</td>
               <td>{service.os}</td>
               <td className="d-flex gap-1">
                 <Button variant="primary" onClick={() => onEdit(service)}>
@@ -60,6 +60,10 @@ export const Table = () => {
 
                 <Button variant="danger" onClick={() => onDelete(service)}>
                   <i className="fa-solid fa-trash"></i>
+                </Button>
+
+                <Button variant="success">
+                  <i className="fa-solid fa-check"></i>
                 </Button>
               </td>
             </tr>

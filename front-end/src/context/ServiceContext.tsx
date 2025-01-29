@@ -13,6 +13,7 @@ interface ServiceProvider {
 
 interface UseServiceType {
   serviceList: IService[];
+  setServiceList: (data: IService[]) => void;
   deleteService: (id: number) => void;
   addNewService: (newervice: IServiceResquest) => Promise<void>;
   updateService: (body: IService) => Promise<void>;
@@ -22,20 +23,20 @@ interface UseServiceType {
 export const ServiceContext = React.createContext({} as UseServiceType);
 
 export const ServiceProvider = ({ children }: ServiceProvider) => {
-  const [serviceList, setServicesList] = React.useState<IService[]>([]);
+  const [serviceList, setServiceList] = React.useState<IService[]>([]);
 
   React.useEffect(() => {
     GET_SERVICES(1, 10).then((data) => {
       console.log(data);
 
-      setServicesList(data.rows);
+      setServiceList(data.rows);
     });
   }, []);
 
   const getServicesPaginated = async (page: number, size: number) => {
     const { rows } = await GET_SERVICES(page, size);
 
-    setServicesList(rows);
+    setServiceList(rows);
   };
 
   const addNewService = async (serviceFormData: IServiceResquest) => {
@@ -43,13 +44,13 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
 
     const newService = await CREATE_SERVICE(serviceFormData);
 
-    setServicesList((oldServices: IService[]) => [...oldServices, newService]);
+    setServiceList((oldServices: IService[]) => [...oldServices, newService]);
   };
 
   const deleteService = async (id: number) => {
     await DELETE_SERVICE(id);
     const serviceRemoved = serviceList.filter((service) => service.id !== id);
-    setServicesList(serviceRemoved);
+    setServiceList(serviceRemoved);
   };
 
   const updateService = async (body: IService) => {
@@ -58,7 +59,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     const updatedServices = [...serviceList].map((service) =>
       service.id === body.id ? { ...body } : service
     );
-    setServicesList(updatedServices);
+    setServiceList(updatedServices);
     UPDATE_SERVICE(body.id, body);
   };
 
@@ -66,6 +67,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     <ServiceContext.Provider
       value={{
         serviceList,
+        setServiceList,
         deleteService,
         addNewService,
         updateService,
