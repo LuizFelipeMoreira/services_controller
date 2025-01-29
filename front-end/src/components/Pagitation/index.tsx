@@ -1,17 +1,24 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { useService } from '../../hooks/useService';
+import { IService } from '../../@types/IService';
 
 interface PaginationComponentsProps {
   activePage: number;
   setActivePage: (page: number) => void;
 }
 
+interface ICacheData {
+  [page: number]: IService[];
+}
+
 export const PaginationComponent = ({
   activePage,
   setActivePage,
 }: PaginationComponentsProps) => {
-  const { getServicesPaginated } = useService();
+  const { serviceList, getServicesPaginated } = useService();
+
+  const [cacheData, setCacheData] = React.useState<ICacheData>({});
 
   const items = [];
 
@@ -21,6 +28,7 @@ export const PaginationComponent = ({
     if (isValidPage) {
       setActivePage(page);
       getServicesPaginated(page, 10);
+      setCacheData({ ...cacheData, [page]: serviceList });
     }
   };
 
