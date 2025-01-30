@@ -11,31 +11,34 @@ interface ServiceProvider {
   children: React.ReactNode;
 }
 
-interface UseServiceType {
+interface IServiceContext {
   serviceList: IService[];
-  setServiceList: (data: IService[]) => void;
+  totalServices: number;
   deleteService: (id: number) => void;
   addNewService: (newervice: IServiceResquest) => Promise<void>;
   updateService: (body: IService) => Promise<void>;
   getServicesPaginated: (page: number, size: number) => Promise<void>;
 }
 
-export const ServiceContext = React.createContext({} as UseServiceType);
+export const ServiceContext = React.createContext({} as IServiceContext);
 
 export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [serviceList, setServiceList] = React.useState<IService[]>([]);
+  const [totalServices, seTotalServices] = React.useState(0);
 
   React.useEffect(() => {
     GET_SERVICES(1, 10).then((data) => {
       console.log(data);
 
+      seTotalServices(data.count);
       setServiceList(data.rows);
     });
   }, []);
 
   const getServicesPaginated = async (page: number, size: number) => {
-    const { rows } = await GET_SERVICES(page, size);
+    const { rows, count } = await GET_SERVICES(page, size);
 
+    seTotalServices(count);
     setServiceList(rows);
   };
 
@@ -44,7 +47,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
 
     const newService = await CREATE_SERVICE(serviceFormData);
 
-    setServiceList((oldServices: IService[]) => [...oldServices, newService]);
+    setServiceList((oldServices: IService[]) => [newService, ...oldServices]);
   };
 
   const deleteService = async (id: number) => {
@@ -67,7 +70,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     <ServiceContext.Provider
       value={{
         serviceList,
-        setServiceList,
+        totalServices,
         deleteService,
         addNewService,
         updateService,
