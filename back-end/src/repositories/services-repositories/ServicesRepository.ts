@@ -38,6 +38,11 @@ class ServiceRepository implements IServiceRepository {
         return { count, rows: rows.map((item) => item.toJSON() as IService) };
     }
 
+    async getServiceByID(id: number): Promise<IService | null> {
+        const service = await Servicos.findByPk(id);
+        return service ? service.toJSON() : null;
+    }
+
     //limit: Define o número de registros a serem retornados.
     //offset: Define a posição inicial para buscar os registros (usado para paginação).
 

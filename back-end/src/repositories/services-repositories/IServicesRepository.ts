@@ -6,6 +6,7 @@ export interface IServiceRepository {
     getAll(): Promise<IService[]>;
     deleteService(id: number): Promise<void>;
     getServiceByName(nome: string, offset: number): Promise<PagenatedResponse | null>;
+    getServiceByID(id: number): Promise<IService | null>;
     getServicesPagenated(limit: number, offset: number): Promise<PagenatedResponse>;
 }
 
