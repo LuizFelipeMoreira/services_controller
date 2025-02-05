@@ -4,7 +4,7 @@ import { CreateServiceUserCase } from '../../use-cases/services/CreateServiceUse
 import { DeleteServiceUserCase } from '../../use-cases/services/DeleteServiceUseCase';
 import { GetAllServiceUserCase } from '../../use-cases/services/GetAllServicesUseCase';
 import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
-import { GetServiceByNameUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
+import { GetServiceByNameUseCase } from '../../use-cases/services/GetServiceByNameUseCase';
 import { UpdateServiceUserCase } from '../../use-cases/services/UpdateServiceUseCase';
 import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginatedServiceUseCase';
 
@@ -39,6 +39,16 @@ class ServiceController {
         const getAllServicesUseCase = new GetAllServiceUserCase(ServicesRepository);
         const services = await getAllServicesUseCase.execute();
         return res.status(200).json(services);
+    }
+
+    public async getServiceByName(req: Request, res: Response) {
+        const name = req.query.name as string;
+        const offset = parseInt(req.query.offset as string) || 0;
+
+        const getServiceByName = new GetServiceByNameUseCase(ServicesRepository);
+        const service = await getServiceByName.execute(name, offset);
+
+        return res.status(200).json(service);
     }
 
     public async getService(req: Request, res: Response) {
