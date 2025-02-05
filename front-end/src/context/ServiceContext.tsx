@@ -27,12 +27,14 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [totalServices, seTotalServices] = React.useState(0);
 
   React.useEffect(() => {
-    GET_SERVICES(1, 10).then((data) => {
-      console.log(data);
+    async function fethcServices() {
+      const { count, rows } = await GET_SERVICES(1, 10);
 
-      seTotalServices(data.count);
-      setServicesList(data.rows);
-    });
+      seTotalServices(count);
+      setServicesList(rows);
+    }
+
+    fethcServices();
   }, []);
 
   const getServicesPaginated = async (page: number, size: number) => {
@@ -48,12 +50,14 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     const newService = await CREATE_SERVICE(serviceFormData);
 
     setServicesList((oldServices: IService[]) => [newService, ...oldServices]);
+    getServicesPaginated(1, 10);
   };
 
   const deleteService = async (id: number) => {
     await DELETE_SERVICE(id);
     const serviceRemoved = serviceList.filter((service) => service.id !== id);
     setServicesList(serviceRemoved);
+    seTotalServices((prevTotal) => prevTotal - 1);
   };
 
   const updateService = async (body: IService) => {
