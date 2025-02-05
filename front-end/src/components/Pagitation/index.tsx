@@ -21,6 +21,10 @@ export const PaginationComponent = ({
   const limitPagination = Math.ceil(totalServices / 10);
   const items = [];
 
+  React.useEffect(() => {
+    if (serviceList.length === 0) handleActivePage(activePage - 1);
+  }, [totalServices]);
+
   const handleActivePage = (page: number) => {
     const isValidPage = page >= 1 && page <= limitPagination;
 
@@ -33,7 +37,11 @@ export const PaginationComponent = ({
 
   for (let number = 1; number <= limitPagination; number++) {
     items.push(
-      <Pagination.Item key={number} active={number === activePage}>
+      <Pagination.Item
+        key={number}
+        active={number === activePage}
+        onClick={() => handleActivePage(number)}
+      >
         {number}
       </Pagination.Item>
     );
