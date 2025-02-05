@@ -4,6 +4,7 @@ import { CreateServiceUserCase } from '../../use-cases/services/CreateServiceUse
 import { DeleteServiceUserCase } from '../../use-cases/services/DeleteServiceUseCase';
 import { GetAllServiceUserCase } from '../../use-cases/services/GetAllServicesUseCase';
 import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
+import { GetServiceByNameUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
 import { UpdateServiceUserCase } from '../../use-cases/services/UpdateServiceUseCase';
 import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginatedServiceUseCase';
 
