@@ -5,7 +5,7 @@ export interface IServiceRepository {
     update(id: number, data: IService): Promise<void>;
     getAll(): Promise<IService[]>;
     deleteService(id: number): Promise<void>;
-    getServiceByID(id: number): Promise<IService | null>;
+    getServiceByName(nome: string, offset: number): Promise<PagenatedResponse | null>;
     getServicesPagenated(limit: number, offset: number): Promise<PagenatedResponse>;
 }
 
