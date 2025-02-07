@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IService, IServiceResquest } from '../@types/IService';
+import {
+  IService,
+  IServiceResquest,
+  IServicesPaginated,
+} from '../@types/IService';
 import { axiosInstance } from '../lib/api';
 
 export const handleRequest = async <T>(
@@ -17,10 +21,25 @@ export const handleRequest = async <T>(
 export const GET_SERVICES = async (
   offset: number,
   limit: number
-): Promise<{ count: number; rows: IService[] }> => {
+): Promise<IServicesPaginated> => {
   try {
     const { data } = await axiosInstance.get(
       `/services?limit=${limit}&offset=${offset}`
+    );
+
+    return data;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const GET_SERVICES_BY_NAME = async (
+  name: string,
+  offset: number
+): Promise<IServicesPaginated> => {
+  try {
+    const { data } = await axiosInstance.get(
+      `http://localhost:8181/service/search?name=${name}&offset=${offset}`
     );
 
     return data;

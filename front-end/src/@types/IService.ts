@@ -12,3 +12,8 @@ export type IServiceResquest = Omit<
   IService,
   'id' | 'created_at' | 'updated_at'
 >;
+
+export interface IServicesPaginated {
+  count: number;
+  rows: IService[];
+}
