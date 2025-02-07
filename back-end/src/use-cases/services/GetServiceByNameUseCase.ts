@@ -9,7 +9,7 @@ class GetServiceByNameUseCase {
     async execute(name: string, offset: number): Promise<PagenatedResponse> {
         const service = await this.serviceRepository.getServiceByName(name, offset);
 
-        if (!service) throw new Error('Service Not Found');
+        if (!service) throw new Error('Nao ha servicos com esse nome');
 
         return service;
     }

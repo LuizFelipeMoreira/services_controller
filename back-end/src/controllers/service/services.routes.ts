@@ -11,8 +11,6 @@ router.post('/edit/:id', ServiceController.update);
 
 router.post('/delete/:id', ServiceController.delete);
 
-router.get('/service/:id', ServiceController.getService);
-
 router.get('/service/search', ServiceController.getServiceByName);
 
 export default router;

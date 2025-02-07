@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { IService } from '../../@types/IService';
 import { Servicos } from '../../database/model/Services';
 import {
@@ -31,7 +32,7 @@ class ServiceRepository implements IServiceRepository {
         const { count, rows } = await Servicos.findAndCountAll({
             offset,
             limit: 10,
-            include: [{ where: { nome } }],
+            where: nome ? { nome: { [Op.like]: `%${nome}%` } } : undefined,
             order: [['id', 'DESC']],
         });
 

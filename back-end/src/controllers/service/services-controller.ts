@@ -11,6 +11,8 @@ import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginate
 import ServicesRepository from '../../repositories/services-repositories/ServicesRepository';
 
 class ServiceController {
+    constructor() {}
+
     public async create(req: Request, res: Response) {
         const createServiceUseCase = new CreateServiceUserCase(ServicesRepository);
         const service = await createServiceUseCase.execute(req.body);
@@ -42,13 +44,13 @@ class ServiceController {
     }
 
     public async getServiceByName(req: Request, res: Response) {
-        const name = req.query.name as string;
+        const nome = req.query.name as string;
         const offset = parseInt(req.query.offset as string) || 0;
 
         const getServiceByName = new GetServiceByNameUseCase(ServicesRepository);
-        const service = await getServiceByName.execute(name, offset);
+        const servicesPaginated = await getServiceByName.execute(nome, offset);
 
-        return res.status(200).json(service);
+        return res.status(200).json(servicesPaginated);
     }
 
     public async getService(req: Request, res: Response) {
