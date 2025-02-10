@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
+import { useService } from '../../hooks/useService';
 import { NewServiceModal } from '../ModalNewService';
 import { Table } from '../Table';
 import './styles.scss';
 
 export const Home = () => {
+  // const { getServicesByName } = useService();
   const [open, setOpen] = React.useState(false);
+  const [name, setName] = React.useState('');
+
+  const submitForm = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+  };
+
+  React.useEffect(() => {
+    console.log(name);
+  }, [name]);
 
   return (
     <main className="main">
@@ -32,14 +43,16 @@ export const Home = () => {
               name="search"
               id="search"
               className="input"
+              onChange={(e) => setName(e.target.value)}
               placeholder="Pesquisar..."
             />
           </div>
+
           <div className="field">
             <label>Data de entrega: </label>
             <input type="date" name="dataEntrega" id="date" className="input" />
           </div>
-          <button type="submit" className="submit-btn">
+          <button type="submit" onClick={submitForm} className="submit-btn">
             <i className="fa-solid fa-arrow-down-wide-short"></i>
           </button>
         </form>

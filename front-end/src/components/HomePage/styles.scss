@@ -39,19 +39,35 @@
     .form-search {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      transition: 0.2s;
     }
 
     .field {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      padding: 0 5px;
+      width: 30%;
+      padding: 0 8px;
       background: $gray;
       border-radius: 5px;
     }
 
+    .field:focus,
+    .field:hover {
+      outline: none;
+      border-color: #8cb6e3;
+      background: $gray;
+      box-shadow: 0 0 0 3px #a6d0e9;
+    }
+
+    label {
+      flex-shrink: 0;
+    }
+
     .input {
+      flex-shrink: 1;
+      width: 100%;
       background: $gray;
       color: #757575;
       padding: 8px;

@@ -4,6 +4,7 @@ import {
   CREATE_SERVICE,
   DELETE_SERVICE,
   GET_SERVICES,
+  GET_SERVICES_BY_NAME,
   UPDATE_SERVICE,
 } from '../services/handleRequests';
 
@@ -18,6 +19,7 @@ interface IServiceContext {
   addNewService: (newervice: IServiceResquest) => Promise<void>;
   updateService: (body: IService) => Promise<void>;
   getServicesPaginated: (page: number, size: number) => Promise<void>;
+  getServicesByName: (name: string, offset: number) => Promise<void>;
 }
 
 export const ServiceContext = React.createContext({} as IServiceContext);
@@ -42,6 +44,13 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
 
     seTotalServices(count);
     setServiceList(rows);
+  };
+
+  const getServicesByName = async (name: string, offset = 0) => {
+    const { count, rows } = await GET_SERVICES_BY_NAME(name, offset);
+
+    setServiceList(rows);
+    seTotalServices(count);
   };
 
   const addNewService = async (serviceFormData: IServiceResquest) => {
@@ -79,6 +88,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
         addNewService,
         updateService,
         getServicesPaginated,
+        getServicesByName,
       }}
     >
       {children}
