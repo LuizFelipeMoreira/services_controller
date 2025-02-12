@@ -1,5 +1,5 @@
 import express from 'express';
-import ServiceController from './services-controller';
+import ServiceController from './servicesController';
 
 const router = express.Router();
 
