@@ -1,21 +1,30 @@
 import React, { FormEvent } from 'react';
 import { useService } from '../../hooks/useService';
 import { NewServiceModal } from '../ModalNewService';
+import { PaginationComponent } from '../Pagitation';
 import { Table } from '../Table';
 import './styles.scss';
 
 export const Home = () => {
-  // const { getServicesByName } = useService();
+  const { getServicesByName, getServicesPaginated } = useService();
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
+  const [activePage, setActivePage] = React.useState(1);
 
   const submitForm = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setActivePage(1);
+
+    if (!name) getServicesPaginated(activePage, 10);
+
+    getServicesByName(name, 0);
   };
 
   React.useEffect(() => {
-    console.log(name);
-  }, [name]);
+    if (name) {
+      getServicesByName(name, activePage);
+    }
+  }, [activePage]);
 
   return (
     <main className="main">
@@ -59,6 +68,12 @@ export const Home = () => {
       </div>
 
       <Table />
+
+      <PaginationComponent
+        searchQuery={name}
+        setActivePage={setActivePage}
+        activePage={activePage}
+      />
 
       <NewServiceModal open={open} setOpen={setOpen} />
     </main>

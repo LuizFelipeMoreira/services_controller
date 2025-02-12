@@ -4,6 +4,7 @@ import { useService } from '../../hooks/useService';
 import { IService } from '../../@types/IService';
 
 interface PaginationComponentsProps {
+  searchQuery: string;
   activePage: number;
   setActivePage: (page: number) => void;
 }
@@ -13,36 +14,39 @@ interface ICacheData {
 }
 
 export const PaginationComponent = ({
+  searchQuery,
   activePage,
   setActivePage,
 }: PaginationComponentsProps) => {
   const { serviceList, totalServices, getServicesPaginated } = useService();
   const [cacheData, setCacheData] = React.useState<ICacheData>({});
   const limitPagination = Math.ceil(totalServices / 10);
-  const items = [];
 
   React.useEffect(() => {
     if (serviceList.length === 0) handleActivePage(activePage - 1);
-  }, [totalServices]);
+  }, [totalServices, serviceList]);
 
   const handleActivePage = (page: number) => {
-    const isValidPage = page >= 1 && page <= limitPagination;
+    if (page < 1 || page > limitPagination) return;
 
-    if (isValidPage) {
-      setActivePage(page);
+    setActivePage(page);
+
+    if (!searchQuery) {
       getServicesPaginated(page, 10);
       setCacheData({ ...cacheData, [page]: serviceList });
+      return;
     }
   };
 
-  for (let number = 1; number <= limitPagination; number++) {
-    items.push(
+  const paginationItems = [];
+  for (let i = 1; i <= limitPagination; i++) {
+    paginationItems.push(
       <Pagination.Item
-        key={number}
-        active={number === activePage}
-        onClick={() => handleActivePage(number)}
+        key={i}
+        active={i === activePage}
+        onClick={() => handleActivePage(i)}
       >
-        {number}
+        {i}
       </Pagination.Item>
     );
   }
@@ -50,7 +54,7 @@ export const PaginationComponent = ({
   return (
     <Pagination className="mt-2 d-flex justify-content-end">
       <Pagination.Prev onClick={() => handleActivePage(activePage - 1)} />
-      {items}
+      {paginationItems}
       <Pagination.Ellipsis />
       <Pagination.Next onClick={() => handleActivePage(activePage + 1)} />
     </Pagination>
