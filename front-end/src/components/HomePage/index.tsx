@@ -5,11 +5,12 @@ import { Table } from '../Table';
 import './styles.scss';
 
 export const Home = () => {
-  // const { getServicesByName } = useService();
+  const { getServicesByName } = useService();
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
 
   const submitForm = (e: FormEvent<HTMLButtonElement>) => {
+    getServicesByName(name, 0);
     e.preventDefault();
   };
 
