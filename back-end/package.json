@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon ./src/app.js",
-        "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
+        "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only ./src/app.ts",
         "sass": "sass --watch ./src/public/sass/style.scss:./src/public/css/styles.css"
     },
     "keywords": [],
@@ -16,6 +16,7 @@
         "bcrypt": "^5.1.1",
         "body-parser": "^1.20.2",
         "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
         "ejs": "^3.1.10",
         "express": "^4.19.2",
         "mysql2": "^3.9.7",
