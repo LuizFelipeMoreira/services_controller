@@ -4,14 +4,10 @@ import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
 import { UpdateServiceModal } from '../ModalUpdate';
-import { PaginationComponent } from '../Pagitation';
 
 export const Table = () => {
   const { serviceList } = useService();
-
-  const [activePage, setActivePage] = React.useState(1);
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
-
   const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
   const [selectedService, setSelectedService] = React.useState({} as IService);
 
@@ -70,11 +66,6 @@ export const Table = () => {
           ))}
         </tbody>
       </table>
-
-      <PaginationComponent
-        setActivePage={setActivePage}
-        activePage={activePage}
-      />
 
       {modalType === 'edit' && (
         <UpdateServiceModal
