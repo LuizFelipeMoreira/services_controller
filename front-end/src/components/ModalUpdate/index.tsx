@@ -65,7 +65,6 @@ export const UpdateServiceModal = ({
               { value: 'wave-pg', label: 'Wave pg' },
               { value: 'wave-sv', label: 'Wave sv' },
             ]}
-            value={data.laboratorio}
             onChange={handleChange}
             required
           />

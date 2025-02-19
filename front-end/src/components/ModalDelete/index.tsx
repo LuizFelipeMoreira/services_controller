@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useService } from '../../hooks/useService';
 

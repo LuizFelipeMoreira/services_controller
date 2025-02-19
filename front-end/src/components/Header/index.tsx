@@ -1,6 +1,4 @@
-import React from 'react';
 import './styles.scss';
-import logo from '../../assets/img/logo.png';
 
 export const Header = () => {
   return (
@@ -9,7 +7,7 @@ export const Header = () => {
       <div className=" bg-header">
         <div className="container header-content">
           <div className="logo">
-            <img src={logo} alt="" height="28" />
+            <img src={'/logo.png'} alt="" height="28" />
             <h3 className="fw-bold">ServicePro</h3>
           </div>
 
