@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { CreateUserUseCase } from '../../use-cases/authenticate/CreateUserUseCase';
 import { LoginUserUseCase } from '../../use-cases/authenticate/LoginUserUseCase';
 
 import UserRepository from '../../repositories/auth-repositories/UserRepository';
 
 class AuthController {
-    async signUp(req: Request, res: Response) {
+    async signUp(req: Request, res: Response, next: NextFunction) {
         const { name, email, password } = req.body;
 
         try {
@@ -17,7 +17,7 @@ class AuthController {
                 ...newUser,
             });
         } catch (error) {
-            console.log(error);
+            next(error);
         }
     }
 
