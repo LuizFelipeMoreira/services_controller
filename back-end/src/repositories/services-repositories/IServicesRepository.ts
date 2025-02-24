@@ -8,6 +8,7 @@ export interface IServiceRepository {
     getServiceByName(nome: string, offset: number): Promise<PagenatedResponse | null>;
     getServiceByID(id: number): Promise<IService | null>;
     getServicesPagenated(limit: number, offset: number): Promise<PagenatedResponse>;
+    releaseServiceById(id: number, situation: string): Promise<void>;
 }
 
 export interface PagenatedResponse {

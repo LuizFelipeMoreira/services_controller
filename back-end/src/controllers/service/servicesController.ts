@@ -3,10 +3,11 @@ import { Request, Response } from 'express';
 import { CreateServiceUserCase } from '../../use-cases/services/CreateServiceUseCase';
 import { DeleteServiceUserCase } from '../../use-cases/services/DeleteServiceUseCase';
 import { GetAllServiceUserCase } from '../../use-cases/services/GetAllServicesUseCase';
+import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginatedServiceUseCase';
 import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
 import { GetServiceByNameUseCase } from '../../use-cases/services/GetServiceByNameUseCase';
+import { ReleaseServiceUseCase } from '../../use-cases/services/ReleaseServiceUseCase';
 import { UpdateServiceUserCase } from '../../use-cases/services/UpdateServiceUseCase';
-import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginatedServiceUseCase';
 
 import ServicesRepository from '../../repositories/services-repositories/ServicesRepository';
 
@@ -57,6 +58,16 @@ class ServiceController {
         const getServiceByID = new GetServiceByIdUseCase(ServicesRepository);
         const service = await getServiceByID.execute(+req.params.id);
         return res.status(200).json(service);
+    }
+
+    public async releaseService(req: Request, res: Response) {
+        const situation = req.query.situacao as string;
+        const id = parseInt(req.query.id as string);
+
+        const releaseServiceUseCase = new ReleaseServiceUseCase(ServicesRepository);
+        await releaseServiceUseCase.execute(id, situation);
+
+        return res.status(200).json({ message: 'Serviço Liberado' });
     }
 
     public async getListPaginated(req: Request, res: Response) {
