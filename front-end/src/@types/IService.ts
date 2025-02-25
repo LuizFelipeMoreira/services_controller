@@ -4,6 +4,7 @@ export interface IService {
   lente: string;
   laboratorio: string;
   os: string;
+  situacao: 'pendente' | 'entregue';
   created_at: string;
   updated_at: string;
 }

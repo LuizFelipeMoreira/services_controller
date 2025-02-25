@@ -6,7 +6,7 @@ import {
   GET_SERVICES,
   GET_SERVICES_BY_NAME,
   UPDATE_SERVICE,
-} from '../services/handleRequests';
+} from '../api/handleRequests';
 
 interface ServiceProvider {
   children: React.ReactNode;

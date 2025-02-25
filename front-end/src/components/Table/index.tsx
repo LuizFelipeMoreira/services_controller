@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
@@ -36,7 +35,7 @@ export const Table = () => {
             <th>Volta</th>
             <th>Situacao</th>
             <th>OS</th>
-            <th></th>
+            <th>Açoes</th>
           </tr>
         </thead>
         <tbody className="service-list">
@@ -47,20 +46,22 @@ export const Table = () => {
               <td>{service.laboratorio}</td>
               <td>15/05</td>
               <td>18/05</td>
-              <td>pendente</td>
+              <td>{service.situacao}</td>
               <td>{service.os}</td>
-              <td className="d-flex gap-1">
-                <Button variant="primary" onClick={() => onEdit(service)}>
-                  <i className="fa-solid fa-pen"></i>
-                </Button>
+              <td className="d-flex gap-3 p-3 align-items-center">
+                <i
+                  className="fa-solid fa-pen text-primary fs-5 cursor-pointer"
+                  onClick={() => onEdit(service)}
+                />
 
-                <Button variant="danger" onClick={() => onDelete(service)}>
-                  <i className="fa-solid fa-trash"></i>
-                </Button>
+                <i
+                  className="fa-solid fa-trash text-danger fs-5 cursor-pointer"
+                  onClick={() => onDelete(service)}
+                />
 
-                <Button variant="success">
-                  <i className="fa-solid fa-check"></i>
-                </Button>
+                {service.situacao !== 'entregue' && (
+                  <i className="fa-regular fa-circle-check text-success fs-5 cursor-pointer" />
+                )}
               </td>
             </tr>
           ))}
