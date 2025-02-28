@@ -64,10 +64,14 @@ class ServiceController {
         const situation = req.query.situacao as string;
         const id = parseInt(req.query.id as string);
 
-        const releaseServiceUseCase = new ReleaseServiceUseCase(ServicesRepository);
-        await releaseServiceUseCase.execute(id, situation);
+        try {
+            const releaseServiceUseCase = new ReleaseServiceUseCase(ServicesRepository);
+            await releaseServiceUseCase.execute(id, situation);
 
-        return res.status(200).json({ message: 'Serviço Liberado' });
+            return res.status(200).json({ message: 'Serviço Liberado' });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     public async getListPaginated(req: Request, res: Response) {
