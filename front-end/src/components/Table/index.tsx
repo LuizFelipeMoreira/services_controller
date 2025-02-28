@@ -22,6 +22,10 @@ export const Table = () => {
     setModalConfirmShow(!modalConfirmShow);
   };
 
+  const onRelease = (service: IService) => {
+    console.log(service);
+  };
+
   return (
     <>
       <table className="tabelinha">
@@ -60,7 +64,10 @@ export const Table = () => {
                 />
 
                 {service.situacao !== 'entregue' && (
-                  <i className="fa-regular fa-circle-check text-success fs-5 cursor-pointer" />
+                  <i
+                    className="fa-regular fa-circle-check text-success fs-5 cursor-pointer"
+                    onClick={() => onRelease(service)}
+                  />
                 )}
               </td>
             </tr>
