@@ -37,3 +37,6 @@ export const DELETE_SERVICE = (id: number): Promise<void> =>
 
 export const UPDATE_SERVICE = (id: number, body: IService): Promise<void> =>
   handleRequest(axiosInstance.post(`/edit/${id}`, body));
+
+export const RELEASE_SERVICE = (situacao: string, id: number) =>
+  handleRequest(axiosInstance.post('/release', { params: { situacao, id } }));
