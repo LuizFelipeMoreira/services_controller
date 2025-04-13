@@ -6,6 +6,7 @@ import {
   GET_SERVICES,
   GET_SERVICES_BY_NAME,
   UPDATE_SERVICE,
+  RELEASE_SERVICE,
 } from '../api/handleRequests';
 
 interface ServiceProvider {
@@ -20,6 +21,7 @@ interface IServiceContext {
   updateService: (body: IService) => Promise<void>;
   getServicesPaginated: (page: number, size: number) => Promise<void>;
   getServicesByName: (name: string, offset: number) => Promise<void>;
+  releaseServiceById: (id: number) => Promise<void>;
 }
 
 export const ServiceContext = React.createContext({} as IServiceContext);
@@ -79,6 +81,10 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
     UPDATE_SERVICE(body.id, body);
   };
 
+  const releaseServiceById = async (id: number) => {
+    RELEASE_SERVICE(id);
+  };
+
   return (
     <ServiceContext.Provider
       value={{
@@ -89,6 +95,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
         updateService,
         getServicesPaginated,
         getServicesByName,
+        releaseServiceById,
       }}
     >
       {children}

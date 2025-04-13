@@ -5,7 +5,7 @@ import { DeleteServiceModal } from '../ModalDelete';
 import { UpdateServiceModal } from '../ModalUpdate';
 
 export const Table = () => {
-  const { serviceList } = useService();
+  const { serviceList, releaseServiceById } = useService();
   const [modalConfirmShow, setModalConfirmShow] = React.useState(false);
   const [modalType, setModalType] = React.useState<'edit' | 'delete'>('edit');
   const [selectedService, setSelectedService] = React.useState({} as IService);
@@ -20,6 +20,10 @@ export const Table = () => {
     setModalType('delete');
     setSelectedService(service);
     setModalConfirmShow(!modalConfirmShow);
+  };
+
+  const onRelease = (service: IService) => {
+    releaseServiceById(service.id);
   };
 
   return (
@@ -62,7 +66,7 @@ export const Table = () => {
                 {service.situacao !== 'entregue' && (
                   <i
                     className="fa-regular fa-circle-check text-success fs-5 cursor-pointer"
-                    onClick={() => ''}
+                    onClick={() => onRelease(service)}
                   />
                 )}
               </td>
