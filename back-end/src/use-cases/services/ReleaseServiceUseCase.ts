@@ -3,8 +3,8 @@ import { IServiceRepository } from '../../repositories/services-repositories/ISe
 class ReleaseServiceUseCase {
     constructor(private serviceRepository: IServiceRepository) {}
 
-    async execute(id: number, situation: string) {
-        await this.serviceRepository.releaseServiceById(id, situation);
+    async execute(id: number) {
+        await this.serviceRepository.releaseServiceById(id);
     }
 }
 

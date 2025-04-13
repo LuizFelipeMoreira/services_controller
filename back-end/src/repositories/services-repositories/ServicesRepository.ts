@@ -39,8 +39,8 @@ class ServiceRepository implements IServiceRepository {
         return { count, rows: rows.map((item) => item.toJSON() as IService) };
     }
 
-    async releaseServiceById(id: number, situacao: string): Promise<void> {
-        await Servicos.update({ situacao }, { where: { id } });
+    async releaseServiceById(id: number): Promise<void> {
+        await Servicos.update({ situacao: 'entregue' }, { where: { id } });
     }
 
     async getServiceByID(id: number): Promise<IService | null> {

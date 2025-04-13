@@ -61,12 +61,11 @@ class ServiceController {
     }
 
     public async releaseService(req: Request, res: Response) {
-        const situation = req.query.situacao as string;
-        const id = parseInt(req.query.id as string);
+        const id = parseInt(req.params.id as string);
 
         try {
             const releaseServiceUseCase = new ReleaseServiceUseCase(ServicesRepository);
-            await releaseServiceUseCase.execute(id, situation);
+            await releaseServiceUseCase.execute(id);
 
             return res.status(200).json({ message: 'Serviço Liberado' });
         } catch (error) {
