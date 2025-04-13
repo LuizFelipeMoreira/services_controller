@@ -10,13 +10,6 @@ interface ModalProps {
 }
 
 export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
-  const initialServiceData = {
-    nome: '',
-    lente: '',
-    laboratorio: '',
-    situacao: 'pendente',
-    os: '',
-  };
   const [data, setData] = React.useState({} as IServiceResquest);
   const FormRef = React.useRef<HTMLFormElement>(null);
   const { addNewService } = useService();
