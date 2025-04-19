@@ -33,12 +33,15 @@ class AuthController {
                 user: {
                     id: user?.id,
                     name: user?.name,
+                    email,
                 },
             });
         } catch (error) {
-            console.log(error);
+            res.status(500).json({
+                message: 'User invalid',
+                erro: error,
+            });
         }
-        res.status(200).json({ message: 'Subiu servidor' });
     }
 
     logout(req: Request, res: Response) {
