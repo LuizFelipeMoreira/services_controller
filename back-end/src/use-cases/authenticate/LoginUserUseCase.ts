@@ -8,14 +8,14 @@ class LoginUserUseCase {
     async execute(email: string, password: string): Promise<IUser | null> {
         try {
             const userExists = await this.authRepository.getUserByEmail(email);
-            if (!userExists) return null;
+            if (!userExists) throw new Error('Email not invalid');
 
             const isPasswordCorrect = await bcrypt.compare(password, userExists.password);
-            if (!isPasswordCorrect) return null;
+            if (!isPasswordCorrect) throw new Error('User is not valid');
 
             const { id, name } = userExists;
 
-            return { id, name, email, password: userExists.password };
+            return { id, name, email, password: '%$%$' };
         } catch (error) {
             throw new Error(`Login failed: ${error}`);
         }
