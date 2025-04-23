@@ -74,10 +74,11 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   const updateService = async (body: IService) => {
     if (!body.id) return;
 
-    const updatedServices = [...serviceList].map((service) =>
-      service.id === body.id ? { ...body } : service
+    setServiceList((serviceList) =>
+      serviceList.map((service) =>
+        service.id === body.id ? { ...body } : service
+      )
     );
-    setServiceList(updatedServices);
     UPDATE_SERVICE(body.id, body);
   };
 
