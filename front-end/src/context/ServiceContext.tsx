@@ -82,7 +82,13 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
   };
 
   const releaseServiceById = async (id: number) => {
-    RELEASE_SERVICE(id);
+    await RELEASE_SERVICE(id);
+
+    setServiceList((serviceList) =>
+      serviceList.map((service) =>
+        service.id == id ? { ...service, situacao: 'entregue' } : service
+      )
+    );
   };
 
   return (
