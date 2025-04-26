@@ -5,4 +5,6 @@ export interface IService {
     os: string;
     created_at?: string;
     updated_at?: string;
+    dataIda: string;
+    dataVolta: string;
 }

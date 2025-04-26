@@ -17,6 +17,7 @@ class ServiceController {
     public async create(req: Request, res: Response) {
         const createServiceUseCase = new CreateServiceUserCase(ServicesRepository);
         const service = await createServiceUseCase.execute(req.body);
+
         return res.status(201).json(service);
     }
 
