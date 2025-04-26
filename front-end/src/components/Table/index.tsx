@@ -48,8 +48,8 @@ export const Table = () => {
               <td>{service.nome}</td>
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
-              <td>15/05</td>
-              <td>18/05</td>
+              <td>{service.dataIda}</td>
+              <td>{service.dataEntrega}</td>
               <td>{service.situacao}</td>
               <td>{service.os}</td>
               <td className="d-flex gap-3 p-3 align-items-center">

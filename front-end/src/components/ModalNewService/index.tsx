@@ -17,6 +17,8 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    console.log(data);
+
     try {
       addNewService(data);
       setOpen(false);
@@ -39,6 +41,8 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
       laboratorio: '',
       os: '',
       situacao: 'pendente',
+      dataIda: '',
+      dataEntrega: '',
     });
   };
 
@@ -47,6 +51,17 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
   ) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+  };
+
+  const handleInputDateChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    const [ano, mes, dia] = value.split('-');
+    const dateFormated = `${dia}/${mes}`;
+
+    setData({ ...data, [name]: dateFormated });
+    console.log(data);
   };
 
   return (
@@ -108,11 +123,19 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
             required
           />
 
-          <FormField label="Data de ida" type="date" name="dataIda" required />
+          <FormField
+            label="Data de ida"
+            type="date"
+            name="dataIda"
+            onChange={handleInputDateChange}
+            required
+          />
+
           <FormField
             label="Data de entrega"
             type="date"
             name="dataEntrega"
+            onChange={handleInputDateChange}
             required
           />
 

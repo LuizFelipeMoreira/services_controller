@@ -7,6 +7,8 @@ export interface IService {
   situacao: 'pendente' | 'entregue';
   created_at: string;
   updated_at: string;
+  dataIda: string;
+  dataEntrega: string;
 }
 
 export type IServiceResquest = Omit<
