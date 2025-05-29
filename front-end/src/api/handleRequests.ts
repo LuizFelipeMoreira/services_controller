@@ -3,6 +3,7 @@ import {
   IServiceResquest,
   IServicesPaginated,
 } from '../@types/IService';
+import { IUser } from '../@types/IUser';
 import { axiosInstance } from '../lib/api';
 
 const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
@@ -37,3 +38,6 @@ export const DELETE_SERVICE = (id: number): Promise<void> =>
 
 export const UPDATE_SERVICE = (id: number, body: IService): Promise<void> =>
   handleRequest(axiosInstance.post(`/edit/${id}`, body));
+
+export const LOGIN_USER = (email: string, password: string): Promise<IUser> =>
+  handleRequest(axiosInstance.post('/signin', { email, password }));

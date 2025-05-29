@@ -24,12 +24,13 @@ class AuthController {
     async signIn(req: Request, res: Response) {
         const { email, password } = req.body;
 
+        console.log(email, password);
+
         try {
             const loginUserUseCase = new LoginUserUseCase(UserRepository);
             const user = await loginUserUseCase.execute(email, password);
 
             res.status(200).json({
-                message: 'User Logged',
                 user: {
                     id: user?.id,
                     name: user?.name,
@@ -38,7 +39,6 @@ class AuthController {
         } catch (error) {
             console.log(error);
         }
-        res.status(200).json({ message: 'Subiu servidor' });
     }
 
     logout(req: Request, res: Response) {
