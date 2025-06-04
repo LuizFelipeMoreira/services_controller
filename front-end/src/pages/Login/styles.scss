@@ -9,6 +9,13 @@
   padding: 20px;
 }
 
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center; // opcional, caso queira alinhar verticalmente também
+  margin-bottom: 20px;
+}
+
 .login-box {
   background: $white;
   border: 1px solid $gray-dark;

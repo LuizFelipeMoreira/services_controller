@@ -1,5 +1,5 @@
 import React from 'react';
-import { IUser, IUserRequest } from '../@types/IUser';
+import { IUserRequest, IUserResponse } from '../@types/IUser';
 import { LOGIN_USER } from '../api/handleRequests';
 
 interface AuthContext {
@@ -7,7 +7,8 @@ interface AuthContext {
 }
 
 interface IAuthContext {
-  user: IUser | null;
+  user: IUserResponse | null;
+  errorMessage: string;
   loginUser: (data: IUserRequest) => void;
   logout: () => void;
 }
@@ -15,12 +16,17 @@ interface IAuthContext {
 export const AuthContext = React.createContext({} as IAuthContext);
 
 export const AuthContextProvider = ({ children }: AuthContext) => {
-  const [user, setUser] = React.useState<IUser | null>(null);
+  const [user, setUser] = React.useState<IUserResponse | null>(null);
+  const [errorMessage, setErrorMessge] = React.useState<string>('');
 
   const loginUser = async (data: IUserRequest) => {
-    const user = await LOGIN_USER(data.email, data.password);
-
-    if (user) console.log(user);
+    try {
+      const user = await LOGIN_USER(data.email, data.password);
+      if (user.token) console.table(user);
+    } catch (error: any) {
+      setErrorMessge(error.response.data.message);
+      console.log('Deu erro no bgl: ' + errorMessage);
+    }
   };
 
   const logout = () => {
@@ -28,7 +34,7 @@ export const AuthContextProvider = ({ children }: AuthContext) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, logout }}>
+    <AuthContext.Provider value={{ user, errorMessage, loginUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

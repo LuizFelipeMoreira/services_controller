@@ -2,10 +2,11 @@ import React, { ChangeEvent, FormEvent, useEffect } from 'react';
 import { IUserRequest } from '../../@types/IUser';
 import { useAuth } from '../../hooks/useAuth';
 import './styles.scss';
+//import { Logo } from '../../components/Logo';
 
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
-  const { loginUser } = useAuth();
+  const { loginUser, errorMessage } = useAuth();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -13,12 +14,16 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    console.log(formData);
+    console.table(formData);
   }, [formData]);
 
   return (
     <div className="login-wrapper">
       <div className="login-box">
+        {/* <div className="logo-wrapper">
+          <Logo />
+        </div> */}
+
         <h1 className="login-title">Bem-vindo de volta!</h1>
 
         <form className="login-form">
@@ -34,6 +39,7 @@ export const Login = () => {
               }
               required
             />
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           </div>
 
           <div className="form-group">
@@ -48,6 +54,7 @@ export const Login = () => {
               }
               required
             />
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           </div>
 
           <button type="submit" className="btn-submit" onClick={onSubmit}>

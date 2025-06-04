@@ -24,20 +24,19 @@ class AuthController {
     async signIn(req: Request, res: Response) {
         const { email, password } = req.body;
 
-        console.log(email, password);
-
         try {
             const loginUserUseCase = new LoginUserUseCase(UserRepository);
-            const user = await loginUserUseCase.execute(email, password);
+            const userData = await loginUserUseCase.execute(email, password);
 
-            res.status(200).json({
-                user: {
-                    id: user?.id,
-                    name: user?.name,
-                },
-            });
-        } catch (error) {
-            console.log(error);
+            if (!userData) {
+                return res.status(401).json({ message: 'Email ou senha inválidos' });
+            }
+
+            return res.status(200).json(userData);
+        } catch (e: unknown) {
+            console.log(e);
+
+            return res.status(500).json({ message: 'Erro interno ao fazer login' });
         }
     }
 
