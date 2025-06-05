@@ -38,6 +38,16 @@ export const DELETE_SERVICE = (id: number): Promise<void> =>
 export const UPDATE_SERVICE = (id: number, body: IService): Promise<void> =>
   handleRequest(axiosInstance.post(`/edit/${id}`, body));
 
+export const RELEASE_SERVICE = (id: number) => {
+  console.log(
+    'Entrou na funcao de liberar servico da api, agora o servico de id ' +
+      id +
+      ' foi liberado'
+  );
+
+  return handleRequest(axiosInstance.post(`/release/${id}`));
+};
+
 export const LOGIN_USER = (
   email: string,
   password: string
