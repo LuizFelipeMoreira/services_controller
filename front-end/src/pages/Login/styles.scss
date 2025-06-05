@@ -66,6 +66,13 @@
     }
   }
 
+  .error-message {
+    display: flex;
+    margin: 0 auto;
+    color: red;
+    font-size: 0.75rem;
+  }
+
   .btn-submit {
     padding: 10px;
     border-radius: 6px;

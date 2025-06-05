@@ -22,7 +22,9 @@ export const AuthContextProvider = ({ children }: AuthContext) => {
   const loginUser = async (data: IUserRequest) => {
     try {
       const user = await LOGIN_USER(data.email, data.password);
-      if (user.token) console.table(user);
+
+      localStorage.setItem('token', user.token);
+      setUser(user);
     } catch (error: any) {
       setErrorMessge(error.response.data.message);
       console.log('Deu erro no bgl: ' + errorMessage);
@@ -31,6 +33,7 @@ export const AuthContextProvider = ({ children }: AuthContext) => {
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('token');
   };
 
   return (

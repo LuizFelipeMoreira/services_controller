@@ -1,16 +1,20 @@
 import React, { ChangeEvent, FormEvent, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { IUserRequest } from '../../@types/IUser';
+import { Logo } from '../../components/Logo';
 import { useAuth } from '../../hooks/useAuth';
 import './styles.scss';
-//import { Logo } from '../../components/Logo';
 
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
-  const { loginUser, errorMessage } = useAuth();
+  const { user, loginUser, errorMessage } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     loginUser(formData);
+
+    if (user?.token) navigate('/home');
   };
 
   useEffect(() => {
@@ -20,9 +24,9 @@ export const Login = () => {
   return (
     <div className="login-wrapper">
       <div className="login-box">
-        {/* <div className="logo-wrapper">
+        <div className="logo-wrapper">
           <Logo />
-        </div> */}
+        </div>
 
         <h1 className="login-title">Bem-vindo de volta!</h1>
 
@@ -39,7 +43,7 @@ export const Login = () => {
               }
               required
             />
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
 
           <div className="form-group">
@@ -54,7 +58,7 @@ export const Login = () => {
               }
               required
             />
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
           </div>
 
           <button type="submit" className="btn-submit" onClick={onSubmit}>

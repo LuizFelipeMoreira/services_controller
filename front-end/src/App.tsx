@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { Header } from './components/Header';
+import { ProtectedLayout } from './components/ProtectedLayout';
 import { AuthContextProvider } from './context/AuthContext';
 import { ServiceProvider } from './context/ServiceContext';
 import { Home } from './pages/HomePage';
@@ -11,14 +12,18 @@ function App() {
       <ServiceProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route
-              path="home"
+              path="/home"
               element={
-                <>
-                  <Header />
-                  <Home />
-                </>
+                <ProtectedLayout
+                  children={
+                    <>
+                      <Header />
+                      <Home />
+                    </>
+                  }
+                />
               }
             />
           </Routes>
