@@ -3,6 +3,7 @@ import {
   IServiceResquest,
   IServicesPaginated,
 } from '../@types/IService';
+import { IUserResponse } from '../@types/IUser';
 import { axiosInstance } from '../lib/api';
 
 const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
@@ -10,7 +11,6 @@ const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
     const { data } = await request;
     return data;
   } catch (error) {
-    console.error('API Request Error:', error);
     return Promise.reject(error);
   }
 };
@@ -38,12 +38,8 @@ export const DELETE_SERVICE = (id: number): Promise<void> =>
 export const UPDATE_SERVICE = (id: number, body: IService): Promise<void> =>
   handleRequest(axiosInstance.post(`/edit/${id}`, body));
 
-export const RELEASE_SERVICE = (id: number) => {
-  console.log(
-    'Entrou na funcao de liberar servico da api, agora o servico de id ' +
-      id +
-      ' foi liberado'
-  );
-
-  return handleRequest(axiosInstance.post(`/release/${id}`));
-};
+export const LOGIN_USER = (
+  email: string,
+  password: string
+): Promise<IUserResponse> =>
+  handleRequest(axiosInstance.post('/signin', { email, password }));

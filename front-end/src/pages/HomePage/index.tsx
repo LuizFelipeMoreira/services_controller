@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
+import { NewServiceModal } from '../../components/ModalNewService';
+import { PaginationComponent } from '../../components/Pagitation';
+import { Table } from '../../components/Table';
 import { useService } from '../../hooks/useService';
-import { NewServiceModal } from '../ModalNewService';
-import { PaginationComponent } from '../Pagitation';
-import { Table } from '../Table';
 import './styles.scss';
 
 export const Home = () => {
