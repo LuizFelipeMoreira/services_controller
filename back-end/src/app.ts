@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import serviceRoutes from './controllers/service/services.routes';
 import authenticateRoutes from './controllers/authenticate/authenticate.routes';
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 
 const app = express();
 const PORT = 8181;
