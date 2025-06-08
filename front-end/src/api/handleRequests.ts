@@ -6,6 +6,16 @@ import {
 import { IUserResponse } from '../@types/IUser';
 import { axiosInstance } from '../lib/api';
 
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+
+  if (token && config.headers) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
 const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
   try {
     const { data } = await request;
