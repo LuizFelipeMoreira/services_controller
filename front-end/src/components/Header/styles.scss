@@ -27,13 +27,25 @@
   align-items: center;
   gap: 20px;
 
+  .wrapper-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px; // aumente ou ajuste conforme preferir
+    font-size: small;
+
+    p {
+      margin: 0; // garantir que não haja margin vertical
+    }
+  }
+
   .notification,
   .user {
     background: $gray;
     width: 35px;
     height: 35px;
-    margin: auto;
-    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     cursor: pointer;
   }

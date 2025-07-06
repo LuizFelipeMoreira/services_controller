@@ -1,6 +1,9 @@
+import { useAuth } from '../../hooks/useAuth';
 import './styles.scss';
 
 export const Header = () => {
+  const { user } = useAuth();
+
   return (
     <div className="header">
       <div className="gradient"></div>
@@ -16,8 +19,12 @@ export const Header = () => {
               <i className="fa-solid fa-bell"></i>
             </div>
 
-            <div className="user">
-              <i className="fa-solid fa-user"></i>
+            <div className="wrapper-icon">
+              <div className="user">
+                <i className="fa-solid fa-user"></i>
+              </div>
+
+              <p>{user?.user.name}</p>
             </div>
           </div>
         </div>
