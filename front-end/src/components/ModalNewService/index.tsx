@@ -61,7 +61,7 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
     const dateFormated = `${dia}/${mes}`;
 
     setData({ ...data, [name]: dateFormated });
-    console.log(data);
+    console.log(ano);
   };
 
   return (
