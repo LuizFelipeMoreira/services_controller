@@ -17,6 +17,6 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
         next();
     } catch (err: unknown) {
         console.log(err);
-        return res.send(401).json({ message: 'Token invalido ou expirado' });
+        return res.status(401).json({ message: 'Token invalido ou expirado' });
     }
 }
