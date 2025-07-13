@@ -18,3 +18,9 @@ export class UserAlreadyExits extends ApiError {
         super(message, 409);
     }
 }
+
+export class BadRequest extends ApiError {
+    constructor(message: string) {
+        super(message, 500);
+    }
+}
