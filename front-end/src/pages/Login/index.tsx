@@ -8,13 +8,14 @@ import './styles.scss';
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
   const { user, loginUser, errorMessage } = useAuth();
+
   const navigate = useNavigate();
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     loginUser(formData);
-
-    if (user?.token) navigate('/home');
+    //getServicesPaginated(1, 10);
+    navigate('/home');
   };
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export const DeleteServiceModal = ({
   return (
     <Modal show={modalConfirmShow}>
       <Modal.Header closeButton onHide={() => setModalConfirmShow(false)}>
-        <Modal.Title>'Deseja editar esse serviço?'</Modal.Title>
+        <Modal.Title>Deseja editar esse serviço ?</Modal.Title>
       </Modal.Header>
 
       <Modal.Footer>
