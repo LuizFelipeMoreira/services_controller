@@ -40,7 +40,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
       setServiceList(rows);
     }
 
-    if (user?.token) fethcServices();
+    fethcServices();
   }, []);
 
   const getServicesPaginated = async (page: number, size: number) => {
