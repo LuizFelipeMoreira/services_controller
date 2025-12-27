@@ -8,6 +8,7 @@ import {
   UPDATE_SERVICE,
   RELEASE_SERVICE,
 } from '../api/handleRequests';
+import { useAuth } from '../hooks/useAuth';
 
 interface ServiceProvider {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ export const ServiceContext = React.createContext({} as IServiceContext);
 export const ServiceProvider = ({ children }: ServiceProvider) => {
   const [serviceList, setServiceList] = React.useState<IService[]>([]);
   const [totalServices, seTotalServices] = React.useState(0);
+  const { user } = useAuth();
 
   React.useEffect(() => {
     async function fethcServices() {
@@ -38,7 +40,7 @@ export const ServiceProvider = ({ children }: ServiceProvider) => {
       setServiceList(rows);
     }
 
-    fethcServices();
+    if (user?.token) fethcServices();
   }, []);
 
   const getServicesPaginated = async (page: number, size: number) => {

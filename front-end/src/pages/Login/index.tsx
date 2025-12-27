@@ -7,14 +7,13 @@ import './styles.scss';
 
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
-  const { user, loginUser, errorMessage } = useAuth();
+  const { loginUser, errorMessage } = useAuth();
 
   const navigate = useNavigate();
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     loginUser(formData);
-    //getServicesPaginated(1, 10);
     navigate('/home');
   };
 
