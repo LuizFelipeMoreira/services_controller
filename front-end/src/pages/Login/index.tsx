@@ -4,10 +4,12 @@ import { IUserRequest } from '../../@types/IUser';
 import { Logo } from '../../components/Logo';
 import { useAuth } from '../../hooks/useAuth';
 import './styles.scss';
+import { useService } from '../../hooks/useService';
 
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
   const { user, loginUser, errorMessage } = useAuth();
+  const { getServicesPaginated } = useService();
   const navigate = useNavigate();
 
   const onSubmit = async (e: FormEvent) => {
@@ -17,9 +19,10 @@ export const Login = () => {
 
   React.useEffect(() => {
     if (user) {
+      getServicesPaginated(1, 10);
       navigate('/home');
     }
-  }, [user, navigate]);
+  }, [user, navigate, getServicesPaginated]);
 
   return (
     <div className="login-wrapper">
