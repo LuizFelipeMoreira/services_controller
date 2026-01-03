@@ -1,6 +1,7 @@
 import React from 'react';
 import { IUserRequest, IUserResponse } from '../@types/IUser';
 import { LOGIN_USER } from '../api/handleRequests';
+import { AxiosError } from 'axios';
 
 interface AuthContext {
   children: React.ReactNode;
@@ -25,9 +26,9 @@ export const AuthContextProvider = ({ children }: AuthContext) => {
 
       localStorage.setItem('token', user.token);
       setUser(user);
-    } catch (error: any) {
-      setErrorMessge(error.response.data.message);
-      console.log('Deu erro no bgl: ' + errorMessage);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError)
+        setErrorMessge(error.response?.data.message);
     }
   };
 

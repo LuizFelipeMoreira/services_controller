@@ -3,6 +3,7 @@ import { IService } from '../../@types/IService';
 import { useService } from '../../hooks/useService';
 import { DeleteServiceModal } from '../ModalDelete';
 import { UpdateServiceModal } from '../ModalUpdate';
+import { Loading } from '../Loading';
 
 export const Table = () => {
   const { serviceList, releaseServiceById } = useService();

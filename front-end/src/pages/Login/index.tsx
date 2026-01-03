@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 import { IUserRequest } from '../../@types/IUser';
 import { Logo } from '../../components/Logo';
@@ -7,19 +7,19 @@ import './styles.scss';
 
 export const Login = () => {
   const [formData, setFormData] = React.useState({} as IUserRequest);
-  const { loginUser, errorMessage } = useAuth();
-
+  const { user, loginUser, errorMessage } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     loginUser(formData);
-    navigate('/home');
   };
 
-  useEffect(() => {
-    console.table(formData);
-  }, [formData]);
+  React.useEffect(() => {
+    if (user) {
+      navigate('/home');
+    }
+  }, [user, navigate]);
 
   return (
     <div className="login-wrapper">
