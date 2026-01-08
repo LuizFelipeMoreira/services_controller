@@ -7,6 +7,6 @@ router.post('/singup', AuthController.signUp);
 
 router.post('/signin', AuthController.signIn);
 
-router.post('/logout', AuthController.logout);
+router.get('/me', AuthController.getMe);
 
 export default router;
