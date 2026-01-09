@@ -3,7 +3,7 @@ import {
   IServiceResquest,
   IServicesPaginated,
 } from '../@types/IService';
-import { IUserResponse } from '../@types/IUser';
+import { IUserPayLoad, IUserResponse } from '../@types/IUser';
 import { axiosInstance } from '../lib/api';
 
 axiosInstance.interceptors.request.use((config) => {
@@ -19,6 +19,8 @@ axiosInstance.interceptors.request.use((config) => {
 const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
   try {
     const { data } = await request;
+    console.log(data);
+
     return data;
   } catch (error) {
     return Promise.reject(error);
@@ -63,3 +65,6 @@ export const LOGIN_USER = (
   password: string
 ): Promise<IUserResponse> =>
   handleRequest(axiosInstance.post('/signin', { email, password }));
+
+export const GET_ME = (): Promise<IUserPayLoad> =>
+  handleRequest(axiosInstance.get('/me'));

@@ -12,3 +12,10 @@ export interface IUserResponse {
   iat: number;
   exp: number;
 }
+
+export interface IUserPayLoad {
+  id: number;
+  name: string;
+  iat: number;
+  exp: number;
+}
