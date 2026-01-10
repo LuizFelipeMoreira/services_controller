@@ -8,7 +8,8 @@ export type IUser = Omit<IUserRequest, 'password'>;
 
 export interface IUserResponse {
   token: string;
-  user: IUser;
+  id: number;
+  name: string;
   iat: number;
   exp: number;
 }

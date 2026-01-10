@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { IUser } from '../../@types/IUser';
 import { IUserRepository } from '../../repositories/auth-repositories/IUserRepository';
 
 interface IUserResponse {
     token: string;
-    user: Omit<IUser, 'password'>;
+    id: number;
+    name: string;
 }
 
 class LoginUserUseCase {
@@ -29,11 +29,8 @@ class LoginUserUseCase {
 
             return {
                 token,
-                user: {
-                    id,
-                    name,
-                    email,
-                },
+                id: userExists.id,
+                name: userExists.name,
             };
         } catch (error) {
             throw new Error(`Login failed: ${error}`);

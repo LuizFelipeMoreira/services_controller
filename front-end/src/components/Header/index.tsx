@@ -24,7 +24,7 @@ export const Header = () => {
                 <i className="fa-solid fa-user"></i>
               </div>
 
-              <p>{user?.user.name}</p>
+              {<p>{user?.name}</p>}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IUserPayLoad, IUserRequest, IUserResponse } from '../@types/IUser';
 import { GET_ME, LOGIN_USER } from '../api/handleRequests';
 import { AxiosError } from 'axios';
@@ -38,8 +38,6 @@ export const AuthContextProvider = ({ children }: AuthContext) => {
   const getMeUser = async () => {
     try {
       const userPayload = await GET_ME();
-
-      console.log(userPayload);
 
       if (userPayload.id) setUser(userPayload);
     } catch (error: unknown) {

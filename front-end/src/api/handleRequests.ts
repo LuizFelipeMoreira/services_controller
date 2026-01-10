@@ -19,7 +19,6 @@ axiosInstance.interceptors.request.use((config) => {
 const handleRequest = async <T>(request: Promise<{ data: T }>): Promise<T> => {
   try {
     const { data } = await request;
-    console.log(data);
 
     return data;
   } catch (error) {
