@@ -3,8 +3,8 @@ export interface IService {
     lente: string;
     laboratorio: string;
     os: string;
-    created_at?: string;
-    updated_at?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
     dataIda: string;
     dataVolta: string;
 }
