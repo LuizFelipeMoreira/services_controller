@@ -41,7 +41,6 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
       laboratorio: '',
       os: '',
       situacao: 'pendente',
-      dataIda: '',
       dataEntrega: '',
       createdAt: '',
       updatedAt: '',
