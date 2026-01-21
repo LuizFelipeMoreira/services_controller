@@ -7,7 +7,6 @@ export interface IService {
   situacao: 'pendente' | 'entregue';
   createdAt: string;
   updatedAt: string;
-
   dataEntrega: string;
 }
 
