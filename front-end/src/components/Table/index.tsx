@@ -26,6 +26,13 @@ export const Table = () => {
     releaseServiceById(service.id);
   };
 
+  const modifyLocalDate = (date: string) => {
+    return new Date(date).toLocaleDateString('pt-br', {
+      month: '2-digit',
+      day: '2-digit',
+    });
+  };
+
   return (
     <>
       <table className="tabelinha">
@@ -48,7 +55,7 @@ export const Table = () => {
               <td>{service.nome}</td>
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
-              <td>{service.dataIda}</td>
+              <td>{modifyLocalDate(service.createdAt)}</td>
               <td>{service.dataEntrega}</td>
               <td>{service.situacao}</td>
               <td>{service.os}</td>
