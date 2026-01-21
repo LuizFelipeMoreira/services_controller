@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { IService } from '../../@types/IService';
+import { CreateServiceDTO, ServiceResponseDTO } from '../../@types/IService';
 import { Servicos } from '../../database/model/Services';
 import {
     IServiceRepository,
@@ -7,12 +7,12 @@ import {
 } from '../services-repositories/IServicesRepository';
 
 class ServiceRepository implements IServiceRepository {
-    async create(data: IService): Promise<IService> {
+    async create(data: CreateServiceDTO): Promise<ServiceResponseDTO> {
         const newService = await Servicos.create({ ...data });
         return newService.toJSON();
     }
 
-    async update(id: number, data: IService): Promise<void> {
+    async update(id: number, data: CreateServiceDTO): Promise<void> {
         await Servicos.update(data, { where: { id } });
     }
 
@@ -20,7 +20,7 @@ class ServiceRepository implements IServiceRepository {
         await Servicos.destroy({ where: { id } });
     }
 
-    async getAll(): Promise<IService[]> {
+    async getAll(): Promise<ServiceResponseDTO[]> {
         const allServices = await Servicos.findAll();
         return allServices.map((service) => service.toJSON());
     }
@@ -36,14 +36,14 @@ class ServiceRepository implements IServiceRepository {
             order: [['id', 'DESC']],
         });
 
-        return { count, rows: rows.map((item) => item.toJSON() as IService) };
+        return { count, rows: rows.map((item) => item.toJSON() as ServiceResponseDTO) };
     }
 
     async releaseServiceById(id: number): Promise<void> {
         await Servicos.update({ situacao: 'entregue' }, { where: { id } });
     }
 
-    async getServiceByID(id: number): Promise<IService | null> {
+    async getServiceByID(id: number): Promise<ServiceResponseDTO | null> {
         const service = await Servicos.findByPk(id);
         return service ? service.toJSON() : null;
     }
@@ -58,7 +58,7 @@ class ServiceRepository implements IServiceRepository {
             order: [['id', 'DESC']],
         });
 
-        return { count, rows: rows.map((item) => item.toJSON() as IService) };
+        return { count, rows: rows.map((item) => item.toJSON() as ServiceResponseDTO) };
     }
 }
 
