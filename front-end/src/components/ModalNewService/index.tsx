@@ -43,6 +43,8 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
       situacao: 'pendente',
       dataIda: '',
       dataEntrega: '',
+      createdAt: '',
+      updatedAt: '',
     });
   };
 

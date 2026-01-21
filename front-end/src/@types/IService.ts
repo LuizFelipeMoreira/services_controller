@@ -5,8 +5,8 @@ export interface IService {
   laboratorio: string;
   os: string;
   situacao: 'pendente' | 'entregue';
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
   dataIda: string;
   dataEntrega: string;
 }
