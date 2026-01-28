@@ -56,7 +56,7 @@ export const Table = () => {
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
               <td>{modifyLocalDate(service.createdAt)}</td>
-              <td>{service.dataEntrega}</td>
+              <td>{modifyLocalDate(service.dataEntrega)}</td>
               <td>{service.situacao}</td>
               <td>{service.os}</td>
               <td className="d-flex gap-3 p-3 align-items-center">

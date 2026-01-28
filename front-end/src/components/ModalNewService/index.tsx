@@ -17,8 +17,6 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(data);
-
     try {
       addNewService(data);
       setOpen(false);
@@ -58,11 +56,7 @@ export const NewServiceModal = ({ open, setOpen }: ModalProps) => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    const [ano, mes, dia] = value.split('-');
-    const dateFormated = `${dia}/${mes}`;
-
-    setData({ ...data, [name]: dateFormated });
-    console.log(ano);
+    setData({ ...data, [name]: value });
   };
 
   return (
