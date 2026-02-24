@@ -11,7 +11,7 @@ export class ApiError extends Error {
 
 export class UserNotFound extends ApiError {
   constructor() {
-    super('USER_NOT_FOUND', 'Usuárioooooooo nao encontrado', 404);
+    super('USER_NOT_FOUND', 'Usuário nao encontrado', 404);
   }
 }
 
