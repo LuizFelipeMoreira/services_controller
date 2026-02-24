@@ -28,6 +28,8 @@ export const UpdateServiceModal = ({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    console.log(e.target.value);
+
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
@@ -76,11 +78,18 @@ export const UpdateServiceModal = ({
             onChange={handleChange}
             required
           />
-          <FormField label="Data de ida" type="date" name="dataIda" required />
+          <FormField
+            label="Data de ida"
+            type="date"
+            name="dataIda"
+            onChange={handleChange}
+            required
+          />
           <FormField
             label="Data de entrega"
             type="date"
             name="dataEntrega"
+            onChange={handleChange}
             required
           />
         </form>
