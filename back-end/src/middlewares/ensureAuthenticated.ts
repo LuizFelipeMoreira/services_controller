@@ -2,20 +2,17 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 export function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-    const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-    if (!authHeader) return res.status(401).json({ message: 'Token nao fornecido' });
+  if (!authHeader) return res.status(401).json({ message: 'Token nao fornecido' });
 
-    const [, token] = authHeader.split(' ');
-    console.log(token);
+  const [, token] = authHeader.split(' ');
 
-    try {
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string);
+  try {
+    jwt.verify(token, process.env.JWT_SECRET as string);
 
-        console.log(decodedToken);
-
-        next();
-    } catch (err: unknown) {
-        return res.status(401).json({ message: 'Token invalido ou expirado' });
-    }
+    next();
+  } catch (err: unknown) {
+    return res.status(401).json({ message: 'Token invalido ou expirado' });
+  }
 }
