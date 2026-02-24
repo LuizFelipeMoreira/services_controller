@@ -55,7 +55,7 @@ export const Table = () => {
               <td>{service.nome}</td>
               <td>{service.lente}</td>
               <td>{service.laboratorio}</td>
-              <td>{modifyLocalDate(service.createdAt)}</td>
+              <td>{modifyLocalDate(service.dataIda)}</td>
               <td>{modifyLocalDate(service.dataEntrega)}</td>
               <td>{service.situacao}</td>
               <td>{service.os}</td>
