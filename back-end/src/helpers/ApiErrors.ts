@@ -23,7 +23,7 @@ export class UserAlreadyExits extends ApiError {
 
 export class InvalidCredentials extends ApiError {
   constructor() {
-    super('INVALID_CREDENTIALS', 'Email ou senha inválidos', 401);
+    super('INVALID_CREDENTIALS', 'Credenciais inválidas', 401);
   }
 }
 
