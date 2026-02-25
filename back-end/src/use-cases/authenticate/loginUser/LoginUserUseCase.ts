@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { IUserRepository } from '../../repositories/auth-repositories/IUserRepository';
-import { InvalidCredentials, UserNotFound } from '../../helpers/ApiErrors';
+import { IUserRepository } from '../../../repositories/auth-repositories/IUserRepository';
+import { InvalidCredentials, UserNotFound } from '../../../helpers/ApiErrors';
 
 interface IUserResponse {
   token: string;

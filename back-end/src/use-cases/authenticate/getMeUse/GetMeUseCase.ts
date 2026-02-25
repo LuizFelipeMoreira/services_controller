@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { InvalidCredentials } from '../../helpers/ApiErrors';
+import { InvalidCredentials } from '../../../helpers/ApiErrors';
 
 interface UserPayload extends JwtPayload {
   sub: string;

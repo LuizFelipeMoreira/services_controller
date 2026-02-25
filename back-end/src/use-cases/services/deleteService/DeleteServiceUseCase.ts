@@ -1,5 +1,5 @@
-import { IServiceRepository } from '../../repositories/services-repositories/IServicesRepository';
-import { GetServiceByIdUseCase } from './GetServiceByIdUseCase';
+import { IServiceRepository } from '../../../repositories/services-repositories/IServicesRepository';
+import { GetServiceByIdUseCase } from '../getServiceById/GetServiceByIdUseCase';
 
 class DeleteServiceUserCase {
   constructor(private serviceRepository: IServiceRepository) {}

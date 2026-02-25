@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import UserRepository from '../../repositories/auth-repositories/UserRepository';
-import { CreateUserUseCase } from '../../use-cases/authenticate/CreateUserUseCase';
-import { GetMeUseCase } from '../../use-cases/authenticate/GetMeUseCase';
-import { LoginUserUseCase } from '../../use-cases/authenticate/LoginUserUseCase';
+import { CreateUserUseCase } from '../../use-cases/authenticate/createUser /CreateUserUseCase';
+import { GetMeUseCase } from '../../use-cases/authenticate/getMeUse/GetMeUseCase';
+import { LoginUserUseCase } from '../../use-cases/authenticate/loginUser/LoginUserUseCase';
 
 class AuthController {
   public async signUp(req: Request, res: Response) {

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from 'express';
-import { CreateServiceUserCase } from '../../use-cases/services/CreateServiceUseCase';
-import { DeleteServiceUserCase } from '../../use-cases/services/DeleteServiceUseCase';
-import { GetAllServiceUserCase } from '../../use-cases/services/GetAllServicesUseCase';
-import { GetPaginatedServiceUseCase } from '../../use-cases/services/GetPaginatedServiceUseCase';
-import { GetServiceByIdUseCase } from '../../use-cases/services/GetServiceByIdUseCase';
-import { GetServiceByNameUseCase } from '../../use-cases/services/GetServiceByNameUseCase';
-import { ReleaseServiceUseCase } from '../../use-cases/services/ReleaseServiceUseCase';
-import { UpdateServiceUserCase } from '../../use-cases/services/UpdateServiceUseCase';
+import { CreateServiceUserCase } from '../../use-cases/services/createService/CreateServiceUseCase';
+import { DeleteServiceUserCase } from '../../use-cases/services/deleteService/DeleteServiceUseCase';
+import { GetAllServiceUserCase } from '../../use-cases/services/getAllServices/GetAllServicesUseCase';
+import { GetPaginatedServiceUseCase } from '../../use-cases/services/getPaginatedServices/GetPaginatedServiceUseCase';
+import { GetServiceByIdUseCase } from '../../use-cases/services/getServiceById/GetServiceByIdUseCase';
+import { GetServiceByNameUseCase } from '../../use-cases/services/getServiceByName/GetServiceByNameUseCase';
+import { ReleaseServiceUseCase } from '../../use-cases/services/releaseService/ReleaseServiceUseCase';
+import { UpdateServiceUserCase } from '../../use-cases/services/updateService/UpdateServiceUseCase';
 
 import ServicesRepository from '../../repositories/services-repositories/ServicesRepository';
 

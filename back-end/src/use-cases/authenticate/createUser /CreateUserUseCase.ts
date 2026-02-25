@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
-import User from '../../database/model/Users';
-import { IUserRepository } from '../../repositories/auth-repositories/IUserRepository';
-import { UserAlreadyExits } from '../../helpers/ApiErrors';
+import User from '../../../database/model/Users';
+import { IUserRepository } from '../../../repositories/auth-repositories/IUserRepository';
+import { UserAlreadyExits } from '../../../helpers/ApiErrors';
 
 class CreateUserUseCase {
   constructor(private readonly authRepository: IUserRepository) {}
