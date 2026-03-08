@@ -5,87 +5,122 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: $gray;
+
+  background: linear-gradient(135deg, lighten($gray, 6%), darken($gray, 3%));
+
   padding: 20px;
 }
 
 .logo-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center; // opcional, caso queira alinhar verticalmente também
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .login-box {
   background: $white;
-  border: 1px solid $gray-dark;
-  padding: 40px 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 45px 35px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  animation: fadeIn 0.4s ease;
 }
 
 .login-title {
   text-align: center;
   margin-bottom: 30px;
   color: $black;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 
     label {
-      color: $black;
+      color: darken($black, 10%);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     input {
-      padding: 10px 12px;
-      border-radius: 6px;
+      padding: 11px 13px;
+      border-radius: 8px;
       border: 1px solid $gray-dark;
-      background: $gray;
+      background: lighten($gray, 4%);
       font-size: 0.95rem;
-      transition: box-shadow 0.2s;
+
+      transition: all 0.2s ease;
 
       &:focus {
-        box-shadow: 0 0 0 3px rgba(134, 198, 235, 0.6);
         outline: none;
-        background: lighten($gray, 3%);
+        border-color: $green;
+
+        box-shadow: 0 0 0 3px rgba(134, 198, 235, 0.45);
+
+        background: $white;
       }
     }
   }
 
   .error-message {
-    display: flex;
-    margin: 0 auto;
-    color: red;
+    margin-top: 4px;
+    color: #d62828;
     font-size: 0.75rem;
+    font-weight: 500;
   }
 
   .btn-submit {
-    padding: 10px;
-    border-radius: 6px;
+    margin-top: 5px;
+    padding: 11px;
+    border-radius: 8px;
     border: none;
+
     background: $green;
     color: $white;
+
     font-size: 1rem;
     font-weight: 600;
+
     cursor: pointer;
-    transition: background 0.2s;
+
+    transition: all 0.2s ease;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 
     &:hover {
-      background: darken($green, 10%);
+      background: darken($green, 8%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
     }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
