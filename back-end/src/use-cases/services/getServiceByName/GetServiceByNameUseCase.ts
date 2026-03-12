@@ -1,3 +1,4 @@
+import { ServiceNotFound } from '../../../helpers/ApiErrors';
 import {
   IServiceRepository,
   PagenatedResponse,
@@ -10,7 +11,7 @@ class GetServiceByNameUseCase {
     const offset = page > 0 ? (page - 1) * 10 : page;
     const service = await this.serviceRepository.getServiceByName(name, offset);
 
-    if (!service) throw new Error('Nao ha servicos com esse nome');
+    if (!service) throw new ServiceNotFound();
 
     return service;
   }

@@ -9,6 +9,12 @@ export class ApiError extends Error {
   }
 }
 
+export class ServiceNotFound extends ApiError {
+  constructor() {
+    super('Service_NOT_FOUND', 'Serviço nao encontrado', 404);
+  }
+}
+
 export class UserNotFound extends ApiError {
   constructor() {
     super('USER_NOT_FOUND', 'Usuário nao encontrado', 404);

@@ -1,4 +1,5 @@
 import { CreateServiceDTO } from '../../../@types/IService';
+import { ServiceNotFound } from '../../../helpers/ApiErrors';
 import { IServiceRepository } from '../../../repositories/services-repositories/IServicesRepository';
 import { GetServiceByIdUseCase } from '../getServiceById/GetServiceByIdUseCase';
 
@@ -9,10 +10,8 @@ class UpdateServiceUserCase {
     const getServiceByID = new GetServiceByIdUseCase(this.serviceRepository);
     const existingService = await getServiceByID.execute(id);
 
-    if (!existingService) throw new Error('Service not Found');
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const updatedService = await this.serviceRepository.update(id, data);
+    if (!existingService) throw new ServiceNotFound();
+    await this.serviceRepository.update(id, data);
   }
 }
 

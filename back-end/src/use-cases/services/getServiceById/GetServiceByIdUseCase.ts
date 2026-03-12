@@ -1,4 +1,5 @@
 import { ServiceResponseDTO } from '../../../@types/IService';
+import { ServiceNotFound } from '../../../helpers/ApiErrors';
 import { IServiceRepository } from '../../../repositories/services-repositories/IServicesRepository';
 
 class GetServiceByIdUseCase {
@@ -7,7 +8,7 @@ class GetServiceByIdUseCase {
   async execute(id: number): Promise<ServiceResponseDTO> {
     const service = await this.serviceRepository.getServiceByID(id);
 
-    if (!service) throw new Error('Service Not Found');
+    if (!service) throw new ServiceNotFound();
 
     return service;
   }

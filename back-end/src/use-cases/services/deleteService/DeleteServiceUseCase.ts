@@ -1,3 +1,4 @@
+import { ServiceNotFound } from '../../../helpers/ApiErrors';
 import { IServiceRepository } from '../../../repositories/services-repositories/IServicesRepository';
 import { GetServiceByIdUseCase } from '../getServiceById/GetServiceByIdUseCase';
 
@@ -8,10 +9,9 @@ class DeleteServiceUserCase {
     const GetServiceById = new GetServiceByIdUseCase(this.serviceRepository);
     const existingService = await GetServiceById.execute(id);
 
-    if (!existingService) throw new Error('Service ont Found');
+    if (!existingService) throw new ServiceNotFound();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const deletedService = await this.serviceRepository.deleteService(id);
+    await this.serviceRepository.deleteService(id);
 
     return;
   }
