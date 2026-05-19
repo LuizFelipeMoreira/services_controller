@@ -37,27 +37,20 @@ export const GET_SERVICES_BY_NAME = (
   offset: number
 ): Promise<IServicesPaginated> =>
   handleRequest(
-    axiosInstance.get(`/service/search`, { params: { name, offset } })
+    axiosInstance.get(`/services/search`, { params: { name, offset } })
   );
 
 export const CREATE_SERVICE = (formData: IServiceResquest): Promise<IService> =>
-  handleRequest(axiosInstance.post(`/create`, formData));
+  handleRequest(axiosInstance.post(`/services`, formData));
 
 export const DELETE_SERVICE = (id: number): Promise<void> =>
-  handleRequest(axiosInstance.post(`/delete/${id}`));
+  handleRequest(axiosInstance.delete(`/services/${id}`));
 
 export const UPDATE_SERVICE = (id: number, body: IService): Promise<void> =>
-  handleRequest(axiosInstance.post(`/edit/${id}`, body));
+  handleRequest(axiosInstance.put(`/services/${id}`, body));
 
-export const RELEASE_SERVICE = (id: number) => {
-  console.log(
-    'Entrou na funcao de liberar servico da api, agora o servico de id ' +
-      id +
-      ' foi liberado'
-  );
-
-  return handleRequest(axiosInstance.post(`/release/${id}`));
-};
+export const RELEASE_SERVICE = (id: number) =>
+  handleRequest(axiosInstance.patch(`/services/${id}/release`));
 
 export const LOGIN_USER = (
   email: string,
