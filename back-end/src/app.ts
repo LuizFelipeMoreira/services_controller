@@ -1,9 +1,9 @@
 import 'express-async-errors';
 import cors from 'cors';
 import express from 'express';
-import serviceRoutes from './controllers/service/services.routes';
-import authenticateRoutes from './controllers/authenticate/authenticate.routes';
-import { errorHandler } from './middlewares/errorHandler';
+import serviceRoutes from './modules/services/controllers/service.routes';
+import authRoutes from './modules/auth/controllers/auth.routes';
+import { errorHandler } from './middlewares/error-handler';
 
 const app = express();
 const PORT = 8181;
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(serviceRoutes);
-app.use(authenticateRoutes);
+app.use(authRoutes);
 
 app.use(errorHandler);
 
