@@ -5,8 +5,10 @@ export function errorHandler(
   err: unknown,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
+  void _next;
+
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
       error: err.error,

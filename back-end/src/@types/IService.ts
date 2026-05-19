@@ -4,7 +4,7 @@ export interface CreateServiceDTO {
     laboratorio: string;
     os: string;
     dataIda: string;
-    dataVolta: string;
+    dataEntrega: string;
 }
 
 export interface ServiceResponseDTO {
@@ -14,7 +14,7 @@ export interface ServiceResponseDTO {
     laboratorio: string;
     os: string;
     dataIda: string;
-    dataVolta: string;
+    dataEntrega: string;
     createdAt: string;
     updatedAt: string;
 }

@@ -6,14 +6,16 @@ const router = express.Router();
 
 router.get('/services', ensureAuthenticated, ServiceController.getListPaginated);
 
-router.post('/create', ensureAuthenticated, ServiceController.create);
+router.get('/services/search', ensureAuthenticated, ServiceController.getServiceByName);
 
-router.post('/edit/:id', ensureAuthenticated, ServiceController.update);
+router.get('/services/:id', ensureAuthenticated, ServiceController.getService);
 
-router.post('/delete/:id', ensureAuthenticated, ServiceController.delete);
+router.post('/services', ensureAuthenticated, ServiceController.create);
 
-router.post('/release/:id', ensureAuthenticated, ServiceController.releaseService);
+router.put('/services/:id', ensureAuthenticated, ServiceController.update);
 
-router.get('/service/search', ensureAuthenticated, ServiceController.getServiceByName);
+router.delete('/services/:id', ensureAuthenticated, ServiceController.delete);
+
+router.patch('/services/:id/release', ensureAuthenticated, ServiceController.releaseService);
 
 export default router;

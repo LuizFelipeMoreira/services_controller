@@ -12,7 +12,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
     jwt.verify(token, process.env.JWT_SECRET as string);
 
     next();
-  } catch (err: unknown) {
+  } catch {
     return res.status(401).json({ message: 'Token invalido ou expirado' });
   }
 }
